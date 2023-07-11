@@ -71,6 +71,11 @@ vector<int> candidates;
 vector<Group> groups;
 vector<int> id;
 
+// modify from here
+int hop_num[MAX_V];
+
+
+
 void build_graph() {
 	memset(is_delete_e, 0, sizeof(is_delete_e));
 	memset(support, 0, sizeof(support));
@@ -107,7 +112,7 @@ void build_graph() {
 		followers[MAX_E].push_back(0);
 	}
 }
-
+/*
 void GetKtruss() {
 	
 	size_of_truss = e_num;
@@ -139,12 +144,14 @@ void GetKtruss() {
 					temp_triangle.edge2 = edg1;
 					temp_triangle.edge3 = edg2;
 					temp_triangle.v3 = v;
+					
 					if ((all_edge_pairs[edg1].sign + all_edge_pairs[edg2].sign + all_edge_pairs[i].sign) == -1) {
 						temp_triangle.is_balanced = 1;
 					}
 					else if ((all_edge_pairs[edg1].sign + all_edge_pairs[edg2].sign + all_edge_pairs[i].sign) == 3) {
 						temp_triangle.is_balanced = 1;
 					}
+				
 					Triangles.push_back(temp_triangle);
 					in_which_triangle[i].push_back(Triangles.size() - 1);
 					in_which_triangle[edg1].push_back(Triangles.size() - 1);
@@ -234,6 +241,37 @@ void GetKtruss() {
 
 
 }
+*/
+
+void GetKtruss(int src) {
+
+	// record all nodes with k hops, hop is initially set to 2
+	memset(hop_num, -1, sizeof(hop_num));
+	queue<pair<int,int>> q;
+	int hop = 2;
+	q.push(make_pair(src,0));
+	hop_num[src] = 0;
+	while (!q.empty()) {
+		int curr_v= q.front().first;
+		int curr_hop = q.front().second;
+		q.pop();
+		for (int i = 0; i < vec[curr_v].size(); i++) {
+			int v = vec[curr_v][i];
+			if (hop_num[v] == -1 || hop_num[v] > curr_hop + 1) {
+				hop_num[v] = curr_hop + 1;
+				
+				//if (curr_hop == hop - 1) continue;
+				
+				q.push(make_pair(v, curr_hop + 1));
+			}
+		}
+	}
+	/*
+	for (int i = 0; i < MAX_V; i++) {
+		if (hop_num[i] == 3) cout << i << "\n";
+	}*/
+}
+
 
 void candidate_lemma() {
 	
@@ -668,6 +706,9 @@ int main() {
     int start_vertex, k;
     cout << "Enter the start vertex: ";
     cin >> start_vertex;
+	GetKtruss(start_vertex);
+
+	/*
     C.insert(start_vertex); // Starting with vertex 0
     int d = 0;
 
@@ -701,7 +742,7 @@ int main() {
         cout << vertex << " ";
     }
     cout << endl;
-
+	*/
 
 
 	return 0;
