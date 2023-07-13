@@ -249,6 +249,7 @@ void GetKtruss(int src) {
 	memset(hop_num, -1, sizeof(hop_num));
 	queue<pair<int,int>> q;
 	int hop = 2;
+	int max_hop = -1;
 	q.push(make_pair(src,0));
 	hop_num[src] = 0;
 	while (!q.empty()) {
@@ -261,7 +262,7 @@ void GetKtruss(int src) {
 				hop_num[v] = curr_hop + 1;
 				
 				//if (curr_hop == hop - 1) continue;
-				
+				if (max_hop < curr_hop + 1) max_hop = curr_hop + 1;
 				q.push(make_pair(v, curr_hop + 1));
 			}
 		}
@@ -270,6 +271,31 @@ void GetKtruss(int src) {
 	for (int i = 0; i < MAX_V; i++) {
 		if (hop_num[i] == 3) cout << i << "\n";
 	}*/
+	bool isSuccess = false;
+	int lo = 1;
+	int hi = max_hop;
+	hop = -1;
+	while (lo <= hi) {
+		if (hop == -1) {
+			hop = 2;
+		} else {
+			hop = (lo + hi) / 2;
+		}
+		if (getKtrussWithHops(hop)) {
+			// should return success
+			//if (lo == hi) return;
+			hi = hop - 1;
+		} else {
+			// should return false;
+			//if (lo == hi) return;
+			lo = hop + 1;
+		}
+		
+	}
+}
+
+bool getKtrussWithHops(int hop) {
+
 }
 
 
