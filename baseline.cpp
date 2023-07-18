@@ -295,13 +295,16 @@ vector<int> findLongestPath() {
 }
 
 bool removeEdgeFromLongestPath() {
-	cout << "here\n";
 	vector<int> path = findLongestPath();
-	cout << "Path is :\n";
+	cout << "Longest Path is :\n";
 	for (auto v : path) {
 		cout << v << " -> ";
 	}
 	cout << "\n";
+
+	//TODO
+	//remove edge from any side of the longest path
+
 	return false;
 }
 
@@ -330,36 +333,24 @@ void GetKtruss(int src) {
 			int v = vec[curr_v][i];
 			if (hop_num[v] == -1 || hop_num[v] > curr_hop + 1) {
 				hop_num[v] = curr_hop + 1;
-				
-				//if (curr_hop == hop - 1) continue;
 				if (max_hop < curr_hop + 1) max_hop = curr_hop + 1;
 				q.push(make_pair(v, curr_hop + 1));
 			}
 		}
 	}
 	cout << "max hop is " << max_hop << "\n";
-	/*
-	for (int i = 0; i < MAX_V; i++) {
-		if (hop_num[i] == 3) cout << i << "\n";
-	}*/
-
 
 	// add one hop at a time
 	
 	bool isSuccess = false;
-	//int lo = 1;
-	//int hi = max_hop;
-	//hop = -1;
+
 	int curr_hop = 1;
 
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
-		auto res = removeEdgeFromLongestPath();
+
 		if (getKtrussWithHops(hop)) {
-			// should return success
-			
-			//if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
+			if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
-		break;
 		curr_hop += 1;
 	}
 }
