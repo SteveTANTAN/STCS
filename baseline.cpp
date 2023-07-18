@@ -246,12 +246,14 @@ void GetKtruss() {
 void GetKtruss(int src) {
 
 	// record all nodes with k hops, hop is initially set to 2
+	
 	memset(hop_num, -1, sizeof(hop_num));
 	queue<pair<int,int>> q;
 	int hop = 2;
 	int max_hop = -1;
 	q.push(make_pair(src,0));
 	hop_num[src] = 0;
+	
 	while (!q.empty()) {
 		int curr_v= q.front().first;
 		int curr_hop = q.front().second;
@@ -271,6 +273,10 @@ void GetKtruss(int src) {
 	for (int i = 0; i < MAX_V; i++) {
 		if (hop_num[i] == 3) cout << i << "\n";
 	}*/
+
+
+	// add one hop at a time
+	/*
 	bool isSuccess = false;
 	int lo = 1;
 	int hi = max_hop;
@@ -283,19 +289,19 @@ void GetKtruss(int src) {
 		}
 		if (getKtrussWithHops(hop)) {
 			// should return success
-			//if (lo == hi) return;
+			if (lo == hi) return;
 			hi = hop - 1;
 		} else {
 			// should return false;
-			//if (lo == hi) return;
+			if (lo == hi) return;
 			lo = hop + 1;
 		}
 		
-	}
+	}*/
 }
 
 bool getKtrussWithHops(int hop) {
-
+	return false;
 }
 
 
@@ -708,7 +714,7 @@ int main() {
 	string outname;
 	// scanf("%d", &k);
 	// cin >> filename;
-    filename = "data/temp2";
+    filename = "data/test1";
 	outname = filename + "5_solution.txt";
 	filename += ".txt";
 	build_graph();
@@ -769,7 +775,10 @@ int main() {
     }
     cout << endl;
 	*/
-
+	for (int i = 1; i < MAX_V; i++) {
+		if (hop_num[i] < 0) break;
+		cout << "hop number for " << i << " is " << hop_num[i] << "\n";
+	}
 
 	return 0;
 }
