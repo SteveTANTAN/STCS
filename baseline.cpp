@@ -269,6 +269,7 @@ void GetKtruss(int src) {
 			}
 		}
 	}
+	cout << "max hop is " << max_hop << "\n";
 	/*
 	for (int i = 0; i < MAX_V; i++) {
 		if (hop_num[i] == 3) cout << i << "\n";
@@ -276,31 +277,31 @@ void GetKtruss(int src) {
 
 
 	// add one hop at a time
-	/*
+	
 	bool isSuccess = false;
-	int lo = 1;
-	int hi = max_hop;
-	hop = -1;
-	while (lo <= hi) {
-		if (hop == -1) {
-			hop = 2;
-		} else {
-			hop = (lo + hi) / 2;
-		}
+	//int lo = 1;
+	//int hi = max_hop;
+	//hop = -1;
+	int curr_hop = 1;
+	while (curr_hop >= 1 && curr_hop <= max_hop) {
+		
 		if (getKtrussWithHops(hop)) {
 			// should return success
-			if (lo == hi) return;
-			hi = hop - 1;
-		} else {
-			// should return false;
-			if (lo == hi) return;
-			lo = hop + 1;
-		}
-		
-	}*/
+			if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
+		} 		
+		curr_hop += 1;
+	}
 }
 
 bool getKtrussWithHops(int hop) {
+	return false;
+}
+
+bool removeEdgeFromLongestPath() {
+	return false;
+}
+
+bool removeNegativeTriangle() {
 	return false;
 }
 
