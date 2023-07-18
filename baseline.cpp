@@ -115,6 +115,15 @@ void build_graph() {
 
 
 bool GetKtrusswith_Nhops(int n, int k) {
+	memset(is_delete_e, 0, sizeof(is_delete_e));
+	memset(support, 0, sizeof(support));
+	memset(book, 0, sizeof(book));
+	memset(break_unb, 0, sizeof(break_unb));
+	memset(temp_delete_e, 0, sizeof(temp_delete_e));
+	memset(link, 0, sizeof(link));
+	memset(grouped, -1, sizeof(grouped));
+	memset(candidate, 0, sizeof(candidate));
+	two_dimension.resize(MAX_E);
 	
 	size_of_truss = e_num;
 	int counts = 0;
@@ -322,12 +331,102 @@ bool removeEdgeFromLongestPath() {
 
 	return false;
 }
+void delete_on_edge(int A, int B){
+	int edge_num = -1;
+	for (int i = 0; i < adj_edge[A].size(); ++i) {
+        int edge_index = adj_edge[A][i];
+        // Check if this edge index appears in the list for v2
+        for (int j = 0; j < adj_edge[B].size(); ++j) {
+            if (adj_edge[B][j] == edge_index) {
+                // If it does, return this edge index
+                edge_num = edge_index;
+            }
+        }
+    }
+
+	queue<int> q;
+	if (!is_delete_e[edge_num] ) {
+		is_delete_e[edge_num] = 1;
+		size_of_truss--;
+		temp_delete_e[edge_num] = 1;
+		q.push(edge_num);
+	
+	}
+
+
+	while (!q.empty()) {
+		int sub = q.front();
+		q.pop();
+		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
+		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
+			if (!Triangles[in_which_triangle[sub][i]].is_broken) {
+				if (Triangles[in_which_triangle[sub][i]].is_balanced) {
+					// 删除临边
+					support[Triangles[in_which_triangle[sub][i]].edge1]--;
+					support[Triangles[in_which_triangle[sub][i]].edge2]--;
+					support[Triangles[in_which_triangle[sub][i]].edge3]--;
+				}
+				else 
+					unbalance_num--;
+				// 删除一条边后check 他的临边
+				if (!is_delete_e[Triangles[in_which_triangle[sub][i]].edge1]) {
+					if (support[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
+					{
+						q.push(Triangles[in_which_triangle[sub][i]].edge1);
+						is_delete_e[Triangles[in_which_triangle[sub][i]].edge1] = 1;
+						temp_delete_e[Triangles[in_which_triangle[sub][i]].edge1] = 1;
+						size_of_truss--;
+					}
+				}
+				if (!is_delete_e[Triangles[in_which_triangle[sub][i]].edge2]) {
+					if (support[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
+					{
+						q.push(Triangles[in_which_triangle[sub][i]].edge2);
+						is_delete_e[Triangles[in_which_triangle[sub][i]].edge2] = 1;
+						temp_delete_e[Triangles[in_which_triangle[sub][i]].edge2] = 1;
+						size_of_truss--;
+					}
+				}
+				if (!is_delete_e[Triangles[in_which_triangle[sub][i]].edge3]) {
+					if (support[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
+					{
+						q.push(Triangles[in_which_triangle[sub][i]].edge3);
+						is_delete_e[Triangles[in_which_triangle[sub][i]].edge3] = 1;
+						temp_delete_e[Triangles[in_which_triangle[sub][i]].edge3] = 1;
+						size_of_truss--;
+					}
+				}
+				Triangles[in_which_triangle[sub][i]].is_broken = 1;
+			}
+		}
+	}
+
+
+}
 
 
 bool removeNegativeTriangle() {
 	return false;
 }
+void print_result(){
+		// Assuming vertices_set is your set of vertices
+	set<int> vertices_set;
+	cout <<  " ====result graph: \n";
+	// Collect all unique vertices from all_edge_pairs into the set
+	for (int i = 0; i < e_num; i++) {
+		if (!is_delete_e[i]) {
+			vertices_set.insert(all_edge_pairs[i].v1);
+			vertices_set.insert(all_edge_pairs[i].v2);
+		}
+	}
 
+	// Print all vertices in the set
+	for (const auto& vertex : vertices_set) {
+		cout << vertex << " ";
+	}
+	cout << endl;
+
+}
 
 void GetKtruss(int src, int k) {
 
@@ -365,6 +464,7 @@ void GetKtruss(int src, int k) {
 		cout << "--------when hop is " << curr_hop << "\n";
 
 		if (GetKtrusswith_Nhops(curr_hop, k)) {
+			print_result();
 			return;
 			// if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
