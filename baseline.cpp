@@ -112,35 +112,47 @@ void build_graph() {
 		followers[MAX_E].push_back(0);
 	}
 }
-/*
-void GetKtruss() {
+
+
+bool GetKtrusswith_Nhops(int n, int k) {
 	
 	size_of_truss = e_num;
 	int counts = 0;
+	// for (int i = 0; i < e_num; i++) {
+	// 	if (hop_num[all_edge_pairs[i].v1] <= n || hop_num[all_edge_pairs[i].v2] <= n) size_of_truss++;
+	// }
 	for (int i = 0; i < e_num; i++) {
-		//if (i % 10000 == 0)
-			//cout << i << endl;
+		// If the vertices of the edge are not within n hops of the source, skip this iteration
+		// if (hop_num[all_edge_pairs[i].v1] > n || hop_num[all_edge_pairs[i].v2] > n) 
+    	// 	continue;
 		Triangle temp_triangle;
-		// 对于每条边进行赋值
+		// Assigning values to each edge
 		temp_triangle.v1 = all_edge_pairs[i].v1;
 		temp_triangle.v2 = all_edge_pairs[i].v2;
+		
+
 		temp_triangle.edge1 = i;
 		for (int j = 0; j < vec[all_edge_pairs[i].v1].size(); j++) {
-			counts++;
 			int v = vec[all_edge_pairs[i].v1][j];
-			//int edg1 = adj_edge[all_edge_pairs[i].v1][j];
+			// If the vertex v is not within n hops of the source, skip this iteration
+			// if (hop_num[v] > n)
+			// 	continue;
+			
+			counts++;
 			book[v] = 1;
 			two_dimension[v] = j;
 			is_booked.push_back(v);
 		}
 		for (int j = 0; j < vec[all_edge_pairs[i].v2].size(); j++) {
-			counts++;
 			int v = vec[all_edge_pairs[i].v2][j];
 			int edg2 = adj_edge[all_edge_pairs[i].v2][j];
+			// If the vertex v is not within n hops of the source, skip this iteration
+			// if (hop_num[v] > n)
+			// 	continue;
+			counts++;
 			if (book[v]) {
-				int edg1 = adj_edge[all_edge_pairs[i].v1][two_dimension[v]];//?edg1
-				//support[i]++;
-				if (edg1 > i&&edg2 > i) {
+				int edg1 = adj_edge[all_edge_pairs[i].v1][two_dimension[v]]; //?edg1
+				if (edg1 > i && edg2 > i) {
 					temp_triangle.edge2 = edg1;
 					temp_triangle.edge3 = edg2;
 					temp_triangle.v3 = v;
@@ -163,7 +175,6 @@ void GetKtruss() {
 			book[is_booked[j]] = 0;
 		}
 		is_booked.clear();
-		
 	}
 	for (int i = 0; i < Triangles.size(); i++) {
 		if (!Triangles[i].is_balanced)
@@ -180,8 +191,9 @@ void GetKtruss() {
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < e_num; i++) {
-		if (!is_delete_e[i]) {
-			if (support[i] < k - 2) {
+		if (!is_delete_e[i] ) {
+			if (support[i] < k - 2|| hop_num[all_edge_pairs[i].v1] > n || hop_num[all_edge_pairs[i].v2] > n
+		|| hop_num[all_edge_pairs[i].v1] == -1 || hop_num[all_edge_pairs[i].v2] == -1) {
 				is_delete_e[i] = 1;
 				size_of_truss--;
 				temp_delete_e[i] = 1;
@@ -238,14 +250,17 @@ void GetKtruss() {
 	cout << "size of KTruss" << size_of_truss << endl;
 	cout << "truss unb num:" << unbalance_num << endl;
 
+	if (size_of_truss > 0){
+		return true;
+	}
+	else {
+		return false;
+	}
+
 
 
 }
-*/
 
-bool getKtrussWithHops(int hop) {
-	return true;
-}
 
 
 
@@ -314,7 +329,7 @@ bool removeNegativeTriangle() {
 }
 
 
-void GetKtruss(int src) {
+void GetKtruss(int src, int k) {
 
 	// record all nodes with k hops, hop is initially set to 2
 	
@@ -347,9 +362,11 @@ void GetKtruss(int src) {
 	int curr_hop = 1;
 
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
+		cout << "--------when hop is " << curr_hop << "\n";
 
-		if (getKtrussWithHops(hop)) {
-			if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
+		if (GetKtrusswith_Nhops(curr_hop, k)) {
+			return;
+			// if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
 		curr_hop += 1;
 	}
@@ -792,7 +809,9 @@ int main() {
     int start_vertex, k;
     cout << "Enter the start vertex: ";
     cin >> start_vertex;
-	GetKtruss(start_vertex);
+	cout << "Enter the K: ";
+    cin >> k;
+	GetKtruss(start_vertex, k);
 
 	/*
     C.insert(start_vertex); // Starting with vertex 0
@@ -829,10 +848,10 @@ int main() {
     }
     cout << endl;
 	*/
-	for (int i = 1; i < MAX_V; i++) {
-		if (hop_num[i] < 0) break;
-		cout << "hop number for " << i << " is " << hop_num[i] << "\n";
-	}
+	// for (int i = 1; i < MAX_V; i++) {
+	// 	if (hop_num[i] < 0) break;
+	// 	cout << "hop number for " << i << " is " << hop_num[i] << "\n";
+	// }
 
 	return 0;
 }
