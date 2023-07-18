@@ -73,7 +73,7 @@ vector<int> id;
 
 // modify from here
 int hop_num[MAX_V];
-
+int visited[MAX_V];
 
 
 void build_graph() {
@@ -243,6 +243,74 @@ void GetKtruss() {
 }
 */
 
+bool getKtrussWithHops(int hop) {
+	return true;
+}
+
+
+
+
+
+
+vector<int> findLongestPath() {
+	// little optimization by replace v_num by v_num-1
+	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
+	int pathLength = -1;
+	vector<int> path;
+	
+	for (int i = 1; i < v_num - 1; i++) {
+		memset(visited, 0, sizeof(visited));
+		queue<pair<int,pair<int, vector<int>>>> q;
+		vector<int> curr_path;
+		curr_path.push_back(i);
+		q.push(make_pair(i, make_pair(0, curr_path)));
+		
+		while (!q.empty()) {
+			int size = q.size();
+			for (size; size > 0; size--) {
+				auto curr_pair = q.front();
+				q.pop();
+				if (visited[curr_pair.first]) continue;
+
+				visited[curr_pair.first] = true;
+				if (pathLength < curr_pair.second.first) {
+					path = curr_pair.second.second;
+					pathLength = curr_pair.second.first;
+				}
+				
+				for (int idx = 0; idx < vec[curr_pair.first].size(); idx++) {
+					int v = vec[curr_pair.first][idx];
+					
+					vector<int> nextPath = curr_pair.second.second;
+					nextPath.push_back(v);
+					q.push(make_pair(v, make_pair(curr_pair.second.first + 1, nextPath)));
+					
+				}
+			}
+			
+		}
+		break;
+	}
+	return path;
+}
+
+bool removeEdgeFromLongestPath() {
+	cout << "here\n";
+	vector<int> path = findLongestPath();
+	cout << "Path is :\n";
+	for (auto v : path) {
+		cout << v << " -> ";
+	}
+	cout << "\n";
+	return false;
+}
+
+
+bool removeNegativeTriangle() {
+	return false;
+}
+
+
 void GetKtruss(int src) {
 
 	// record all nodes with k hops, hop is initially set to 2
@@ -283,27 +351,21 @@ void GetKtruss(int src) {
 	//int hi = max_hop;
 	//hop = -1;
 	int curr_hop = 1;
+
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
-		
+		auto res = removeEdgeFromLongestPath();
 		if (getKtrussWithHops(hop)) {
 			// should return success
-			if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
+			
+			//if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
+		break;
 		curr_hop += 1;
 	}
 }
 
-bool getKtrussWithHops(int hop) {
-	return false;
-}
 
-bool removeEdgeFromLongestPath() {
-	return false;
-}
 
-bool removeNegativeTriangle() {
-	return false;
-}
 
 
 void candidate_lemma() {
