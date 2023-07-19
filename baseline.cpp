@@ -72,7 +72,7 @@ typedef struct {
 	vector<int> id;
 } Graph;
 
-Graph *g;
+
 
 
 clock_t start, finish;
@@ -111,8 +111,8 @@ string filename;
 
 
 
-void build_graph() {
-	g = new Graph();
+Graph* build_graph() {
+	Graph *g = new Graph();
 	memset(g->is_delete_e, 0, sizeof(g->is_delete_e));
 	memset(g->support, 0, sizeof(g->support));
 	memset(g->book, 0, sizeof(g->book));
@@ -148,19 +148,18 @@ void build_graph() {
 	for (int i = 0; i < MAX_E; i++) {
 		g->followers[MAX_E].push_back(0);
 	}
+	return g;
 }
 
 
-bool GetKtrusswith_Nhops(int n, int k) {
-	memset(g->is_delete_e, 0, sizeof(g->is_delete_e));
-	memset(g->support, 0, sizeof(g->support));
-	memset(g->book, 0, sizeof(g->book));
-	memset(g->break_unb, 0, sizeof(g->break_unb));
-	memset(g->temp_delete_e, 0, sizeof(g->temp_delete_e));
-	memset(g->link, 0, sizeof(g->link));
-	memset(g->grouped, -1, sizeof(g->grouped));
-	memset(g->candidate, 0, sizeof(g->candidate));
-	g->two_dimension.resize(MAX_E);
+Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
+	
+
+	Graph *g = new Graph();
+	//memcpy(g_ori,g,sizeof(Graph*));
+	*g = *g_ori;
+	// g = g_ori;
+	
 	
 	g->size_of_truss = e_num;
 	int counts = 0;
@@ -296,7 +295,8 @@ bool GetKtrusswith_Nhops(int n, int k) {
 	cout << "size of KTruss" << g->size_of_truss << endl;
 	cout << "truss unb num:" << g->unbalance_num << endl;
 
-	return g->size_of_truss > 0;
+	return g;
+	// return g->size_of_truss > 0;
 	/*
 	if (size_of_truss > 0){
 		return true;
@@ -315,7 +315,7 @@ bool GetKtrusswith_Nhops(int n, int k) {
 
 
 
-vector<int> findLongestPath() {
+vector<int> findLongestPath(Graph *g) {
 	// little optimization by replace v_num by v_num-1
 	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
 	int pathLength = -1;
@@ -357,8 +357,8 @@ vector<int> findLongestPath() {
 	return path;
 }
 
-bool removeEdgeFromLongestPath() {
-	vector<int> path = findLongestPath();
+bool removeEdgeFromLongestPath(Graph* g) {
+	vector<int> path = findLongestPath(g);
 	cout << "Longest Path is :\n";
 	for (auto v : path) {
 		cout << v << " -> ";
@@ -370,7 +370,7 @@ bool removeEdgeFromLongestPath() {
 
 	return false;
 }
-void delete_on_edge(int A, int B){
+void delete_on_edge(int A, int B, Graph* g){
 	int edge_num = -1;
 	for (int i = 0; i < g->adj_edge[A].size(); ++i) {
         int edge_index = g->adj_edge[A][i];
@@ -447,7 +447,7 @@ void delete_on_edge(int A, int B){
 bool removeNegativeTriangle() {
 	return false;
 }
-void print_result(){
+void print_result(Graph* g){
 		// Assuming vertices_set is your set of vertices
 	set<int> vertices_set;
 	cout <<  " ====result graph: \n";
@@ -467,7 +467,7 @@ void print_result(){
 
 }
 
-void GetKtruss(int src, int k) {
+void GetKtruss(int src, int k, Graph* g) {
 
 	// record all nodes with k hops, hop is initially set to 2
 	
@@ -502,8 +502,11 @@ void GetKtruss(int src, int k) {
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
 		cout << "--------when hop is " << curr_hop << "\n";
 
-		if (GetKtrusswith_Nhops(curr_hop, k)) {
-			print_result();
+		Graph* g_hop =  GetKtrusswith_Nhops(curr_hop, k, g);
+		
+		if (g_hop->size_of_truss > 0) {
+			print_result(g);
+			print_result(g_hop);
 			return;
 			// calculate result for current diameter
 			if (!removeNegativeTriangle()) {
@@ -533,7 +536,7 @@ void GetKtruss(int src, int k) {
 
 
 
-void candidate_lemma() {
+void candidate_lemma(Graph* g) {
 	
 	for (int i = 0; i < g->Triangles.size(); i++) {
 		if (!g->Triangles[i].is_broken) {
@@ -617,7 +620,7 @@ void candidate_lemma() {
 
 }
 
-void Get_result() {
+void Get_result(Graph *g) {
 	int counts = 0;
 	while (g->unbalance_num > 0) {
 		counts++;
@@ -753,7 +756,7 @@ void Get_result() {
 }
 
 
-int findSmallestDistance(int start_vertex, int end_vertex) {
+int findSmallestDistance(int start_vertex, int end_vertex, Graph* g) {
     vector<bool> visited(MAX_V, false);
     vector<int> distance(MAX_V, numeric_limits<int>::max());
 
@@ -856,7 +859,7 @@ vector<int> getInducedSubgraph(const set<int>& vertices) {
 //     return -1;
 // }
 
-int findLargestSmallestDistance(int start_vertex, const set<int>& end_vertices) {
+int findLargestSmallestDistance(int start_vertex, const set<int>& end_vertices,Graph* g) {
     int largest_smallest_distance = -1;
 
     for (int end_vertex : end_vertices) {
@@ -945,7 +948,8 @@ int main() {
     filename = "data/test1";
 	outname = filename + "5_solution.txt";
 	filename += ".txt";
-	build_graph();
+	
+	Graph* g = build_graph();
 	cout << "graph build" << endl;
 
     // int start_vertex, k;
@@ -968,7 +972,7 @@ int main() {
     cin >> start_vertex;
 	cout << "Enter the K: ";
     cin >> k;
-	GetKtruss(start_vertex, k);
+	GetKtruss(start_vertex, k, g);
 
 	/*
     C.insert(start_vertex); // Starting with vertex 0
