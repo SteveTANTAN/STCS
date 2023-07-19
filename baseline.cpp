@@ -505,6 +505,24 @@ void GetKtruss(int src, int k) {
 		if (GetKtrusswith_Nhops(curr_hop, k)) {
 			print_result();
 			return;
+			// calculate result for current diameter
+			if (!removeNegativeTriangle()) {
+				curr_hop += 1;
+				continue;
+			}
+			int curr_diameter = 2 * curr_hop;
+			//assume current graph in g and result store in res1;
+			while (removeEdgeFromLongestPath()) {
+				curr_diameter -= 1;
+				if (removeNegativeTriangle()) {
+					// update res
+					curr_diameter -= 1;
+				} else {
+					// if exist valid res, return res;
+					break;
+				}
+			}
+			 
 			// if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
 		curr_hop += 1;
