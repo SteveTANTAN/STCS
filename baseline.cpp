@@ -70,6 +70,8 @@ typedef struct {
 	vector<int> candidates;
 	vector<Group> groups;
 	vector<int> id;
+
+	int diameter;
 } Graph;
 
 
@@ -148,6 +150,7 @@ Graph* build_graph() {
 	for (int i = 0; i < MAX_E; i++) {
 		g->followers[MAX_E].push_back(0);
 	}
+	g->diameter = e_num;
 	return g;
 }
 
@@ -354,6 +357,7 @@ vector<int> findLongestPath(Graph *g) {
 		}
 		break;
 	}
+	g->diameter = pathLength;
 	return path;
 }
 
@@ -509,22 +513,25 @@ void GetKtruss(int src, int k, Graph* g) {
 			print_result(g_hop);
 			return;
 			// calculate result for current diameter
+			
+			/*
 			if (!removeNegativeTriangle()) {
 				curr_hop += 1;
 				continue;
 			}
-			int curr_diameter = 2 * curr_hop;
-			//assume current graph in g and result store in res1;
-			while (removeEdgeFromLongestPath()) {
-				curr_diameter -= 1;
-				if (removeNegativeTriangle()) {
+			if (g.diameter <= curr_hop) {
+				return res;
+			}
+			//assume current graph in g and result store in res;
+			while (removeEdgeFromLongestPath(g)) {
+				if (removeNegativeTriangle() && g->diameter > curr_hop) {
 					// update res
-					curr_diameter -= 1;
+
 				} else {
 					// if exist valid res, return res;
 					break;
 				}
-			}
+			}*/
 			 
 			// if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
