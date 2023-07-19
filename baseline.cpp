@@ -370,10 +370,29 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	cout << "\n";
 
 	//TODO
+	Graph* tempGraph = new Graph();
+	*tempGraph = *g;
+	int curr_diameter = g->diameter;
+	if (curr_diameter <= 1) return false;
+	while (g->diameter == curr_diameter) {
+		if (delete_on_edge_bool(path[0], path[1], tempGraph)) {
+			path = findLongestPath(tempGraph);
+		} /*else if (delete_on_edge_bool(path[path.size() - 1], path[path.size()- 2], tempGraph)) {
+			path = findLongestPath(tempGraph);
+		} */else {
+			return false;
+		}
+
+	}
 	//remove edge from any side of the longest path
 
-	return false;
+	return true;
 }
+
+bool delete_on_edge_bool(int A, int B, Graph* g) {
+
+}
+
 void delete_on_edge(int A, int B, Graph* g){
 	int edge_num = -1;
 	for (int i = 0; i < g->adj_edge[A].size(); ++i) {
