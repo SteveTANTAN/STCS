@@ -78,7 +78,7 @@ typedef struct {
 
 
 clock_t start, finish;
-int k;
+int start_vertex, k;
 // Edge all_edge_pairs[MAX_E];
 // vector<int> vec[MAX_V];
 // vector<int> adj_edge[MAX_V];
@@ -467,7 +467,21 @@ void delete_on_edge(int A, int B, Graph* g){
 }
 
 
-bool removeNegativeTriangle() {
+bool removeNegativeTriangle(Graph *g) {
+	// 优先尝试删除不影响到query点的边
+	// current edge i, ready to delete
+	int i;
+	bool affectQueryPoint = false;
+	
+	for (int v : g->vec[start_vertex]) {
+		std::vector<int>::iterator it;
+		it = find (g->followers[i].begin(), g->followers[i].end(), g->adj_edge[start_vertex][v]);
+		if (it != g->followers[i].end()) {
+			affectQueryPoint = true;
+			break;
+		}
+	}
+
 	return false;
 }
 void print_result(Graph* g){
@@ -993,7 +1007,7 @@ int main() {
     // cout << endl;
 
     set<int> C;
-    int start_vertex, k;
+    
     cout << "Enter the start vertex: ";
     cin >> start_vertex;
 	cout << "Enter the K: ";
