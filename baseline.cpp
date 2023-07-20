@@ -361,39 +361,7 @@ vector<int> findLongestPath(Graph *g) {
 	return path;
 }
 
-bool removeEdgeFromLongestPath(Graph* g) {
-	vector<int> path = findLongestPath(g);
-	cout << "Longest Path is :\n";
-	for (auto v : path) {
-		cout << v << " -> ";
-	}
-	cout << "\n";
-
-	//TODO
-	Graph* tempGraph = new Graph();
-	*tempGraph = *g;
-	int curr_diameter = g->diameter;
-	if (curr_diameter <= 1) return false;
-	while (g->diameter == curr_diameter) {
-		if (delete_on_edge_bool(path[0], path[1], tempGraph)) {
-			path = findLongestPath(tempGraph);
-		} /*else if (delete_on_edge_bool(path[path.size() - 1], path[path.size()- 2], tempGraph)) {
-			path = findLongestPath(tempGraph);
-		} */else {
-			return false;
-		}
-
-	}
-	//remove edge from any side of the longest path
-
-	return true;
-}
-
 bool delete_on_edge_bool(int A, int B, Graph* g) {
-
-}
-
-void delete_on_edge(int A, int B, Graph* g){
 	int edge_num = -1;
 	for (int i = 0; i < g->adj_edge[A].size(); ++i) {
         int edge_index = g->adj_edge[A][i];
@@ -463,25 +431,41 @@ void delete_on_edge(int A, int B, Graph* g){
 		}
 	}
 
+	cout << g->size_of_truss <<"abc\n";
+	return (g->size_of_truss > 0);
 
 }
 
 
-bool removeNegativeTriangle(Graph *g) {
-	// 优先尝试删除不影响到query点的边
-	// current edge i, ready to delete
-	int i;
-	bool affectQueryPoint = false;
-	
-	for (int v : g->vec[start_vertex]) {
-		std::vector<int>::iterator it;
-		it = find (g->followers[i].begin(), g->followers[i].end(), g->adj_edge[start_vertex][v]);
-		if (it != g->followers[i].end()) {
-			affectQueryPoint = true;
-			break;
-		}
+bool removeEdgeFromLongestPath(Graph* g) {
+	vector<int> path = findLongestPath(g);
+	cout << "Longest Path is :\n";
+	for (auto v : path) {
+		cout << v << " -> ";
 	}
+	cout << "\n";
 
+	//TODO
+	Graph* tempGraph = new Graph();
+	*tempGraph = *g;
+	int curr_diameter = g->diameter;
+	if (curr_diameter < 1) return false;
+	while (g->diameter == curr_diameter) {
+		if (delete_on_edge_bool(path[0], path[1], tempGraph)) {
+			path = findLongestPath(tempGraph);
+		} /*else if (delete_on_edge_bool(path[path.size() - 1], path[path.size()- 2], tempGraph)) {
+			path = findLongestPath(tempGraph);
+		} */else {
+			return false;
+		}
+
+	}
+	//remove edge from any side of the longest path
+
+	return true;
+}
+
+bool removeNegativeTriangle() {
 	return false;
 }
 void print_result(Graph* g){
@@ -554,17 +538,20 @@ void GetKtruss(int src, int k, Graph* g) {
 			}
 			if (g.diameter <= curr_hop) {
 				return res;
-			}
+			}*/
 			//assume current graph in g and result store in res;
 			while (removeEdgeFromLongestPath(g)) {
-				if (removeNegativeTriangle() && g->diameter > curr_hop) {
+				cout<<"test\n"<<endl;
+				// if (removeNegativeTriangle() && g->diameter > curr_hop) {
 					// update res
+					
 
-				} else {
-					// if exist valid res, return res;
-					break;
-				}
-			}*/
+
+				// } else {
+				// 	// if exist valid res, return res;
+				// 	break;
+				// }
+			}
 			 
 			// if (removeEdgeFromLongestPath() && removeNegativeTriangle()) return; 
 		} 		
