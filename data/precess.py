@@ -4,7 +4,7 @@ def process_input(input_lines):
     num_vertices = set()
     num_edges = 0
     for line in input_lines:
-        v1, v2, operator = line.strip().split(' ')
+        v1, v2, operator = line.strip().split('\t')
 
         # Check if the reverse order is already in the excluded lines
         reverse_line = f"{v2}\t{v1}"
@@ -30,8 +30,8 @@ def process_input(input_lines):
 
 
 # Example usage
-filename = "test1.txt"
-outputname = 'test.txt'
+filename = "temp1.txt"
+outputname = 'temp11.txt'
 
 with open(filename, "r") as file:
     input_lines = file.readlines()
