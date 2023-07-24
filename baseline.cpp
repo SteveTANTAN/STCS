@@ -494,6 +494,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				*g = *left;
 			}
 			Queue.push(left);
+		} else {
+			delete(left);
 		}
 		if (delete_on_edge(right->path[right->path.size() - 1], right->path[right->path.size() - 2], right)) {
 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
@@ -501,6 +503,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				*g = *right;
 			}
 			Queue.push(right);
+		} else {
+			delete(right);
 		}
 		cout << "end queue\n";
 	}
