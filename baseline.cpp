@@ -146,6 +146,7 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	Graph *g = new Graph();
 	//memcpy(g_ori,g,sizeof(Graph*));
 	*g = *g_ori;
+
 	// g = g_ori;
 	
 	
@@ -306,11 +307,12 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 vector<int> findLongestPath(Graph *g) {
 	// little optimization by replace v_num by v_num-1
 	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
+	cout << "in\n";
 	int pathLength = -1;
 	vector<int> path;
 	
 	for (int i = 1; i < v_num - 1; i++) {
-		memset(visited, 0, sizeof(visited));
+		memset(visited, -1, sizeof(visited));
 		queue<pair<int,pair<int, vector<int>>>> q;
 		vector<int> curr_path;
 		curr_path.push_back(i);
@@ -321,29 +323,50 @@ vector<int> findLongestPath(Graph *g) {
 			for (size; size > 0; size--) {
 				auto curr_pair = q.front();
 				q.pop();
-				if (visited[curr_pair.first]) continue;
+				// cout << "current node is " << curr_pair.first << "\n";
+				// cout << "current path size is " << curr_pair.second.first << "\n";
+				// cout << "current path is :\n";
+				// for (auto v : curr_pair.second.second) {
+				// 	cout << v << "->";
+				// }
+				// cout << "\n";
+				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
 
-				visited[curr_pair.first] = true;
+				visited[curr_pair.first] = curr_pair.second.first;
 				if (pathLength < curr_pair.second.first) {
 					path = curr_pair.second.second;
 					pathLength = curr_pair.second.first;
 				}
-				
+				//cout << "neighour number is " << g->vec[4].size() << "\n";
 				for (int idx = 0; idx < g->vec[curr_pair.first].size(); idx++) {
 					int v = g->vec[curr_pair.first][idx];
-					
+					// cout << "BFS to " << g->vec[curr_pair.first][idx] << "\n";
+					// cout << " newPath is :\n";
 					vector<int> nextPath = curr_pair.second.second;
 					nextPath.push_back(v);
+					// for (auto v : nextPath) {
+					// 	cout << v << "->";
+					// }
+					// cout << "\n";
+
 					q.push(make_pair(v, make_pair(curr_pair.second.first + 1, nextPath)));
 					
 				}
 			}
 			
 		}
-		break;
+		
 	}
+
+	cout << "================= current longest path is:\n";
+	for (auto v : path) {
+		cout << v << "->";
+	}
+
+	cout << "\n";
 	g->diameter = pathLength;
 	g->path = path;
+	
 	return path;
 }
 
@@ -452,6 +475,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 		Graph *right = new Graph();
 		*right = *left;
+		
 		if (delete_on_edge(left->path[0], left->path[1], left)) {
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
@@ -700,7 +724,12 @@ void GetKtruss(int src, int k, Graph* g) {
 			}*/
 			//assume current graph in g and result store in res;
 			Graph *newG = new Graph();
+			*newG = *g_hop;
 			cout << "===================Deleting diameter ==================\n";
+			findLongestPath(newG);
+			cout << "????\n";
+			cout << "\n";
+			//return;
 			while (removeEdgeFromLongestPath(newG)) {
 				cout<<"----test\n"<<endl;
 				return;
@@ -1067,7 +1096,7 @@ int main() {
 
 	string outname;
 
-    filename = "data/temp1";
+    filename = "data/test3";
 	outname = filename + "5_solution.txt";
 	filename += ".txt";
 	
