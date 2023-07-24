@@ -338,8 +338,17 @@ vector<int> findLongestPath(Graph *g) {
 					pathLength = curr_pair.second.first;
 				}
 				//cout << "neighour number is " << g->vec[4].size() << "\n";
-				for (int idx = 0; idx < g->vec[curr_pair.first].size(); idx++) {
-					int v = g->vec[curr_pair.first][idx];
+				for (int idx = 0; idx < g->adj_edge[curr_pair.first].size(); idx++) {
+
+					if (g->is_delete_e[g->adj_edge[curr_pair.first][idx]]) {
+						continue;
+					}
+					int v;
+					if (g->all_edge_pairs[g->adj_edge[curr_pair.first][idx]].v1 == curr_pair.first) {
+						v = g->all_edge_pairs[g->adj_edge[curr_pair.first][idx]].v2;
+					} else {
+						v = g->all_edge_pairs[g->adj_edge[curr_pair.first][idx]].v1;
+					}
 					// cout << "BFS to " << g->vec[curr_pair.first][idx] << "\n";
 					// cout << " newPath is :\n";
 					vector<int> nextPath = curr_pair.second.second;
@@ -371,7 +380,7 @@ vector<int> findLongestPath(Graph *g) {
 }
 
 bool delete_on_edge(int A, int B, Graph*newG) {
-
+	//cout << "delete on edge started\n";
 	int edge_num = -1;
 	for (int i = 0; i < newG->adj_edge[A].size(); ++i) {
         int edge_index = newG->adj_edge[A][i];
@@ -440,11 +449,13 @@ bool delete_on_edge(int A, int B, Graph*newG) {
 		}
 	}
 
-	cout << newG->size_of_truss <<"abc\n";
+	//cout << newG->size_of_truss <<"abc\n";
 	if (newG->size_of_truss > 0 && if_query_inside(newG)) {
 		findLongestPath(newG);
+		//cout << "delete on edge ended\n";
 		return true;
 	} 
+	//cout << "delete on edge ended\n";
 	return false;
 
 }
@@ -469,13 +480,14 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	*best = *g;
 	Queue.push(best);
 	while (!Queue.empty()) {
+		cout << "start queue\n";
 		int size = Queue.size();
 		Graph *left = Queue.front();
 		Queue.pop();
-
+		cout << "mid1 queue \n";
 		Graph *right = new Graph();
+		cout << "mid2 queue\n";
 		*right = *left;
-		
 		if (delete_on_edge(left->path[0], left->path[1], left)) {
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
@@ -490,6 +502,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 			}
 			Queue.push(right);
 		}
+		cout << "end queue\n";
 	}
 	return true;
 }
