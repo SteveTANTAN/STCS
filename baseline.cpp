@@ -481,7 +481,7 @@ bool isSubgraph(Graph* H1, Graph* H2) {
     return true;
 }
 
-// another method
+// another
 // bool removeEdgeFromLongestPath(Graph* g) {
 // 	/*
 // 	vector<int> path = findLongestPath(g);
@@ -606,10 +606,13 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	Graph *best = new Graph();
 	*best = *g;
 	Queue.push(best);
+	int que_in,que_out = 0;
 	while (!Queue.empty()) {
 		
 		int size = Queue.size();
 		Graph *left = Queue.front();
+		Queue.pop();
+		que_out++;
 		
 		// cout << "mid1 queue \n";
 		Graph *right = new Graph();
@@ -621,9 +624,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				*g = *left;
 			}
 			//
-			if (if_query_inside(left)) {
+			if (if_query_inside(left) && left->diameter > 1) {
 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
 				Queue.push(left);
+				que_in++;
 			}
 		} else {
 			delete(left);
@@ -634,15 +638,15 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				*g = *right;
 			}
 			// if (if_query_inside(right)  && right->size_of_truss >= g->size_of_truss) {
-			if (if_query_inside(right)) {
+			if (if_query_inside(right) && right->diameter > 1) {
 				// if (right->diameter >= g->diameter && )
 				Queue.push(right);
+				que_in++;
 
 			}
 		} else {
 			delete(right);
 		}
-		Queue.pop();
 		queue<Graph*> filteredQueue;
 	// Check each subgraph in Queue.
 		while (!Queue.empty()) {
@@ -686,6 +690,9 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		Queue = move(filteredQueue);
 
 	}
+
+	cout<< "que_in" << que_in<<"\n";
+	cout<< "que_out" << que_out<<"\n";
 	return true;
 }
 
