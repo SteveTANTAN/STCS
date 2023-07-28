@@ -9,6 +9,8 @@
 #include<cstring>
 #include <set>
 #include <limits>
+#include<sys/time.h>
+
 using namespace std;
 const int MAX_V = 1160000;
 const int MAX_E = 3000000;
@@ -307,7 +309,7 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 vector<int> findLongestPath(Graph *g) {
 	// little optimization by replace v_num by v_num-1
 	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
-	cout << "in\n";
+	// cout << "in\n";
 	int pathLength = -1;
 	vector<int> path;
 	
@@ -367,12 +369,12 @@ vector<int> findLongestPath(Graph *g) {
 		
 	}
 
-	cout << "================= current longest path is:\n";
-	for (auto v : path) {
-		cout << v << "->";
-	}
+	// cout << "================= current longest path is:\n";
+	// for (auto v : path) {
+	// 	cout << v << "->";
+	// }
 
-	cout << "\n";
+	//scout << "\n";
 	g->diameter = pathLength;
 	g->path = path;
 	
@@ -460,6 +462,131 @@ bool delete_on_edge(int A, int B, Graph*newG) {
 
 }
 
+// Assuming you have the Graph and related classes defined here...
+
+// Function to check if Graph H1 is a subgraph of Graph H2.
+bool isSubgraph(Graph* H1, Graph* H2) {
+    // Check if the number of vertices in H1 is greater than H2.
+    if (H1->size_of_truss > H2->size_of_truss) {
+        return false;
+    }
+
+    // Check if all edges of H1 are also present in H2.
+    for (int i = 0; i < e_num; i++) {
+        if (!H1->is_delete_e[i] && H2->is_delete_e[i]) {
+			return false;
+			break;
+		}
+    }
+    return true;
+}
+
+// another method
+// bool removeEdgeFromLongestPath(Graph* g) {
+// 	/*
+// 	vector<int> path = findLongestPath(g);
+// 	cout << "Longest Path is :\n";
+// 	for (auto v : path) {
+// 		cout << v << " -> ";
+// 	}
+// 	cout << "\n";
+// 	*/
+// 	//TODO
+// 	//Graph* tempGraph = new Graph();
+// 	//*tempGraph = *g;
+// 	int curr_diameter = g->diameter;
+// 	if (curr_diameter < 1) return false;
+// 	queue<Graph*> Queue;
+// 	Graph *best = new Graph();
+// 	*best = *g;
+// 	Queue.push(best);
+// 	while (!Queue.empty()) {
+		
+// 		int size = Queue.size();
+// 		Graph *left = Queue.front();
+// 		queue<Graph*> filteredQueue;
+		
+// 		// cout << "mid1 queue \n";
+// 		Graph *right = new Graph();
+// 		// cout << "mid2 queue\n";
+// 		*right = *left;
+// 		if (delete_on_edge(left->path[0], left->path[1], left)) {
+// 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
+// 			left->diameter < g->diameter) {
+// 				*g = *left;
+// 			}
+// 			//
+// 			if (if_query_inside(left)) {
+// 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
+// 				filteredQueue.push(left);
+// 				// Queue.push(left);
+// 			}
+// 		} else {
+// 			delete(left);
+// 		}
+// 		if (delete_on_edge(right->path[right->path.size() - 1], right->path[right->path.size() - 2], right)) {
+// 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
+// 			right->diameter < g->diameter) {
+// 				*g = *right;
+// 			}
+// 			// if (if_query_inside(right)  && right->size_of_truss >= g->size_of_truss) {
+// 			if (if_query_inside(right)) {
+// 				// if (right->diameter >= g->diameter && )
+// 				filteredQueue.push(right);
+
+// 				// Queue.push(right);
+
+// 			}
+// 		} else {
+// 			delete(right);
+// 		}
+// 		Queue.pop();
+// 	// Check each subgraph in Queue.
+// 		while (!filteredQueue.empty()) {
+// 			Graph* currentGraph = filteredQueue.front();
+// 			filteredQueue.pop();
+
+// 			// Check if currentGraph is a subgraph of any other subgraph in filteredQueue.
+// 			bool isSubgraphOfOther = false;
+// 			queue<Graph*> tempQueue = Queue; // Copy filteredQueue to a temporary queue.
+
+// 			while (!tempQueue.empty()) {
+// 				Graph* graphInFiltered = tempQueue.front();
+// 				tempQueue.pop();
+
+// 				if (isSubgraph(currentGraph, graphInFiltered)) {
+// 					isSubgraphOfOther = true;
+// 					// cout << "prunning queue\n";
+// 					break;
+// 				}
+// 			}
+
+// 			// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
+// 			if (!isSubgraphOfOther) {
+// 				Queue.push(currentGraph);
+// 			} else {
+// 				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
+// 				delete currentGraph;
+// 			}
+// 		}
+
+// 		// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
+// 		// You can continue using filteredQueue or copy its contents back to the original Queue.
+
+// 		// Clean up the original Queue if needed.
+// 		while (!filteredQueue.empty()) {
+// 			delete filteredQueue.front();
+// 			filteredQueue.pop();
+// 		}
+
+// 		// Copy the filtered subgraphs back to the original Queue.
+// 		// Queue = move(filteredQueue);
+
+// 	}
+// 	return true;
+// }
+
+
 
 bool removeEdgeFromLongestPath(Graph* g) {
 	/*
@@ -480,20 +607,24 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	*best = *g;
 	Queue.push(best);
 	while (!Queue.empty()) {
-		cout << "start queue\n";
+		
 		int size = Queue.size();
 		Graph *left = Queue.front();
-		Queue.pop();
-		cout << "mid1 queue \n";
+		
+		// cout << "mid1 queue \n";
 		Graph *right = new Graph();
-		cout << "mid2 queue\n";
+		// cout << "mid2 queue\n";
 		*right = *left;
 		if (delete_on_edge(left->path[0], left->path[1], left)) {
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
 				*g = *left;
 			}
-			Queue.push(left);
+			//
+			if (if_query_inside(left)) {
+			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
+				Queue.push(left);
+			}
 		} else {
 			delete(left);
 		}
@@ -502,11 +633,58 @@ bool removeEdgeFromLongestPath(Graph* g) {
 			right->diameter < g->diameter) {
 				*g = *right;
 			}
-			Queue.push(right);
+			// if (if_query_inside(right)  && right->size_of_truss >= g->size_of_truss) {
+			if (if_query_inside(right)) {
+				// if (right->diameter >= g->diameter && )
+				Queue.push(right);
+
+			}
 		} else {
 			delete(right);
 		}
-		cout << "end queue\n";
+		Queue.pop();
+		queue<Graph*> filteredQueue;
+	// Check each subgraph in Queue.
+		while (!Queue.empty()) {
+			Graph* currentGraph = Queue.front();
+			Queue.pop();
+
+			// Check if currentGraph is a subgraph of any other subgraph in filteredQueue.
+			bool isSubgraphOfOther = false;
+			queue<Graph*> tempQueue = filteredQueue; // Copy filteredQueue to a temporary queue.
+
+			while (!tempQueue.empty()) {
+				Graph* graphInFiltered = tempQueue.front();
+				tempQueue.pop();
+
+				if (isSubgraph(currentGraph, graphInFiltered)) {
+					isSubgraphOfOther = true;
+					// cout << "prunning queue\n";
+					break;
+				}
+			}
+
+			// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
+			if (!isSubgraphOfOther) {
+				filteredQueue.push(currentGraph);
+			} else {
+				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
+				delete currentGraph;
+			}
+		}
+
+		// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
+		// You can continue using filteredQueue or copy its contents back to the original Queue.
+
+		// Clean up the original Queue if needed.
+		while (!Queue.empty()) {
+			delete Queue.front();
+			Queue.pop();
+		}
+
+		// Copy the filtered subgraphs back to the original Queue.
+		Queue = move(filteredQueue);
+
 	}
 	return true;
 }
@@ -744,11 +922,13 @@ void GetKtruss(int src, int k, Graph* g) {
 			*newG = *g_hop;
 			cout << "===================Deleting diameter ==================\n";
 			findLongestPath(newG);
-			cout << "????\n";
-			cout << "\n";
+			// cout << "????\n";
+			// cout << "\n";
 			//return;
 			while (removeEdgeFromLongestPath(newG)) {
 				cout<<"----test\n"<<endl;
+				print_result(newG);
+
 				return;
 				// if (removeNegativeTriangle() && g->diameter > curr_hop) {
 					// update res
@@ -1113,7 +1293,7 @@ int main() {
 
 	string outname;
 
-    filename = "data/test3";
+    filename = "data/test1";
 	outname = filename + "5_solution.txt";
 	filename += ".txt";
 	
@@ -1127,8 +1307,13 @@ int main() {
     cin >> start_vertex;
 	cout << "Enter the K: ";
     cin >> k;
+	struct timeval start, end;
+    double timeuse;
+    gettimeofday(&start, NULL);
 	GetKtruss(start_vertex, k, g);
-
+    gettimeofday(&end, NULL);
+    timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
+   	cout << "baslinerun time: " << timeuse << '\n' << endl;
 	// for (int i = 1; i < MAX_V; i++) {
 	// 	if (hop_num[i] < 0) break;
 	// 	cout << "hop number for " << i << " is " << hop_num[i] << "\n";
