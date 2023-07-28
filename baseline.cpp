@@ -481,7 +481,7 @@ bool isSubgraph(Graph* H1, Graph* H2) {
     return true;
 }
 
-// another method
+// another
 // bool removeEdgeFromLongestPath(Graph* g) {
 // 	/*
 // 	vector<int> path = findLongestPath(g);
@@ -606,10 +606,13 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	Graph *best = new Graph();
 	*best = *g;
 	Queue.push(best);
+	int que_in,que_out = 0;
 	while (!Queue.empty()) {
 		
 		int size = Queue.size();
 		Graph *left = Queue.front();
+		Queue.pop();
+		que_out++;
 		
 		// cout << "mid1 queue \n";
 		Graph *right = new Graph();
@@ -621,9 +624,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				*g = *left;
 			}
 			//
-			if (if_query_inside(left)) {
+			if (if_query_inside(left) && left->diameter > 1) {
 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
 				Queue.push(left);
+				que_in++;
 			}
 		} else {
 			delete(left);
@@ -634,57 +638,16 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				*g = *right;
 			}
 			// if (if_query_inside(right)  && right->size_of_truss >= g->size_of_truss) {
-			if (if_query_inside(right)) {
+			if (if_query_inside(right) && right->diameter > 1) {
 				// if (right->diameter >= g->diameter && )
 				Queue.push(right);
+				que_in++;
 
 			}
 		} else {
 			delete(right);
 		}
-		Queue.pop();
-		queue<Graph*> filteredQueue;
-	// Check each subgraph in Queue.
-		while (!Queue.empty()) {
-			Graph* currentGraph = Queue.front();
-			Queue.pop();
-
-			// Check if currentGraph is a subgraph of any other subgraph in filteredQueue.
-			bool isSubgraphOfOther = false;
-			queue<Graph*> tempQueue = filteredQueue; // Copy filteredQueue to a temporary queue.
-
-			while (!tempQueue.empty()) {
-				Graph* graphInFiltered = tempQueue.front();
-				tempQueue.pop();
-
-				if (isSubgraph(currentGraph, graphInFiltered)) {
-					isSubgraphOfOther = true;
-					// cout << "prunning queue\n";
-					break;
-				}
-			}
-
-			// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
-			if (!isSubgraphOfOther) {
-				filteredQueue.push(currentGraph);
-			} else {
-				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
-				delete currentGraph;
-			}
-		}
-
-		// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
-		// You can continue using filteredQueue or copy its contents back to the original Queue.
-
-		// Clean up the original Queue if needed.
-		while (!Queue.empty()) {
-			delete Queue.front();
-			Queue.pop();
-		}
-
-		// Copy the filtered subgraphs back to the original Queue.
-		Queue = move(filteredQueue);
-
+		// cout << "end queue\n";
 	}
 	return true;
 }
