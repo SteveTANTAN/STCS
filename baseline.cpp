@@ -687,7 +687,13 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		}
 
 		// Copy the filtered subgraphs back to the original Queue.
-		Queue = move(filteredQueue);
+		Queue = filteredQueue;
+
+		    // Remember to free memory of the Graph objects properly.
+		// while (!Queue.empty()) {
+		// 	delete Queue.front();
+		// 	Queue.pop();
+		// }
 
 	}
 
