@@ -14,7 +14,7 @@
 using namespace std;
 const int MAX_V = 1160000;
 const int MAX_E = 3000000;
-int e_num, v_num;
+int e_num, v_num , nhop_e_num;
 
 class Edge {
 public:
@@ -55,11 +55,13 @@ typedef struct {
 	vector<int> is_linked;
 	int book[MAX_V];
 	vector<int> is_booked;
-	int is_delete_e[MAX_E];
+	int is_delete_e[MAX_V];
+	int is_delete_vec[MAX_E];
 	int link[MAX_E];
 	int temp_delete_e[MAX_E];
 	int break_unb[MAX_E];
 	int support[MAX_E];
+	int edge_num;
 
 
 	int unbalance_num = 0;
@@ -81,7 +83,7 @@ typedef struct {
 
 
 clock_t start, finish;
-int start_vertex, k;
+int start_vertex, k, global_hop;
 
 
 // modify from here
@@ -95,6 +97,7 @@ string filename;
 Graph* build_graph() {
 	Graph *g = new Graph();
 	memset(g->is_delete_e, 0, sizeof(g->is_delete_e));
+	memset(g->is_delete_vec, 0, sizeof(g->is_delete_vec));
 	memset(g->support, 0, sizeof(g->support));
 	memset(g->book, 0, sizeof(g->book));
 	memset(g->break_unb, 0, sizeof(g->break_unb));
@@ -130,6 +133,8 @@ Graph* build_graph() {
 		g->followers[MAX_E].push_back(0);
 	}
 	g->diameter = e_num;
+	g->edge_num = e_num;
+
 	return g;
 }
 bool if_query_inside(Graph* g_ori) {
@@ -139,6 +144,25 @@ bool if_query_inside(Graph* g_ori) {
 		}
 	}
 	return false;
+}
+
+void print_result(Graph* g){
+		// Assuming vertices_set is your set of vertices
+	set<int> vertices_set;
+	cout <<  " ====result graph: \n";
+	// Collect all unique vertices from all_edge_pairs into the set
+	for (int i = 0; i < g->edge_num; i++) {
+		if (!g->is_delete_e[i]) {
+			vertices_set.insert(g->all_edge_pairs[i].v1);
+			vertices_set.insert(g->all_edge_pairs[i].v2);
+		}
+	}
+
+	// Print all vertices in the set
+	for (const auto& vertex : vertices_set) {
+		cout << vertex << " ";
+	}
+	cout << endl;
 
 }
 
@@ -146,18 +170,50 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	
 
 	Graph *g = new Graph();
-	//memcpy(g_ori,g,sizeof(Graph*));
-	*g = *g_ori;
+	// memset(g->is_delete_e, 1, sizeof(g->is_delete_e));
+	// memset(g->is_delete_vec, 0, sizeof(g->is_delete_vec));
+	// memset(g->support, 0, sizeof(g->support));
+	// memset(g->book, 0, sizeof(g->book));
+	// memset(g->break_unb, 0, sizeof(g->break_unb));
+	// memset(g->temp_delete_e, 0, sizeof(g->temp_delete_e));
+	// memset(g->link, 0, sizeof(g->link));
+	// memset(g->grouped, -1, sizeof(g->grouped));
+	// memset(g->candidate, 0, sizeof(g->candidate));
+	// g->two_dimension.resize(MAX_E);
 
-	// g = g_ori;
-	
-	
-	g->size_of_truss = e_num;
+	// nhop_e_num = 0;
+
+	// for (int i = 0; i < g_ori->edge_num; i++)
+	// {
+	// 	int v1 = g_ori->all_edge_pairs[i].v1;
+	// 	int v2 = g_ori->all_edge_pairs[i].v2;
+	// 	if (hop_num[v1] <= n && hop_num[v2] <= n
+	// 	&& hop_num[v1] != -1 && hop_num[v2] != -1) {
+	// 		g->all_edge_pairs[nhop_e_num].v1 = v1;
+	// 		g->all_edge_pairs[nhop_e_num].v2 = v2;
+	// 		g->all_edge_pairs[nhop_e_num].sign = g_ori->all_edge_pairs[i].sign;
+	// 		g->vec[v1].push_back(v2);
+	// 		g->vec[v2].push_back(v1);
+	// 		g->adj_edge[v1].push_back(nhop_e_num);
+	// 		g->adj_edge[v2].push_back(nhop_e_num);
+	// 		g->is_delete_e[nhop_e_num] = 0;
+	// 		nhop_e_num ++;
+	// 	}
+	// }
+	// for (int i = 0; i < MAX_E; i++) {
+	// 	g->followers[i].push_back(0);
+	// }
+	// g->diameter = nhop_e_num;
+	// g->edge_num = nhop_e_num;
+	// g->size_of_truss = nhop_e_num;
 	int counts = 0;
+	*g = *g_ori;
+	g->size_of_truss = e_num;
+
 	// for (int i = 0; i < e_num; i++) {
 	// 	if (hop_num[all_edge_pairs[i].v1] <= n || hop_num[all_edge_pairs[i].v2] <= n) size_of_truss++;
 	// }
-	for (int i = 0; i < e_num; i++) {
+	for (int i = 0; i < g->edge_num; i++) {
 		// If the vertices of the edge are not within n hops of the source, skip this iteration
 		// if (hop_num[all_edge_pairs[i].v1] > n || hop_num[all_edge_pairs[i].v2] > n) 
     	// 	continue;
@@ -226,10 +282,11 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	cout << "orangial:" << g->unbalance_num << endl;
 	queue<int> q;
 	// 找出所有不满足 support的边
-	for (int i = 0; i < e_num; i++) {
+	for (int i = 0; i < g->edge_num; i++) {
 		if (!g->is_delete_e[i] ) {
 			if (g->support[i] < k - 2|| hop_num[g->all_edge_pairs[i].v1] > n || hop_num[g->all_edge_pairs[i].v2] > n
-		|| hop_num[g->all_edge_pairs[i].v1] == -1 || hop_num[g->all_edge_pairs[i].v2] == -1) {
+		|| hop_num[g->all_edge_pairs[i].v1] == -1 || hop_num[g->all_edge_pairs[i].v2] == -1) {			
+			// if (g->support[i] < k - 2) {
 				g->is_delete_e[i] = 1;
 				g->size_of_truss--;
 				g->temp_delete_e[i] = 1;
@@ -382,26 +439,44 @@ vector<int> findLongestPath(Graph *g) {
 }
 
 bool delete_on_edge(int A, int B, Graph*newG) {
+	// //cout << "delete on edge started\n";
+	// int edge_num = -1;
+	// for (int i = 0; i < newG->adj_edge[A].size(); ++i) {
+    //     int edge_index = newG->adj_edge[A][i];
+    //     // Check if this edge index appears in the list for v2
+    //     for (int j = 0; j < newG->adj_edge[B].size(); ++j) {
+    //         if (newG->adj_edge[B][j] == edge_index) {
+    //             // If it does, return this edge index
+    //             edge_num = edge_index;
+    //         }
+    //     }
+    // }
+
+	// queue<int> q;
+	// if (!newG->is_delete_e[edge_num] ) {
+	// 	newG->is_delete_e[edge_num] = 1;
+	// 	newG->size_of_truss--;
+	// 	newG->temp_delete_e[edge_num] = 1;
+	// 	q.push(edge_num);
+	// }
+
+
 	//cout << "delete on edge started\n";
 	int edge_num = -1;
+	queue<int> q;
+
 	for (int i = 0; i < newG->adj_edge[A].size(); ++i) {
         int edge_index = newG->adj_edge[A][i];
         // Check if this edge index appears in the list for v2
-        for (int j = 0; j < newG->adj_edge[B].size(); ++j) {
-            if (newG->adj_edge[B][j] == edge_index) {
-                // If it does, return this edge index
-                edge_num = edge_index;
-            }
-        }
+		if (!newG->is_delete_e[edge_index] ) {
+			newG->is_delete_e[edge_index] = 1;
+			newG->size_of_truss--;
+			newG->temp_delete_e[edge_index] = 1;
+			q.push(edge_index);
+		}
+
     }
 
-	queue<int> q;
-	if (!newG->is_delete_e[edge_num] ) {
-		newG->is_delete_e[edge_num] = 1;
-		newG->size_of_truss--;
-		newG->temp_delete_e[edge_num] = 1;
-		q.push(edge_num);
-	}
 
 
 	while (!q.empty()) {
@@ -462,6 +537,24 @@ bool delete_on_edge(int A, int B, Graph*newG) {
 
 }
 
+bool delete_on_diameter(int A, int B, Graph*newG) {
+	bool check = true;
+	if (!delete_on_edge(A,B,newG)) return false;
+	for (int i = 0; i < newG->vec[B].size(); ++i) {
+        int node_index = newG->vec[B][i];
+        // Check if this edge index appears in the list for v2
+        for (int j = 0; j < newG->vec[A].size(); ++j) {
+            if (newG->vec[A][j] == node_index) {
+                // If it does, return this edge index
+                if (!delete_on_edge(A,node_index,newG)) return false;
+				// cout<<"finished del \n";
+            }
+        }
+    }
+	return true;
+
+}
+
 // Assuming you have the Graph and related classes defined here...
 
 // Function to check if Graph H1 is a subgraph of Graph H2.
@@ -472,7 +565,7 @@ bool isSubgraph(Graph* H1, Graph* H2) {
     }
 
     // Check if all edges of H1 are also present in H2.
-    for (int i = 0; i < e_num; i++) {
+    for (int i = 0; i < H1->edge_num; i++) {
         if (!H1->is_delete_e[i] && H2->is_delete_e[i]) {
 			return false;
 			break;
@@ -619,30 +712,38 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		// cout << "mid2 queue\n";
 		*right = *left;
 		if (delete_on_edge(left->path[0], left->path[1], left)) {
+			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
 				*g = *left;
+				best = true;
 			}
-			//
-			if (if_query_inside(left) && left->diameter > 1) {
+
+			if (left->diameter > global_hop) {
 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
 				Queue.push(left);
 				que_in++;
+			} else {
+				if (!best) delete(left);
 			}
 		} else {
 			delete(left);
 		}
 		if (delete_on_edge(right->path[right->path.size() - 1], right->path[right->path.size() - 2], right)) {
+			bool best = false;
 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
 			right->diameter < g->diameter) {
 				*g = *right;
+				best = true;
 			}
-			// if (if_query_inside(right)  && right->size_of_truss >= g->size_of_truss) {
-			if (if_query_inside(right) && right->diameter > 1) {
+
+			if (right->diameter > global_hop) {
 				// if (right->diameter >= g->diameter && )
 				Queue.push(right);
 				que_in++;
 
+			} else {
+				if (!best) delete(right);
 			}
 		} else {
 			delete(right);
@@ -705,25 +806,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 bool removeNegativeTriangle() {
 	return false;
 }
-void print_result(Graph* g){
-		// Assuming vertices_set is your set of vertices
-	set<int> vertices_set;
-	cout <<  " ====result graph: \n";
-	// Collect all unique vertices from all_edge_pairs into the set
-	for (int i = 0; i < e_num; i++) {
-		if (!g->is_delete_e[i]) {
-			vertices_set.insert(g->all_edge_pairs[i].v1);
-			vertices_set.insert(g->all_edge_pairs[i].v2);
-		}
-	}
 
-	// Print all vertices in the set
-	for (const auto& vertex : vertices_set) {
-		cout << vertex << " ";
-	}
-	cout << endl;
-
-}
 
 
 void GetmaximumKtruss(Graph *g) {
@@ -931,6 +1014,7 @@ void GetKtruss(int src, int k, Graph* g) {
 				return res;
 			}*/
 			//assume current graph in g and result store in res;
+			global_hop = curr_hop;
 			Graph *newG = new Graph();
 			*newG = *g_hop;
 			cout << "===================Deleting diameter ==================\n";
@@ -964,338 +1048,6 @@ void GetKtruss(int src, int k, Graph* g) {
 
 
 
-
-
-void candidate_lemma(Graph* g) {
-	
-	for (int i = 0; i < g->Triangles.size(); i++) {
-		if (!g->Triangles[i].is_broken) {
-			if (!g->Triangles[i].is_balanced) {
-				if (!g->candidate[g->Triangles[i].edge1])
-				{
-					g->candidates.push_back(g->Triangles[i].edge1);
-					g->candidate[g->Triangles[i].edge1] = 1;
-				}
-				if (!g->candidate[g->Triangles[i].edge2])
-				{
-					g->candidates.push_back(g->Triangles[i].edge2);
-					g->candidate[g->Triangles[i].edge2] = 1;
-				}
-				if (!g->candidate[g->Triangles[i].edge3])
-				{
-					g->candidates.push_back(g->Triangles[i].edge3);
-					g->candidate[g->Triangles[i].edge3] = 1;
-				}
-			}
-		}
-	}
-	int num = 0;
-	for (int i = 0; i < g->candidates.size(); i++) {
-		Group temp_group;
-		if (g->support[g->candidates[i]] == k - 2) {
-			if (g->grouped[g->candidates[i]] == -1) {
-				queue<int> q;
-				q.push(g->candidates[i]);
-				g->grouped[g->candidates[i]] = g->groups.size();
-				temp_group.edges.push_back(g->candidates[i]);
-				while (!q.empty()) {
-					int sub = q.front();
-					q.pop();
-					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
-						int temp = g->in_which_triangle[sub][j];
-						if (!g->Triangles[temp].is_broken) {
-							if (g->Triangles[temp].is_balanced) {
-								if (g->support[g->Triangles[temp].edge1] == k - 2 && g->grouped[g->Triangles[temp].edge1] == -1) {
-									q.push(g->Triangles[temp].edge1);
-									temp_group.edges.push_back(g->Triangles[temp].edge1);
-									g->grouped[g->Triangles[temp].edge1] = g->groups.size();
-
-								}
-								if (g->support[g->Triangles[temp].edge2] == k - 2 && g->grouped[g->Triangles[temp].edge2] == -1) {
-									q.push(g->Triangles[temp].edge2);
-									temp_group.edges.push_back(g->Triangles[temp].edge2);
-									g->grouped[g->Triangles[temp].edge2] = g->groups.size();
-
-								}
-								if (g->support[g->Triangles[temp].edge3] == k - 2 && g->grouped[g->Triangles[temp].edge3] == -1) {
-									q.push(g->Triangles[temp].edge3);
-									temp_group.edges.push_back(g->Triangles[temp].edge3);
-									g->grouped[g->Triangles[temp].edge3] = g->groups.size();
-
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		else if (g->support[g->candidates[i]] > k - 2)
-		{
-			g->grouped[g->candidates[i]] = g->groups.size();
-			temp_group.edges.push_back(g->candidates[i]);
-		}
-
-		if (temp_group.edges.size() > 0)
-		{
-			int min = MAX_E + 1;
-			for (int j = 0; j < temp_group.edges.size(); j++)
-			{
-				if (temp_group.edges[j] < min)
-					min = temp_group.edges[j];
-			}
-			temp_group.typ_edge = min;
-			g->groups.push_back(temp_group);
-		}
-	}
-
-}
-
-void Get_result(Graph *g) {
-	int counts = 0;
-	while (g->unbalance_num > 0) {
-		counts++;
-		int min = MAX_E;
-		for (int i = 0; i < g->groups.size(); i++)
-		{
-			g->break_unb[i] = 0;
-			g->followers[i].clear();
-			if (!g->groups[i].is_delete) {
-				queue<int> q;
-				for (int j = 0; j < g->groups[i].edges.size(); j++) {
-					if (!g->is_delete_e[g->groups[i].edges[j]]) {
-						q.push(g->groups[i].edges[j]);
-						g->temp_delete_e[g->groups[i].edges[j]] = 1;
-						g->followers[i].push_back(g->groups[i].edges[j]);
-					}	
-				}
-				while (!q.empty()) {
-					//counts++;
-					int sub = q.front();
-					q.pop();
-					if (sub < g->groups[i].typ_edge)
-						g->groups[i].typ_edge = sub;
-					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
-						int temp = g->in_which_triangle[sub][j];
-						if (!g->Triangles[temp].is_broken) {
-							if (g->Triangles[temp].is_balanced)
-							{
-								g->link[g->Triangles[temp].edge1]++;
-								g->link[g->Triangles[temp].edge2]++;
-								g->link[g->Triangles[temp].edge3]++;
-							}
-							else
-								g->break_unb[i]++;
-							if (g->link[g->Triangles[temp].edge1] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge1);
-							if (g->link[g->Triangles[temp].edge2] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge2);
-							if (g->link[g->Triangles[temp].edge3] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge3);
-
-							if (g->support[g->Triangles[temp].edge1] - g->link[g->Triangles[temp].edge1] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge1])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge1] = 1;
-								q.push(g->Triangles[temp].edge1);
-								g->followers[i].push_back(g->Triangles[temp].edge1);
-							}
-
-
-							if (g->support[g->Triangles[temp].edge2] - g->link[g->Triangles[temp].edge2] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge2])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge2] = 1;
-								q.push(g->Triangles[temp].edge2);
-								g->followers[i].push_back(g->Triangles[temp].edge2);
-							}
-
-
-							if (g->support[g->Triangles[temp].edge3] - g->link[g->Triangles[temp].edge3] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge3])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge3] = 1;
-								q.push(g->Triangles[temp].edge3);
-								g->followers[i].push_back(g->Triangles[temp].edge3);
-							}
-
-						}
-					}
-				}
-				//if (break_unb[i] == 0)
-					//groups[i].is_delete = 1;
-				if (g->break_unb[i]>0)
-				{
-					if (g->followers[i].size() < g->followers[min].size())
-						min = i;
-					else if (g->followers[i].size() == g->followers[min].size()) {
-						if (g->groups[i].typ_edge < g->groups[min].typ_edge)
-							min = i;
-					}
-				}
-
-				for (int j = 0; j < g->is_linked.size(); j++)
-				{
-					g->link[g->is_linked[j]] = 0;
-					g->temp_delete_e[g->is_linked[j]] = 0;
-				}
-				g->is_linked.clear();
-			}
-			
-			
-		}
-
-		if (min != MAX_E)
-		{
-			for (int i = 0; i < g->followers[min].size(); i++)
-			{
-				g->is_delete_e[g->followers[min][i]] = 1;
-				g->temp_delete_e[g->followers[min][i]] = 1;
-				//support[followers[min][i]] = 0;
-			}
-			g->size_of_truss -= g->followers[min].size();
-			for (int i = 0; i < g->followers[min].size(); i++) {
-				for (int j = 0; j < g->in_which_triangle[g->followers[min][i]].size(); j++) {
-					int temp = g->in_which_triangle[g->followers[min][i]][j];
-					if (!g->Triangles[temp].is_broken) {
-						if (g->Triangles[temp].is_balanced) {
-							if (!g->is_delete_e[g->Triangles[temp].edge1])
-								--g->support[g->Triangles[temp].edge1];
-							if (!g->is_delete_e[g->Triangles[temp].edge2])
-								--g->support[g->Triangles[temp].edge2];
-							if (!g->is_delete_e[g->Triangles[temp].edge3])
-								--g->support[g->Triangles[temp].edge3];
-						}
-						else
-							g->unbalance_num--;
-						g->Triangles[temp].is_broken = 1;
-					}
-				}
-			}
-			g->groups[min].is_delete = 1;
-			if (counts % 100 == 0) {
-				cout << "sizeof truss" << g->size_of_truss << endl;
-				cout << "unb num:" << g->unbalance_num << endl;
-				cout << counts << " " << g->groups[min].typ_edge << endl;
-			}
-			//out << "sizeof truss" << size_of_truss << endl;
-			//out << "unb num:" << unbalance_num << endl;
-			//out << counts << " " << groups[min].typ_edge << endl;
-			
-		}
-	
-	}
-	cout << "delete " << counts << " times" << endl;
-	
-}
-
-
-int findSmallestDistance(int start_vertex, int end_vertex, Graph* g) {
-    vector<bool> visited(MAX_V, false);
-    vector<int> distance(MAX_V, numeric_limits<int>::max());
-
-    queue<int> q;
-    q.push(start_vertex);
-    visited[start_vertex] = true;
-    distance[start_vertex] = 0;
-
-    while (!q.empty()) {
-        int current_vertex = q.front();
-        q.pop();
-
-        for (int neighbor : g->vec[current_vertex]) {
-            if (!visited[neighbor]) {
-                visited[neighbor] = true;
-                distance[neighbor] = distance[current_vertex] + 1;
-                q.push(neighbor);
-
-                if (neighbor == end_vertex) {
-                    return distance[neighbor];
-                }
-            }
-        }
-    }
-
-    return -1; // If v1 and v2 are not connected
-}
-
-// vector<int> getInducedSubgraph(int start_vertex, int k) {
-//     vector<bool> visited(MAX_V, false);
-//     vector<int> distance(MAX_V, numeric_limits<int>::max());
-//     vector<int> subgraph;
-
-//     queue<int> q;
-//     q.push(start_vertex);
-//     visited[start_vertex] = true;
-//     distance[start_vertex] = 0;
-//     subgraph.push_back(start_vertex);
-
-//     while (!q.empty()) {
-//         int current_vertex = q.front();
-//         q.pop();
-
-//         if (distance[current_vertex] == k) {
-//             break; // Stop exploring further at distance k
-//         }
-
-//         for (int neighbor : vec[current_vertex]) {
-//             if (!visited[neighbor]) {
-//                 visited[neighbor] = true;
-//                 distance[neighbor] = distance[current_vertex] + 1;
-//                 q.push(neighbor);
-//                 subgraph.push_back(neighbor);
-//             }
-//         }
-//     }
-
-//     return subgraph;
-// }
-
-
-vector<int> getInducedSubgraph(const set<int>& vertices) {
-    vector<bool> visited(MAX_V, false);
-    vector<int> induced_subgraph;
-
-    for (int vertex : vertices) {
-        visited[vertex] = true;
-        induced_subgraph.push_back(vertex);
-    }
-
-    return induced_subgraph;
-}
-
-
-int findLargestSmallestDistance(int start_vertex, const set<int>& end_vertices,Graph* g) {
-    int largest_smallest_distance = -1;
-
-    for (int end_vertex : end_vertices) {
-        vector<bool> visited(MAX_V, false);
-        vector<int> distance(MAX_V, numeric_limits<int>::max());
-
-        queue<int> q;
-        q.push(start_vertex);
-        visited[start_vertex] = true;
-        distance[start_vertex] = 0;
-
-        while (!q.empty()) {
-            int current_vertex = q.front();
-            q.pop();
-
-            for (int neighbor : g->vec[current_vertex]) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    distance[neighbor] = distance[current_vertex] + 1;
-                    q.push(neighbor);
-
-                    if (neighbor == end_vertex) {
-                        if (distance[neighbor] > largest_smallest_distance) {
-                            largest_smallest_distance = distance[neighbor];
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    return largest_smallest_distance;
-}
 
 
 
@@ -1334,3 +1086,226 @@ int main() {
 
 	return 0;
 }
+
+
+// void candidate_lemma(Graph* g) {
+	
+// 	for (int i = 0; i < g->Triangles.size(); i++) {
+// 		if (!g->Triangles[i].is_broken) {
+// 			if (!g->Triangles[i].is_balanced) {
+// 				if (!g->candidate[g->Triangles[i].edge1])
+// 				{
+// 					g->candidates.push_back(g->Triangles[i].edge1);
+// 					g->candidate[g->Triangles[i].edge1] = 1;
+// 				}
+// 				if (!g->candidate[g->Triangles[i].edge2])
+// 				{
+// 					g->candidates.push_back(g->Triangles[i].edge2);
+// 					g->candidate[g->Triangles[i].edge2] = 1;
+// 				}
+// 				if (!g->candidate[g->Triangles[i].edge3])
+// 				{
+// 					g->candidates.push_back(g->Triangles[i].edge3);
+// 					g->candidate[g->Triangles[i].edge3] = 1;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	int num = 0;
+// 	for (int i = 0; i < g->candidates.size(); i++) {
+// 		Group temp_group;
+// 		if (g->support[g->candidates[i]] == k - 2) {
+// 			if (g->grouped[g->candidates[i]] == -1) {
+// 				queue<int> q;
+// 				q.push(g->candidates[i]);
+// 				g->grouped[g->candidates[i]] = g->groups.size();
+// 				temp_group.edges.push_back(g->candidates[i]);
+// 				while (!q.empty()) {
+// 					int sub = q.front();
+// 					q.pop();
+// 					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
+// 						int temp = g->in_which_triangle[sub][j];
+// 						if (!g->Triangles[temp].is_broken) {
+// 							if (g->Triangles[temp].is_balanced) {
+// 								if (g->support[g->Triangles[temp].edge1] == k - 2 && g->grouped[g->Triangles[temp].edge1] == -1) {
+// 									q.push(g->Triangles[temp].edge1);
+// 									temp_group.edges.push_back(g->Triangles[temp].edge1);
+// 									g->grouped[g->Triangles[temp].edge1] = g->groups.size();
+
+// 								}
+// 								if (g->support[g->Triangles[temp].edge2] == k - 2 && g->grouped[g->Triangles[temp].edge2] == -1) {
+// 									q.push(g->Triangles[temp].edge2);
+// 									temp_group.edges.push_back(g->Triangles[temp].edge2);
+// 									g->grouped[g->Triangles[temp].edge2] = g->groups.size();
+
+// 								}
+// 								if (g->support[g->Triangles[temp].edge3] == k - 2 && g->grouped[g->Triangles[temp].edge3] == -1) {
+// 									q.push(g->Triangles[temp].edge3);
+// 									temp_group.edges.push_back(g->Triangles[temp].edge3);
+// 									g->grouped[g->Triangles[temp].edge3] = g->groups.size();
+
+// 								}
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		else if (g->support[g->candidates[i]] > k - 2)
+// 		{
+// 			g->grouped[g->candidates[i]] = g->groups.size();
+// 			temp_group.edges.push_back(g->candidates[i]);
+// 		}
+
+// 		if (temp_group.edges.size() > 0)
+// 		{
+// 			int min = MAX_E + 1;
+// 			for (int j = 0; j < temp_group.edges.size(); j++)
+// 			{
+// 				if (temp_group.edges[j] < min)
+// 					min = temp_group.edges[j];
+// 			}
+// 			temp_group.typ_edge = min;
+// 			g->groups.push_back(temp_group);
+// 		}
+// 	}
+
+// }
+
+// void Get_result(Graph *g) {
+// 	int counts = 0;
+// 	while (g->unbalance_num > 0) {
+// 		counts++;
+// 		int min = MAX_E;
+// 		for (int i = 0; i < g->groups.size(); i++)
+// 		{
+// 			g->break_unb[i] = 0;
+// 			g->followers[i].clear();
+// 			if (!g->groups[i].is_delete) {
+// 				queue<int> q;
+// 				for (int j = 0; j < g->groups[i].edges.size(); j++) {
+// 					if (!g->is_delete_e[g->groups[i].edges[j]]) {
+// 						q.push(g->groups[i].edges[j]);
+// 						g->temp_delete_e[g->groups[i].edges[j]] = 1;
+// 						g->followers[i].push_back(g->groups[i].edges[j]);
+// 					}	
+// 				}
+// 				while (!q.empty()) {
+// 					//counts++;
+// 					int sub = q.front();
+// 					q.pop();
+// 					if (sub < g->groups[i].typ_edge)
+// 						g->groups[i].typ_edge = sub;
+// 					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
+// 						int temp = g->in_which_triangle[sub][j];
+// 						if (!g->Triangles[temp].is_broken) {
+// 							if (g->Triangles[temp].is_balanced)
+// 							{
+// 								g->link[g->Triangles[temp].edge1]++;
+// 								g->link[g->Triangles[temp].edge2]++;
+// 								g->link[g->Triangles[temp].edge3]++;
+// 							}
+// 							else
+// 								g->break_unb[i]++;
+// 							if (g->link[g->Triangles[temp].edge1] == 1)
+// 								g->is_linked.push_back(g->Triangles[temp].edge1);
+// 							if (g->link[g->Triangles[temp].edge2] == 1)
+// 								g->is_linked.push_back(g->Triangles[temp].edge2);
+// 							if (g->link[g->Triangles[temp].edge3] == 1)
+// 								g->is_linked.push_back(g->Triangles[temp].edge3);
+
+// 							if (g->support[g->Triangles[temp].edge1] - g->link[g->Triangles[temp].edge1] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge1])
+// 							{
+// 								g->temp_delete_e[g->Triangles[temp].edge1] = 1;
+// 								q.push(g->Triangles[temp].edge1);
+// 								g->followers[i].push_back(g->Triangles[temp].edge1);
+// 							}
+
+
+// 							if (g->support[g->Triangles[temp].edge2] - g->link[g->Triangles[temp].edge2] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge2])
+// 							{
+// 								g->temp_delete_e[g->Triangles[temp].edge2] = 1;
+// 								q.push(g->Triangles[temp].edge2);
+// 								g->followers[i].push_back(g->Triangles[temp].edge2);
+// 							}
+
+
+// 							if (g->support[g->Triangles[temp].edge3] - g->link[g->Triangles[temp].edge3] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge3])
+// 							{
+// 								g->temp_delete_e[g->Triangles[temp].edge3] = 1;
+// 								q.push(g->Triangles[temp].edge3);
+// 								g->followers[i].push_back(g->Triangles[temp].edge3);
+// 							}
+
+// 						}
+// 					}
+// 				}
+// 				//if (break_unb[i] == 0)
+// 					//groups[i].is_delete = 1;
+// 				if (g->break_unb[i]>0)
+// 				{
+// 					if (g->followers[i].size() < g->followers[min].size())
+// 						min = i;
+// 					else if (g->followers[i].size() == g->followers[min].size()) {
+// 						if (g->groups[i].typ_edge < g->groups[min].typ_edge)
+// 							min = i;
+// 					}
+// 				}
+
+// 				for (int j = 0; j < g->is_linked.size(); j++)
+// 				{
+// 					g->link[g->is_linked[j]] = 0;
+// 					g->temp_delete_e[g->is_linked[j]] = 0;
+// 				}
+// 				g->is_linked.clear();
+// 			}
+			
+			
+// 		}
+
+// 		if (min != MAX_E)
+// 		{
+// 			for (int i = 0; i < g->followers[min].size(); i++)
+// 			{
+// 				g->is_delete_e[g->followers[min][i]] = 1;
+// 				g->temp_delete_e[g->followers[min][i]] = 1;
+// 				//support[followers[min][i]] = 0;
+// 			}
+// 			g->size_of_truss -= g->followers[min].size();
+// 			for (int i = 0; i < g->followers[min].size(); i++) {
+// 				for (int j = 0; j < g->in_which_triangle[g->followers[min][i]].size(); j++) {
+// 					int temp = g->in_which_triangle[g->followers[min][i]][j];
+// 					if (!g->Triangles[temp].is_broken) {
+// 						if (g->Triangles[temp].is_balanced) {
+// 							if (!g->is_delete_e[g->Triangles[temp].edge1])
+// 								--g->support[g->Triangles[temp].edge1];
+// 							if (!g->is_delete_e[g->Triangles[temp].edge2])
+// 								--g->support[g->Triangles[temp].edge2];
+// 							if (!g->is_delete_e[g->Triangles[temp].edge3])
+// 								--g->support[g->Triangles[temp].edge3];
+// 						}
+// 						else
+// 							g->unbalance_num--;
+// 						g->Triangles[temp].is_broken = 1;
+// 					}
+// 				}
+// 			}
+// 			g->groups[min].is_delete = 1;
+// 			if (counts % 100 == 0) {
+// 				cout << "sizeof truss" << g->size_of_truss << endl;
+// 				cout << "unb num:" << g->unbalance_num << endl;
+// 				cout << counts << " " << g->groups[min].typ_edge << endl;
+// 			}
+// 			//out << "sizeof truss" << size_of_truss << endl;
+// 			//out << "unb num:" << unbalance_num << endl;
+// 			//out << counts << " " << groups[min].typ_edge << endl;
+			
+// 		}
+	
+// 	}
+// 	cout << "delete " << counts << " times" << endl;
+	
+// }
+
+
+
