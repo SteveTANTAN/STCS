@@ -1165,6 +1165,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 				*g = *newG;
 				return true;
 			}
+			delete(newG);
 
 			// while (removeNegativeTriangle(newG)) {
 			// 	cout<<"==Deleted diameter successful   Start to remove unbalanced==\n"<<endl;
@@ -1179,6 +1180,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 		} 		
 		curr_hop += 1;
+		delete(g_hop);
 	}
 	cout<<"---calculation fail! \n"<<endl;
 	return false;
