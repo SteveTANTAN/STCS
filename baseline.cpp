@@ -90,7 +90,7 @@ int start_vertex, k, global_hop;
 int hop_num[MAX_V];
 int visited[MAX_V];
 
-string filename;
+string filename, outname;
 
 
 
@@ -148,71 +148,87 @@ bool if_query_inside(Graph* g_ori) {
 
 void print_result(Graph* g){
 		// Assuming vertices_set is your set of vertices
+	// outname = "baseline_" + filename;
+	ofstream outfile(outname);
+	// ifstream outfile{ "baseline_result.txt" };
+    if (!outfile) {
+        cerr << "Error: Unable to open the file " << outname << endl;
+        exit(1);
+    }
 	set<int> vertices_set;
 	cout <<  " ====result graph: \n";
 	// Collect all unique vertices from all_edge_pairs into the set
 	for (int i = 0; i < g->edge_num; i++) {
 		if (!g->is_delete_e[i]) {
-			vertices_set.insert(g->all_edge_pairs[i].v1);
-			vertices_set.insert(g->all_edge_pairs[i].v2);
+			int v1 = g->all_edge_pairs[i].v1;
+			int v2 = g->all_edge_pairs[i].v2;
+			int sig = g->all_edge_pairs[i].sign;
+			vertices_set.insert(v1);
+			vertices_set.insert(v2);
+        	outfile << v1 << " " << v2 << " " << sig << endl;
 		}
 	}
+    outfile.close();
 
 	// Print all vertices in the set
 	for (const auto& vertex : vertices_set) {
 		cout << vertex << " ";
 	}
 	cout << endl;
-
+	cout<<"final diameter is: "<< g->diameter << endl;
+	cout << "final size of KTruss: " << g->size_of_truss << endl;
+	cout << "final truss unbalance num:" << g->unbalance_num << endl;
 }
 
 Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	
 
 	Graph *g = new Graph();
-	// memset(g->is_delete_e, 1, sizeof(g->is_delete_e));
-	// memset(g->is_delete_vec, 0, sizeof(g->is_delete_vec));
-	// memset(g->support, 0, sizeof(g->support));
-	// memset(g->book, 0, sizeof(g->book));
-	// memset(g->break_unb, 0, sizeof(g->break_unb));
-	// memset(g->temp_delete_e, 0, sizeof(g->temp_delete_e));
-	// memset(g->link, 0, sizeof(g->link));
-	// memset(g->grouped, -1, sizeof(g->grouped));
-	// memset(g->candidate, 0, sizeof(g->candidate));
-	// g->two_dimension.resize(MAX_E);
-
-	// nhop_e_num = 0;
-
-	// for (int i = 0; i < g_ori->edge_num; i++)
-	// {
-	// 	int v1 = g_ori->all_edge_pairs[i].v1;
-	// 	int v2 = g_ori->all_edge_pairs[i].v2;
-	// 	if (hop_num[v1] <= n && hop_num[v2] <= n
-	// 	&& hop_num[v1] != -1 && hop_num[v2] != -1) {
-	// 		g->all_edge_pairs[nhop_e_num].v1 = v1;
-	// 		g->all_edge_pairs[nhop_e_num].v2 = v2;
-	// 		g->all_edge_pairs[nhop_e_num].sign = g_ori->all_edge_pairs[i].sign;
-	// 		g->vec[v1].push_back(v2);
-	// 		g->vec[v2].push_back(v1);
-	// 		g->adj_edge[v1].push_back(nhop_e_num);
-	// 		g->adj_edge[v2].push_back(nhop_e_num);
-	// 		g->is_delete_e[nhop_e_num] = 0;
-	// 		nhop_e_num ++;
-	// 	}
-	// }
-	// for (int i = 0; i < MAX_E; i++) {
-	// 	g->followers[i].push_back(0);
-	// }
-	// g->diameter = nhop_e_num;
-	// g->edge_num = nhop_e_num;
-	// g->size_of_truss = nhop_e_num;
 	int counts = 0;
-	*g = *g_ori;
-	g->size_of_truss = e_num;
+	//////////   No subgraph build Method /////////////////////////
+	// *g = *g_ori;
+	// g->size_of_truss = e_num;
+	//////////////////////////////////////////////////////////////
 
-	// for (int i = 0; i < e_num; i++) {
-	// 	if (hop_num[all_edge_pairs[i].v1] <= n || hop_num[all_edge_pairs[i].v2] <= n) size_of_truss++;
-	// }
+
+	///////////// build subgraph ///////////////////////////
+	memset(g->is_delete_e, 0, sizeof(g->is_delete_e));
+	memset(g->is_delete_vec, 0, sizeof(g->is_delete_vec));
+	memset(g->support, 0, sizeof(g->support));
+	memset(g->book, 0, sizeof(g->book));
+	memset(g->break_unb, 0, sizeof(g->break_unb));
+	memset(g->temp_delete_e, 0, sizeof(g->temp_delete_e));
+	memset(g->link, 0, sizeof(g->link));
+	memset(g->grouped, -1, sizeof(g->grouped));
+	memset(g->candidate, 0, sizeof(g->candidate));
+	g->two_dimension.resize(MAX_E);
+
+	nhop_e_num = 0;
+
+	for (int i = 0; i < g_ori->edge_num; i++)
+	{
+		int v1 = g_ori->all_edge_pairs[i].v1;
+		int v2 = g_ori->all_edge_pairs[i].v2;
+		if (hop_num[v1] <= n && hop_num[v2] <= n
+		&& hop_num[v1] != -1 && hop_num[v2] != -1) {
+			g->all_edge_pairs[nhop_e_num].v1 = v1;
+			g->all_edge_pairs[nhop_e_num].v2 = v2;
+			g->all_edge_pairs[nhop_e_num].sign = g_ori->all_edge_pairs[i].sign;
+			g->vec[v1].push_back(v2);
+			g->vec[v2].push_back(v1);
+			g->adj_edge[v1].push_back(nhop_e_num);
+			g->adj_edge[v2].push_back(nhop_e_num);
+			// g->is_delete_e[nhop_e_num] = 0;
+			nhop_e_num ++;
+		}
+	}
+	for (int i = 0; i < MAX_E; i++) {
+		g->followers[i].push_back(0);
+	}
+	g->diameter = nhop_e_num;
+	g->edge_num = nhop_e_num;
+	g->size_of_truss = nhop_e_num;
+
 	for (int i = 0; i < g->edge_num; i++) {
 		// If the vertices of the edge are not within n hops of the source, skip this iteration
 		// if (hop_num[all_edge_pairs[i].v1] > n || hop_num[all_edge_pairs[i].v2] > n) 
@@ -950,7 +966,7 @@ void GetmaximumKtruss(Graph *g) {
 
 }
 
-void GetKtruss(int src, int k, Graph* g) {
+bool GetKtruss(int src, int k, Graph* g) {
 
 	// check if the original graph has k-truss including src
 
@@ -961,6 +977,8 @@ void GetKtruss(int src, int k, Graph* g) {
 		cout << "Cannot obtain any result \n";
 		exit(1);
 	}
+	// print_result(new_g);
+	delete(new_g);
 
 
 
@@ -1024,9 +1042,9 @@ void GetKtruss(int src, int k, Graph* g) {
 			//return;
 			while (removeEdgeFromLongestPath(newG)) {
 				cout<<"----test\n"<<endl;
-				print_result(newG);
+				*g = *newG;
+				return true;
 
-				return;
 				// if (removeNegativeTriangle() && g->diameter > curr_hop) {
 					// update res
 					
@@ -1043,7 +1061,7 @@ void GetKtruss(int src, int k, Graph* g) {
 		curr_hop += 1;
 	}
 	cout<<"---calculation fail! \n"<<endl;
-	return;
+	return false;
 }
 
 
@@ -1056,10 +1074,8 @@ void GetKtruss(int src, int k, Graph* g) {
 int main() {
 
 
-	string outname;
-
     filename = "data/test1";
-	outname = filename + "5_solution.txt";
+	outname = filename + "_solution.txt";
 	filename += ".txt";
 	
 	Graph* g = build_graph();
@@ -1074,15 +1090,13 @@ int main() {
     cin >> k;
 	struct timeval start, end;
     double timeuse;
+	bool result;
     gettimeofday(&start, NULL);
-	GetKtruss(start_vertex, k, g);
+	result = GetKtruss(start_vertex, k, g);
     gettimeofday(&end, NULL);
     timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
    	cout << "baslinerun time: " << timeuse << '\n' << endl;
-	// for (int i = 1; i < MAX_V; i++) {
-	// 	if (hop_num[i] < 0) break;
-	// 	cout << "hop number for " << i << " is " << hop_num[i] << "\n";
-	// }
+	if (result) print_result(g);
 
 	return 0;
 }
