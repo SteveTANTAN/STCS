@@ -462,6 +462,25 @@ bool delete_on_edge(int A, int B, Graph*newG) {
 
 }
 
+bool quick_delete(int A, int B, Graph* g) {
+	bool res = true;
+	Graph *temp = new Graph();
+	*temp = *g;
+	res = delete_on_edge(A, B, temp);
+	if (!res) return false;
+	vector<int> all_tri = g->in_which_triangle[g->adj_edge[A][B]];
+	for (int i = 0; i < all_tri.size(); i++) {
+		Triangle tri = g->Triangles[all_tri[i]];
+		int v;
+		v = v ^ A ^ B ^ tri.v1 ^ tri.v2 ^ tri.v3;
+		res = delete_on_edge(v, B, temp);
+		if (!res) return false;
+	}
+	return true;
+}
+
+
+
 // Assuming you have the Graph and related classes defined here...
 
 // Function to check if Graph H1 is a subgraph of Graph H2.
@@ -618,7 +637,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		Graph *right = new Graph();
 		// cout << "mid2 queue\n";
 		*right = *left;
-		if (delete_on_edge(left->path[0], left->path[1], left)) {
+		if (quick_delete(left->path[0], left->path[1], left)) {
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
 				*g = *left;
@@ -632,7 +651,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(left);
 		}
-		if (delete_on_edge(right->path[right->path.size() - 1], right->path[right->path.size() - 2], right)) {
+		if (quick_delete(right->path[right->path.size() - 1], right->path[right->path.size() - 2], right)) {
 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
 			right->diameter < g->diameter) {
 				*g = *right;
