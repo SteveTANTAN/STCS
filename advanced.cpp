@@ -419,8 +419,6 @@ vector<int> findLongestPath(Graph *g) {
 	
 	return path;
 }
-
-
 vector<int> findLongestDistanceFromStartVertex(Graph *g) {
     vector<int> distances(v_num, -1);
     vector<vector<int>> paths(v_num);
@@ -1025,4 +1023,3 @@ int main() {
 
 	return 0;
 }
-
