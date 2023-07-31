@@ -76,7 +76,7 @@ typedef struct {
 	vector<int> id;
 
 	int diameter;
-	vector<int> path;
+	vector<vector<int>> paths;
 } Graph;
 
 
@@ -379,12 +379,12 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 
 
 
-vector<int> findLongestPath(Graph *g) {
+void findLongestPath(Graph *g) {
 	// little optimization by replace v_num by v_num-1
 	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
 	// cout << "in\n";
 	int pathLength = -1;
-	vector<int> path;
+	//vector<int> path;
 	
 	for (int i = 1; i < v_num - 1; i++) {
 		memset(visited, -1, sizeof(visited));
@@ -405,12 +405,16 @@ vector<int> findLongestPath(Graph *g) {
 				// 	cout << v << "->";
 				// }
 				// cout << "\n";
-				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
+				if (visited[curr_pair.first] < curr_pair.second.first && visited[curr_pair.first] != -1) continue;
 
 				visited[curr_pair.first] = curr_pair.second.first;
 				if (pathLength < curr_pair.second.first) {
-					path = curr_pair.second.second;
+					g->paths.clear();
+					g->paths.push_back(curr_pair.second.second);
+					//path = curr_pair.second.second;
 					pathLength = curr_pair.second.first;
+				} else if (pathLength == curr_pair.second.first) {
+					g->paths.push_back(curr_pair.second.second);
 				}
 				//cout << "neighour number is " << g->vec[4].size() << "\n";
 				for (int idx = 0; idx < g->adj_edge[curr_pair.first].size(); idx++) {
@@ -442,16 +446,22 @@ vector<int> findLongestPath(Graph *g) {
 		
 	}
 
-	// cout << "================= current longest path is:\n";
-	// for (auto v : path) {
-	// 	cout << v << "->";
+	// cout << "================= current longest path has: " << g->paths.size() << " paths\n";
+	// int a = 1;
+	// for (auto p : g->paths) {
+	// 	cout << "path " << a << " \n:"; 
+	// 	a++;
+	// 	for (auto v : p) {
+	// 		cout << v << "->";
+	// 	}
+	// 	cout << "\n";
 	// }
 
 	//scout << "\n";
 	g->diameter = pathLength;
-	g->path = path;
+	//g->path = path;
 	
-	return path;
+	//return path;
 }
 
 
@@ -701,7 +711,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		Graph *right = new Graph();
 		// cout << "mid2 queue\n";
 		*right = *left;
-		if (delete_on_node(left->path[0], left)) {
+		if (delete_on_node(left->paths[0][0], left)) {
 			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
@@ -718,7 +728,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(left);
 		}
-		if (delete_on_node(right->path[right->path.size() - 1], right)) {
+		if (delete_on_node(right->paths[0][right->paths[0].size() - 1], right)) {
 			bool best = false;
 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
 			right->diameter < g->diameter) {
