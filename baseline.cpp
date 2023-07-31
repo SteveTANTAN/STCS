@@ -1455,4 +1455,3 @@ void Get_result(Graph *g) {
 }
 
 
-
