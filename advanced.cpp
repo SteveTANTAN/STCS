@@ -146,40 +146,6 @@ bool if_query_inside(Graph* g_ori) {
 	return false;
 }
 
-void print_result(Graph* g){
-		// Assuming vertices_set is your set of vertices
-	// outname = "baseline_" + filename;
-	ofstream outfile(outname);
-	// ifstream outfile{ "baseline_result.txt" };
-    if (!outfile) {
-        cerr << "Error: Unable to open the file " << outname << endl;
-        exit(1);
-    }
-	set<int> vertices_set;
-	cout <<  " ====result graph: \n";
-	// Collect all unique vertices from all_edge_pairs into the set
-	for (int i = 0; i < g->edge_num; i++) {
-		if (!g->is_delete_e[i]) {
-			int v1 = g->all_edge_pairs[i].v1;
-			int v2 = g->all_edge_pairs[i].v2;
-			int sig = g->all_edge_pairs[i].sign;
-			vertices_set.insert(v1);
-			vertices_set.insert(v2);
-        	outfile << v1 << " " << v2 << " " << sig << endl;
-		}
-	}
-    outfile.close();
-
-	// Print all vertices in the set
-	for (const auto& vertex : vertices_set) {
-		cout << vertex << " ";
-	}
-	cout << endl;
-	cout<<"final diameter is: "<< g->diameter << endl;
-	cout << "final size of KTruss: " << g->size_of_truss << endl;
-	cout << "final truss unbalance num:" << g->unbalance_num << endl;
-}
-
 Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	
 
@@ -453,7 +419,95 @@ vector<int> findLongestPath(Graph *g) {
 	
 	return path;
 }
+vector<int> findLongestDistanceFromStartVertex(Graph *g) {
+    vector<int> distances(v_num, -1);
+    vector<vector<int>> paths(v_num);
+    vector<bool> visited(v_num, false);
+    queue<int> q;
 
+    distances[start_vertex] = 0;
+    paths[start_vertex].push_back(start_vertex);
+    visited[start_vertex] = true;
+    q.push(start_vertex);
+
+    int max_distance = 0;
+    vector<int> longest_path;
+	vector<int> longest_list;
+
+    while (!q.empty()) {
+        int curr_vertex = q.front();
+        q.pop();
+
+        if(distances[curr_vertex] > max_distance){
+            max_distance = distances[curr_vertex];
+            longest_path = paths[curr_vertex];
+        }
+
+        for (int idx = 0; idx < g->adj_edge[curr_vertex].size(); idx++) {
+            if (g->is_delete_e[g->adj_edge[curr_vertex][idx]]) {
+                continue;
+            }
+
+            int v;
+            if (g->all_edge_pairs[g->adj_edge[curr_vertex][idx]].v1 == curr_vertex) {
+                v = g->all_edge_pairs[g->adj_edge[curr_vertex][idx]].v2;
+            } else {
+                v = g->all_edge_pairs[g->adj_edge[curr_vertex][idx]].v1;
+            }
+
+            if (!visited[v]) {
+                q.push(v);
+                visited[v] = true;
+                distances[v] = distances[curr_vertex] + 1;
+				if (distances[v] > global_hop) longest_list.push_back(v);
+                paths[v] = paths[curr_vertex];
+                paths[v].push_back(v);
+            }
+        }
+    }
+
+    g->diameter = max_distance;
+    g->path = longest_path;
+
+    return longest_list;
+}
+
+
+void print_result(Graph* g){
+		// Assuming vertices_set is your set of vertices
+	// outname = "baseline_" + filename;
+	ofstream outfile(outname);
+	// ifstream outfile{ "baseline_result.txt" };
+    if (!outfile) {
+        cerr << "Error: Unable to open the file " << outname << endl;
+        exit(1);
+    }
+	set<int> vertices_set;
+	cout <<  " ====result graph: \n";
+	findLongestPath(g);
+
+	// Collect all unique vertices from all_edge_pairs into the set
+	for (int i = 0; i < g->edge_num; i++) {
+		if (!g->is_delete_e[i]) {
+			int v1 = g->all_edge_pairs[i].v1;
+			int v2 = g->all_edge_pairs[i].v2;
+			int sig = g->all_edge_pairs[i].sign;
+			vertices_set.insert(v1);
+			vertices_set.insert(v2);
+        	outfile << v1 << " " << v2 << " " << sig << endl;
+		}
+	}
+    outfile.close();
+
+	// Print all vertices in the set
+	for (const auto& vertex : vertices_set) {
+		cout << vertex << " ";
+	}
+	cout << endl;
+	cout<<"final diameter is: "<< g->diameter << endl;
+	cout << "final size of KTruss: " << g->size_of_truss << endl;
+	cout << "final truss unbalance num:" << g->unbalance_num << endl;
+}
 
 bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 
@@ -518,13 +572,11 @@ bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 
 	//cout << newG->size_of_truss <<"abc\n";
 	if (newG->size_of_truss > 0 && if_query_inside(newG)) {
-		if (update_dia) findLongestPath(newG);
-		//cout << "delete on edge ended\n";
+
 		return true;
 	} 
-	//cout << "delete on edge ended\n";
+	cout << "delete on edge fail, newG->size_of_truss > 0 && if_query_inside(newG)\n";
 	return false;
-
 }
 
 bool delete_on_node(int A, Graph*newG) {
@@ -539,7 +591,6 @@ bool delete_on_node(int A, Graph*newG) {
 			if (!delete_on_edge(edge_index,newG, false)) return false;
 		}
     }
-	findLongestPath(newG);
 	return true;
 
 }
@@ -563,111 +614,6 @@ bool isSubgraph(Graph* H1, Graph* H2) {
     }
     return true;
 }
-
-// another
-// bool removeEdgeFromLongestPath(Graph* g) {
-// 	/*
-// 	vector<int> path = findLongestPath(g);
-// 	cout << "Longest Path is :\n";
-// 	for (auto v : path) {
-// 		cout << v << " -> ";
-// 	}
-// 	cout << "\n";
-// 	*/
-// 	//TODO
-// 	//Graph* tempGraph = new Graph();
-// 	//*tempGraph = *g;
-// 	int curr_diameter = g->diameter;
-// 	if (curr_diameter < 1) return false;
-// 	queue<Graph*> Queue;
-// 	Graph *best = new Graph();
-// 	*best = *g;
-// 	Queue.push(best);
-// 	while (!Queue.empty()) {
-		
-// 		int size = Queue.size();
-// 		Graph *left = Queue.front();
-// 		queue<Graph*> filteredQueue;
-		
-// 		// cout << "mid1 queue \n";
-// 		Graph *right = new Graph();
-// 		// cout << "mid2 queue\n";
-// 		*right = *left;
-// 		if (delete_on_edge(left->path[0], left->path[1], left)) {
-// 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
-// 			left->diameter < g->diameter) {
-// 				*g = *left;
-// 			}
-// 			//
-// 			if (if_query_inside(left)) {
-// 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
-// 				filteredQueue.push(left);
-// 				// Queue.push(left);
-// 			}
-// 		} else {
-// 			delete(left);
-// 		}
-// 		if (delete_on_edge(right->path[right->path.size() - 1], right->path[right->path.size() - 2], right)) {
-// 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
-// 			right->diameter < g->diameter) {
-// 				*g = *right;
-// 			}
-// 			// if (if_query_inside(right)  && right->size_of_truss >= g->size_of_truss) {
-// 			if (if_query_inside(right)) {
-// 				// if (right->diameter >= g->diameter && )
-// 				filteredQueue.push(right);
-
-// 				// Queue.push(right);
-
-// 			}
-// 		} else {
-// 			delete(right);
-// 		}
-// 		Queue.pop();
-// 	// Check each subgraph in Queue.
-// 		while (!filteredQueue.empty()) {
-// 			Graph* currentGraph = filteredQueue.front();
-// 			filteredQueue.pop();
-
-// 			// Check if currentGraph is a subgraph of any other subgraph in filteredQueue.
-// 			bool isSubgraphOfOther = false;
-// 			queue<Graph*> tempQueue = Queue; // Copy filteredQueue to a temporary queue.
-
-// 			while (!tempQueue.empty()) {
-// 				Graph* graphInFiltered = tempQueue.front();
-// 				tempQueue.pop();
-
-// 				if (isSubgraph(currentGraph, graphInFiltered)) {
-// 					isSubgraphOfOther = true;
-// 					// cout << "prunning queue\n";
-// 					break;
-// 				}
-// 			}
-
-// 			// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
-// 			if (!isSubgraphOfOther) {
-// 				Queue.push(currentGraph);
-// 			} else {
-// 				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
-// 				delete currentGraph;
-// 			}
-// 		}
-
-// 		// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
-// 		// You can continue using filteredQueue or copy its contents back to the original Queue.
-
-// 		// Clean up the original Queue if needed.
-// 		while (!filteredQueue.empty()) {
-// 			delete filteredQueue.front();
-// 			filteredQueue.pop();
-// 		}
-
-// 		// Copy the filtered subgraphs back to the original Queue.
-// 		// Queue = move(filteredQueue);
-
-// 	}
-// 	return true;
-// }
 
 
 
@@ -701,14 +647,14 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		Graph *right = new Graph();
 		// cout << "mid2 queue\n";
 		*right = *left;
-		if (delete_on_node(left->path[0], left)) {
+		if (delete_on_node(left->path[right->path.size() - 1], left)) {
 			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
 				*g = *left;
 				best = true;
 			}
-			if (left->diameter > global_hop) {
+			if (left->diameter > 2*global_hop) {
 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
 				Queue.push(left);
 				que_in++;
@@ -726,7 +672,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				best = true;
 			}
 
-			if (right->diameter > global_hop) {
+			if (right->diameter > 2*global_hop) {
 				// if (right->diameter >= g->diameter && )
 				Queue.push(right);
 				que_in++;
@@ -792,146 +738,24 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	return true;
 }
 
+
 bool removeNegativeTriangle(Graph* g) {
 	int curr_diameter = g->diameter;
 	if (curr_diameter < 1) return false;
-	bool first = true;
-	queue<Graph*> Queue;
-	Graph *best = new Graph();
-	*best = *g;
-	// g->diameter ++;
-	Queue.push(best);
-	int que_in,que_out = 0;
-	while (!Queue.empty()) {
-		
-		int size = Queue.size();
-		Graph *graph_first = Queue.front();
-		Queue.pop();
-		que_out++;
-
-		for (auto unb : graph_first->Triangles) {
-			if (!unb.is_balanced && !unb.is_broken) {
-				if (first) {
-					delete_on_edge(unb.edge1, g,true);
-					first = false;
-				}
-				cout << "test 1111\n";
-				Graph *left = new Graph();
-				*left = *graph_first;
-
-				Graph *middle = new Graph();
-				*middle = *graph_first;
-
-				Graph *right = new Graph();
-				*right = *graph_first;
-				if (delete_on_edge(unb.edge1, left,true)) {
-					bool best = false;
-					if ((left->diameter == g->diameter 
-					&& g->size_of_truss < left->size_of_truss) ||
-					left->diameter < g->diameter) {
-						*g = *left;
-						best = true;
-					}
-					if (left->diameter > global_hop) {
-					// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
-						Queue.push(left);
-						que_in++;
-					} else {
-						if (!best) delete(left);
-					}
-				} else {
-					delete(left);
-				}
-				if (delete_on_edge(unb.edge2, middle,true)) {
-					bool best = false;
-					if ((middle->diameter == g->diameter
-					&& g->size_of_truss < middle->size_of_truss ) ||
-					middle->diameter < g->diameter)  {
-						*g = *middle;
-						best = true;
-					}
-
-					if (middle->diameter > global_hop,true) {
-
-						Queue.push(middle);
-						que_in++;
-
-					} else {
-						if (!best) delete(middle);
-					}
-				} else {
-					delete(middle);
-				}
-				if (delete_on_edge(unb.edge3, right,true)) {
-					bool best = false;
-					if ((right->diameter == g->diameter 
-					&& g->size_of_truss < right->size_of_truss ) ||
-					right->diameter < g->diameter) {
-						*g = *right;
-						best = true;
-					}
-
-					if (right->diameter > global_hop) {
-						// if (right->diameter >= g->diameter && )
-						Queue.push(right);
-						que_in++;
-
-					} else {
-						if (!best) delete(right);
-					}
-				} else {
-					delete(right);
-				}
 
 
 
-
-			}
-		}
-		delete(graph_first);
-
-		queue<Graph*> filteredQueue;
-		// Check each subgraph in Queue.
-		while (!Queue.empty()) {
-			Graph* currentGraph = Queue.front();
-			Queue.pop();
-
-			// Check if currentGraph is a subgraph of any other subgraph in filteredQueue.
-			bool isSubgraphOfOther = false;
-			queue<Graph*> tempQueue = filteredQueue; // Copy filteredQueue to a temporary queue.
-
-			while (!tempQueue.empty()) {
-				Graph* graphInFiltered = tempQueue.front();
-				tempQueue.pop();
-
-				if (isSubgraph(currentGraph, graphInFiltered)) {
-					isSubgraphOfOther = true;
-					// cout << "prunning queue\n";
-					break;
-				}
-			}
-
-			// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
-			if (!isSubgraphOfOther) {
-				filteredQueue.push(currentGraph);
-			} else {
-				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
-				delete currentGraph;
-			}
-		}
-
-		// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
-		// You can continue using filteredQueue or copy its contents back to the original Queue.
-
-		// Clean up the original Queue if needed.
-		while (!Queue.empty()) {
-			delete Queue.front();
-			Queue.pop();
-		}
-
-		// Copy the filtered subgraphs back to the original Queue.
-		Queue = filteredQueue;
-	}
+    for (auto unb : g->Triangles) {
+        if (!unb.is_balanced && !unb.is_broken) {
+            if (hop_num[g->all_edge_pairs[unb.edge1].v1] = hop_num[g->all_edge_pairs[unb.edge1].v2]) {
+                if (!delete_on_edge(unb.edge1, g,true)) return false;
+            } else if (hop_num[g->all_edge_pairs[unb.edge2].v1] = hop_num[g->all_edge_pairs[unb.edge2].v2]) {
+                if (!delete_on_edge(unb.edge1, g,true)) return false;
+            } else {
+                if (!delete_on_edge(unb.edge1, g,true)) return false;
+            }
+        }
+    }
 	return true;
 }
 
@@ -1078,6 +902,9 @@ void GetmaximumKtruss(Graph *g) {
 
 }
 
+
+
+
 bool GetKtruss(int src, int k, Graph* g) {
 
 	// check if the original graph has k-truss including src
@@ -1130,55 +957,29 @@ bool GetKtruss(int src, int k, Graph* g) {
 		Graph* g_hop =  GetKtrusswith_Nhops(curr_hop, k, g);
 		
 		if (g_hop->size_of_truss > 0 && if_query_inside(g_hop)) {
-			// print_result(g);
-			// print_result(g_hop);
-			// return;
-			// calculate result for current diameter
-			
-			/*
-			if (!removeNegativeTriangle()) {
-				curr_hop += 1;
-				continue;
-			}
-			if (g.diameter <= curr_hop) {
-				return res;
-			}*/
-			//assume current graph in g and result store in res;
+
 			global_hop = curr_hop;
 			Graph *newG = new Graph();
 			*newG = *g_hop;
-			cout << "===================Deleting diameter ==================\n";
-			findLongestPath(newG);
-			// cout << "????\n";
-			// cout << "\n";
-			//return;
-			
-			while (removeEdgeFromLongestPath(newG)) {
-				cout<<"==Deleted diameter successful   Start to remove unbalanced==\n"<<endl;
-				int best_dia = newG->diameter;
-				while (newG->unbalance_num > 0) {
-					removeNegativeTriangle(newG);
-					if (newG->diameter < best_dia) {
-						if (!removeEdgeFromLongestPath(newG)) break;
+			cout << "===================Deleting NegativeTriangle ==================\n";
+			if (removeNegativeTriangle(newG)) {
+				vector<int> longest_list = findLongestDistanceFromStartVertex(newG);
+				if (newG->diameter <= (curr_hop)) {
+					*g = *newG;
+					return true;
+				} else {
+					cout<<"---start to delete node \n"<<endl;
+					for (auto i : longest_list) {
+						delete_on_node(i,newG);
 					}
-				} 
-				*g = *newG;
-				return true;
-			}
-			delete(newG);
-
-			// while (removeNegativeTriangle(newG)) {
-			// 	cout<<"==Deleted diameter successful   Start to remove unbalanced==\n"<<endl;
-			// 	// cout<<"===========  Start to remove unbalanced triangle=========\n"<<endl;
-			// 	while (newG->unbalance_num > 0) {
-			// 		removeNegativeTriangle(newG);
-			// 	} 
-			// 	removeEdgeFromLongestPath(newG);
-			// 	*g = *newG;
-			// 	return true;
-			// }
-
-		} 		
+					vector<int> longest_list = findLongestDistanceFromStartVertex(newG);
+					if (newG->diameter <= (curr_hop)) {
+						*g = *newG;
+						return true;
+					} 
+				}
+            }
+		} 
 		curr_hop += 1;
 		delete(g_hop);
 	}
@@ -1196,7 +997,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 int main() {
 
 
-    filename = "data/test1";
+    filename = "data/temp1";
 	outname = filename + "_solution.txt";
 	filename += ".txt";
 	
@@ -1222,227 +1023,4 @@ int main() {
 
 	return 0;
 }
-
-
-void candidate_lemma(Graph* g) {
-	
-	for (int i = 0; i < g->Triangles.size(); i++) {
-		if (!g->Triangles[i].is_broken) {
-			if (!g->Triangles[i].is_balanced) {
-				if (!g->candidate[g->Triangles[i].edge1])
-				{
-					g->candidates.push_back(g->Triangles[i].edge1);
-					g->candidate[g->Triangles[i].edge1] = 1;
-				}
-				if (!g->candidate[g->Triangles[i].edge2])
-				{
-					g->candidates.push_back(g->Triangles[i].edge2);
-					g->candidate[g->Triangles[i].edge2] = 1;
-				}
-				if (!g->candidate[g->Triangles[i].edge3])
-				{
-					g->candidates.push_back(g->Triangles[i].edge3);
-					g->candidate[g->Triangles[i].edge3] = 1;
-				}
-			}
-		}
-	}
-	int num = 0;
-	for (int i = 0; i < g->candidates.size(); i++) {
-		Group temp_group;
-		if (g->support[g->candidates[i]] == k - 2) {
-			if (g->grouped[g->candidates[i]] == -1) {
-				queue<int> q;
-				q.push(g->candidates[i]);
-				g->grouped[g->candidates[i]] = g->groups.size();
-				temp_group.edges.push_back(g->candidates[i]);
-				while (!q.empty()) {
-					int sub = q.front();
-					q.pop();
-					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
-						int temp = g->in_which_triangle[sub][j];
-						if (!g->Triangles[temp].is_broken) {
-							if (g->Triangles[temp].is_balanced) {
-								if (g->support[g->Triangles[temp].edge1] == k - 2 && g->grouped[g->Triangles[temp].edge1] == -1) {
-									q.push(g->Triangles[temp].edge1);
-									temp_group.edges.push_back(g->Triangles[temp].edge1);
-									g->grouped[g->Triangles[temp].edge1] = g->groups.size();
-
-								}
-								if (g->support[g->Triangles[temp].edge2] == k - 2 && g->grouped[g->Triangles[temp].edge2] == -1) {
-									q.push(g->Triangles[temp].edge2);
-									temp_group.edges.push_back(g->Triangles[temp].edge2);
-									g->grouped[g->Triangles[temp].edge2] = g->groups.size();
-
-								}
-								if (g->support[g->Triangles[temp].edge3] == k - 2 && g->grouped[g->Triangles[temp].edge3] == -1) {
-									q.push(g->Triangles[temp].edge3);
-									temp_group.edges.push_back(g->Triangles[temp].edge3);
-									g->grouped[g->Triangles[temp].edge3] = g->groups.size();
-
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		else if (g->support[g->candidates[i]] > k - 2)
-		{
-			g->grouped[g->candidates[i]] = g->groups.size();
-			temp_group.edges.push_back(g->candidates[i]);
-		}
-
-		if (temp_group.edges.size() > 0)
-		{
-			int min = MAX_E + 1;
-			for (int j = 0; j < temp_group.edges.size(); j++)
-			{
-				if (temp_group.edges[j] < min)
-					min = temp_group.edges[j];
-			}
-			temp_group.typ_edge = min;
-			g->groups.push_back(temp_group);
-		}
-	}
-
-}
-
-void Get_result(Graph *g) {
-	int counts = 0;
-	while (g->unbalance_num > 0) {
-		counts++;
-		int min = MAX_E;
-		for (int i = 0; i < g->groups.size(); i++)
-		{
-			g->break_unb[i] = 0;
-			g->followers[i].clear();
-			if (!g->groups[i].is_delete) {
-				queue<int> q;
-				for (int j = 0; j < g->groups[i].edges.size(); j++) {
-					if (!g->is_delete_e[g->groups[i].edges[j]]) {
-						q.push(g->groups[i].edges[j]);
-						g->temp_delete_e[g->groups[i].edges[j]] = 1;
-						g->followers[i].push_back(g->groups[i].edges[j]);
-					}	
-				}
-				while (!q.empty()) {
-					//counts++;
-					int sub = q.front();
-					q.pop();
-					if (sub < g->groups[i].typ_edge)
-						g->groups[i].typ_edge = sub;
-					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
-						int temp = g->in_which_triangle[sub][j];
-						if (!g->Triangles[temp].is_broken) {
-							if (g->Triangles[temp].is_balanced)
-							{
-								g->link[g->Triangles[temp].edge1]++;
-								g->link[g->Triangles[temp].edge2]++;
-								g->link[g->Triangles[temp].edge3]++;
-							}
-							else
-								g->break_unb[i]++;
-							if (g->link[g->Triangles[temp].edge1] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge1);
-							if (g->link[g->Triangles[temp].edge2] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge2);
-							if (g->link[g->Triangles[temp].edge3] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge3);
-
-							if (g->support[g->Triangles[temp].edge1] - g->link[g->Triangles[temp].edge1] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge1])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge1] = 1;
-								q.push(g->Triangles[temp].edge1);
-								g->followers[i].push_back(g->Triangles[temp].edge1);
-							}
-
-
-							if (g->support[g->Triangles[temp].edge2] - g->link[g->Triangles[temp].edge2] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge2])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge2] = 1;
-								q.push(g->Triangles[temp].edge2);
-								g->followers[i].push_back(g->Triangles[temp].edge2);
-							}
-
-
-							if (g->support[g->Triangles[temp].edge3] - g->link[g->Triangles[temp].edge3] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge3])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge3] = 1;
-								q.push(g->Triangles[temp].edge3);
-								g->followers[i].push_back(g->Triangles[temp].edge3);
-							}
-
-						}
-					}
-				}
-				//if (break_unb[i] == 0)
-					//groups[i].is_delete = 1;
-				//选择跟随者数量最少的
-				if (g->break_unb[i]>0)
-				{
-					if (g->followers[i].size() < g->followers[min].size())
-						min = i;
-					else if (g->followers[i].size() == g->followers[min].size()) {
-						if (g->groups[i].typ_edge < g->groups[min].typ_edge)
-							min = i;
-					}
-				}
-
-				for (int j = 0; j < g->is_linked.size(); j++)
-				{
-					g->link[g->is_linked[j]] = 0;
-					g->temp_delete_e[g->is_linked[j]] = 0;
-				}
-				g->is_linked.clear();
-			}
-			
-			
-		}
-
-		if (min != MAX_E)
-		{
-			for (int i = 0; i < g->followers[min].size(); i++)
-			{
-				g->is_delete_e[g->followers[min][i]] = 1;
-				g->temp_delete_e[g->followers[min][i]] = 1;
-				//support[followers[min][i]] = 0;
-			}
-			g->size_of_truss -= g->followers[min].size();
-			for (int i = 0; i < g->followers[min].size(); i++) {
-				for (int j = 0; j < g->in_which_triangle[g->followers[min][i]].size(); j++) {
-					int temp = g->in_which_triangle[g->followers[min][i]][j];
-					if (!g->Triangles[temp].is_broken) {
-						if (g->Triangles[temp].is_balanced) {
-							if (!g->is_delete_e[g->Triangles[temp].edge1])
-								--g->support[g->Triangles[temp].edge1];
-							if (!g->is_delete_e[g->Triangles[temp].edge2])
-								--g->support[g->Triangles[temp].edge2];
-							if (!g->is_delete_e[g->Triangles[temp].edge3])
-								--g->support[g->Triangles[temp].edge3];
-						}
-						else
-							g->unbalance_num--;
-						g->Triangles[temp].is_broken = 1;
-					}
-				}
-			}
-			g->groups[min].is_delete = 1;
-			if (counts % 100 == 0) {
-				cout << "sizeof truss" << g->size_of_truss << endl;
-				cout << "unb num:" << g->unbalance_num << endl;
-				cout << counts << " " << g->groups[min].typ_edge << endl;
-			}
-			//out << "sizeof truss" << size_of_truss << endl;
-			//out << "unb num:" << unbalance_num << endl;
-			//out << counts << " " << groups[min].typ_edge << endl;
-			
-		}
-	
-	}
-	cout << "delete " << counts << " times" << endl;
-	
-}
-
-
 
