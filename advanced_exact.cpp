@@ -992,19 +992,20 @@ bool GetKtruss(int src, int k, Graph* g) {
             if (g_hop->diameter <= (curr_hop)) {
                 *g = *g_hop;
                 return true;
-            } else {
-                cout<<"---start to delete node \n"<<endl;
+            } 
+			cout<<"---start to delete node \n"<<endl;
 
-                for (auto i : longest_list) {
-                    delete_on_node(i,g_hop);
-                }
-                vector<int> longest_list = findLongestDistanceFromStartVertex(g_hop);
-                if (g_hop->diameter <= (curr_hop)) {
-                    *g = *g_hop;
-                    return true;
-                } 
-            }
+			for (auto i : longest_list) {
+				if ( !delete_on_node(i,g_hop)) goto hop_add;
+			}
+			findLongestDistanceFromStartVertex(g_hop);
+			if (g_hop->diameter <= (curr_hop)) {
+				*g = *g_hop;
+				return true;
+			} 
+            
 		} 
+		hop_add:
 		curr_hop += 1;
 		delete(g_hop);
 	}
@@ -1017,23 +1018,27 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 
 
-int main() {
+int main(int argc, char** argv) {
+	if (argc < 4) {
+		printf("Not enough args: ./ade start_vertex k filename\n");
+		return 0;
+	}
 
+    start_vertex = atoi(argv[1]);
+	k = atoi(argv[2]);
+    filename = argv[3];
 
-    filename = "data/temp2";
 	outname = filename + "_ade_solution.txt";
 	filename += ".txt";
 	
 	Graph* g = build_graph();
 	cout << "graph build" << endl;
+    cout << "filename: " << filename <<endl;
+    cout << "start vertex: " << start_vertex<<endl;
+    cout << "k: " << k <<endl;
+    cout << "|V|: " << v_num <<endl;
+    cout << "|E|: " << e_num <<endl;
 
-
-    set<int> C;
-    
-    cout << "Enter the start vertex: ";
-    cin >> start_vertex;
-	cout << "Enter the K: ";
-    cin >> k;
 	struct timeval start, end;
     double timeuse;
 	bool result;
@@ -1041,7 +1046,7 @@ int main() {
 	result = GetKtruss(start_vertex, k, g);
     gettimeofday(&end, NULL);
     timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
-   	cout << "baslinerun time: " << timeuse << '\n' << endl;
+   	cout << "advanced_exact time: " << timeuse << '\n' << endl;
 	if (result) print_result(g);
 
 	return 0;

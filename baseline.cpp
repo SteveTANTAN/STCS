@@ -178,7 +178,7 @@ void print_result(Graph* g){
 	cout << endl;
 	cout<<"final diameter is: "<< g->diameter << endl;
 	cout << "final size of KTruss: " << g->size_of_truss << endl;
-	cout << "final truss unbalance num:" << g->unbalance_num << endl;
+	cout << "final truss unbalance num: " << g->unbalance_num << endl;
 }
 
 Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
@@ -297,9 +297,9 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 			g->support[g->Triangles[i].edge3]++;
 		}
 	}
-	cout << "counts:" << counts << endl;
+	// cout << "counts:" << counts << endl;
 	//unbalance_num = Triangles.size() - num_of_balance;
-	cout << "orangial:" << g->unbalance_num << endl;
+	// cout << "orangial:" << g->unbalance_num << endl;
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < g->edge_num; i++) {
@@ -360,8 +360,8 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 			}
 		}
 	}
-	cout << "size of KTruss" << g->size_of_truss << endl;
-	cout << "truss unb num:" << g->unbalance_num << endl;
+	cout << "size of KTruss: " << g->size_of_truss << endl;
+	cout << "truss unb num: " << g->unbalance_num << endl;
 
 	return g;
 	// return g->size_of_truss > 0;
@@ -858,8 +858,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 	}
 
-	cout<< "que_in" << que_in<<"\n";
-	cout<< "que_out" << que_out<<"\n";
+	// cout<< "que_in" << que_in<<"\n";
+	// cout<< "que_out" << que_out<<"\n";
 	return true;
 }
 
@@ -1247,9 +1247,9 @@ void GetmaximumKtruss(Graph *g) {
 			g->support[g->Triangles[i].edge3]++;
 		}
 	}
-	cout << "counts:" << counts << endl;
+	// cout << "counts:" << counts << endl;
 	//unbalance_num = Triangles.size() - num_of_balance;
-	cout << "orangial:" << g->unbalance_num << endl;
+	cout << "orangial unbalance_num: " << g->unbalance_num << endl;
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < e_num; i++) {
@@ -1308,14 +1308,8 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
-	cout << "size of KTruss" << g->size_of_truss << endl;
-	cout << "truss unb num:" << g->unbalance_num << endl;
-
-
-
-
-
-
+	cout << "size of KTruss: " << g->size_of_truss << endl;
+	cout << "truss unb num: " << g->unbalance_num << endl;
 }
 
 bool GetKtruss(int src, int k, Graph* g) {
@@ -1417,23 +1411,27 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 
 
-int main() {
+int main(int argc, char** argv) {
+	if (argc < 4) {
+		printf("Not enough args: ./base start_vertex k filename\n");
+		return 0;
+	}
 
+    start_vertex = atoi(argv[1]);
+	k = atoi(argv[2]);
+    filename = argv[3];
 
-    filename = "data/test1";
-	outname = filename + "_solution.txt";
+	outname = filename + "_ba_solution.txt";
 	filename += ".txt";
 	
 	Graph* g = build_graph();
 	cout << "graph build" << endl;
+    cout << "filename: " << filename <<endl;
+    cout << "start vertex: " << start_vertex<<endl;
+    cout << "k: " << k <<endl;
+    cout << "|V|: " << v_num <<endl;
+    cout << "|E|: " << e_num <<endl;
 
-
-    set<int> C;
-    
-    cout << "Enter the start vertex: ";
-    cin >> start_vertex;
-	cout << "Enter the K: ";
-    cin >> k;
 	struct timeval start, end;
     double timeuse;
 	bool result;
@@ -1441,231 +1439,10 @@ int main() {
 	result = GetKtruss(start_vertex, k, g);
     gettimeofday(&end, NULL);
     timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
-   	cout << "baslinerun time: " << timeuse << '\n' << endl;
+   	cout << "basline run time: " << timeuse << '\n' << endl;
 	if (result) print_result(g);
 
 	return 0;
-}
-
-
-void candidate_lemma(Graph* g) {
-	
-	for (int i = 0; i < g->Triangles.size(); i++) {
-		if (!g->Triangles[i].is_broken) {
-			if (!g->Triangles[i].is_balanced) {
-				if (!g->candidate[g->Triangles[i].edge1])
-				{
-					g->candidates.push_back(g->Triangles[i].edge1);
-					g->candidate[g->Triangles[i].edge1] = 1;
-				}
-				if (!g->candidate[g->Triangles[i].edge2])
-				{
-					g->candidates.push_back(g->Triangles[i].edge2);
-					g->candidate[g->Triangles[i].edge2] = 1;
-				}
-				if (!g->candidate[g->Triangles[i].edge3])
-				{
-					g->candidates.push_back(g->Triangles[i].edge3);
-					g->candidate[g->Triangles[i].edge3] = 1;
-				}
-			}
-		}
-	}
-	int num = 0;
-	for (int i = 0; i < g->candidates.size(); i++) {
-		Group temp_group;
-		if (g->support[g->candidates[i]] == k - 2) {
-			if (g->grouped[g->candidates[i]] == -1) {
-				queue<int> q;
-				q.push(g->candidates[i]);
-				g->grouped[g->candidates[i]] = g->groups.size();
-				temp_group.edges.push_back(g->candidates[i]);
-				while (!q.empty()) {
-					int sub = q.front();
-					q.pop();
-					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
-						int temp = g->in_which_triangle[sub][j];
-						if (!g->Triangles[temp].is_broken) {
-							if (g->Triangles[temp].is_balanced) {
-								if (g->support[g->Triangles[temp].edge1] == k - 2 && g->grouped[g->Triangles[temp].edge1] == -1) {
-									q.push(g->Triangles[temp].edge1);
-									temp_group.edges.push_back(g->Triangles[temp].edge1);
-									g->grouped[g->Triangles[temp].edge1] = g->groups.size();
-
-								}
-								if (g->support[g->Triangles[temp].edge2] == k - 2 && g->grouped[g->Triangles[temp].edge2] == -1) {
-									q.push(g->Triangles[temp].edge2);
-									temp_group.edges.push_back(g->Triangles[temp].edge2);
-									g->grouped[g->Triangles[temp].edge2] = g->groups.size();
-
-								}
-								if (g->support[g->Triangles[temp].edge3] == k - 2 && g->grouped[g->Triangles[temp].edge3] == -1) {
-									q.push(g->Triangles[temp].edge3);
-									temp_group.edges.push_back(g->Triangles[temp].edge3);
-									g->grouped[g->Triangles[temp].edge3] = g->groups.size();
-
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		else if (g->support[g->candidates[i]] > k - 2)
-		{
-			g->grouped[g->candidates[i]] = g->groups.size();
-			temp_group.edges.push_back(g->candidates[i]);
-		}
-
-		if (temp_group.edges.size() > 0)
-		{
-			int min = MAX_E + 1;
-			for (int j = 0; j < temp_group.edges.size(); j++)
-			{
-				if (temp_group.edges[j] < min)
-					min = temp_group.edges[j];
-			}
-			temp_group.typ_edge = min;
-			g->groups.push_back(temp_group);
-		}
-	}
-
-}
-
-void Get_result(Graph *g) {
-	int counts = 0;
-	while (g->unbalance_num > 0) {
-		counts++;
-		int min = MAX_E;
-		for (int i = 0; i < g->groups.size(); i++)
-		{
-			g->break_unb[i] = 0;
-			g->followers[i].clear();
-			if (!g->groups[i].is_delete) {
-				queue<int> q;
-				for (int j = 0; j < g->groups[i].edges.size(); j++) {
-					if (!g->is_delete_e[g->groups[i].edges[j]]) {
-						q.push(g->groups[i].edges[j]);
-						g->temp_delete_e[g->groups[i].edges[j]] = 1;
-						g->followers[i].push_back(g->groups[i].edges[j]);
-					}	
-				}
-				while (!q.empty()) {
-					//counts++;
-					int sub = q.front();
-					q.pop();
-					if (sub < g->groups[i].typ_edge)
-						g->groups[i].typ_edge = sub;
-					for (int j = 0; j < g->in_which_triangle[sub].size(); j++) {
-						int temp = g->in_which_triangle[sub][j];
-						if (!g->Triangles[temp].is_broken) {
-							if (g->Triangles[temp].is_balanced)
-							{
-								g->link[g->Triangles[temp].edge1]++;
-								g->link[g->Triangles[temp].edge2]++;
-								g->link[g->Triangles[temp].edge3]++;
-							}
-							else
-								g->break_unb[i]++;
-							if (g->link[g->Triangles[temp].edge1] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge1);
-							if (g->link[g->Triangles[temp].edge2] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge2);
-							if (g->link[g->Triangles[temp].edge3] == 1)
-								g->is_linked.push_back(g->Triangles[temp].edge3);
-
-							if (g->support[g->Triangles[temp].edge1] - g->link[g->Triangles[temp].edge1] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge1])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge1] = 1;
-								q.push(g->Triangles[temp].edge1);
-								g->followers[i].push_back(g->Triangles[temp].edge1);
-							}
-
-
-							if (g->support[g->Triangles[temp].edge2] - g->link[g->Triangles[temp].edge2] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge2])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge2] = 1;
-								q.push(g->Triangles[temp].edge2);
-								g->followers[i].push_back(g->Triangles[temp].edge2);
-							}
-
-
-							if (g->support[g->Triangles[temp].edge3] - g->link[g->Triangles[temp].edge3] < k - 2 && !g->temp_delete_e[g->Triangles[temp].edge3])
-							{
-								g->temp_delete_e[g->Triangles[temp].edge3] = 1;
-								q.push(g->Triangles[temp].edge3);
-								g->followers[i].push_back(g->Triangles[temp].edge3);
-							}
-
-						}
-					}
-				}
-				//if (break_unb[i] == 0)
-					//groups[i].is_delete = 1;
-				//选择跟随者数量最少的
-				if (g->break_unb[i]>0)
-				{
-					if (g->followers[i].size() < g->followers[min].size())
-						min = i;
-					else if (g->followers[i].size() == g->followers[min].size()) {
-						if (g->groups[i].typ_edge < g->groups[min].typ_edge)
-							min = i;
-					}
-				}
-
-				for (int j = 0; j < g->is_linked.size(); j++)
-				{
-					g->link[g->is_linked[j]] = 0;
-					g->temp_delete_e[g->is_linked[j]] = 0;
-				}
-				g->is_linked.clear();
-			}
-			
-			
-		}
-
-		if (min != MAX_E)
-		{
-			for (int i = 0; i < g->followers[min].size(); i++)
-			{
-				g->is_delete_e[g->followers[min][i]] = 1;
-				g->temp_delete_e[g->followers[min][i]] = 1;
-				//support[followers[min][i]] = 0;
-			}
-			g->size_of_truss -= g->followers[min].size();
-			for (int i = 0; i < g->followers[min].size(); i++) {
-				for (int j = 0; j < g->in_which_triangle[g->followers[min][i]].size(); j++) {
-					int temp = g->in_which_triangle[g->followers[min][i]][j];
-					if (!g->Triangles[temp].is_broken) {
-						if (g->Triangles[temp].is_balanced) {
-							if (!g->is_delete_e[g->Triangles[temp].edge1])
-								--g->support[g->Triangles[temp].edge1];
-							if (!g->is_delete_e[g->Triangles[temp].edge2])
-								--g->support[g->Triangles[temp].edge2];
-							if (!g->is_delete_e[g->Triangles[temp].edge3])
-								--g->support[g->Triangles[temp].edge3];
-						}
-						else
-							g->unbalance_num--;
-						g->Triangles[temp].is_broken = 1;
-					}
-				}
-			}
-			g->groups[min].is_delete = 1;
-			if (counts % 100 == 0) {
-				cout << "sizeof truss" << g->size_of_truss << endl;
-				cout << "unb num:" << g->unbalance_num << endl;
-				cout << counts << " " << g->groups[min].typ_edge << endl;
-			}
-			//out << "sizeof truss" << size_of_truss << endl;
-			//out << "unb num:" << unbalance_num << endl;
-			//out << counts << " " << groups[min].typ_edge << endl;
-			
-		}
-	
-	}
-	cout << "delete " << counts << " times" << endl;
-	
 }
 
 
