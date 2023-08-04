@@ -1,0 +1,10 @@
+====baseline result: 
+ba/ba.txt
+ba/ba_100.txt
+Attempt Counter size1
+AVE time119.643
+AVE total_diameter2
+AVE total_size_of_truss1280
+AVE total_unbalance_num0
+AVE total_percentage0.227273
+AVE total_density0.234432

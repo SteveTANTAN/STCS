@@ -1,0 +1,8 @@
+====baseline result: 
+expf/ba/ba.txt
+Attempt Counter size: 1
+AVE total_diameter: 2
+AVE total_size_of_truss: 1340
+AVE total_unbalance_num: 0
+AVE total_percentage: 0.229437
+AVE total_density: 0.240791

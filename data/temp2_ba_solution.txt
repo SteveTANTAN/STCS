@@ -1,0 +1,8 @@
+====baseline result: 
+data/temp2.txt
+Attempt Counter size: 1
+AVE total_diameter: 1
+AVE total_size_of_truss: 28
+AVE total_unbalance_num: 0
+AVE total_percentage: 0.00478755
+AVE total_density: 1

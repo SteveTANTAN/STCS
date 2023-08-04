@@ -9,6 +9,7 @@
 #include<cstring>
 #include <set>
 #include <limits>
+#include <filesystem>
 #include<sys/time.h>
 
 using namespace std;
@@ -328,8 +329,8 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 			}
 		}
 	}
-	cout << "size of KTruss: " << g->size_of_truss << endl;
-	cout << "truss unb num: " << g->unbalance_num << endl;
+	// cout << "size of KTruss: " << g->size_of_truss << endl;
+	// cout << "truss unb num: " << g->unbalance_num << endl;
 
 	return g;
 	// return g->size_of_truss > 0;
@@ -1372,7 +1373,7 @@ void GetmaximumKtruss(Graph *g) {
 	}
 	// cout << "counts:" << counts << endl;
 	//unbalance_num = Triangles.size() - num_of_balance;
-	cout << "orangial unbalance_num: " << g->unbalance_num << endl;
+	// cout << "orangial unbalance_num: " << g->unbalance_num << endl;
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < e_num; i++) {
@@ -1431,8 +1432,8 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
-	cout << "size of KTruss: " << g->size_of_truss << endl;
-	cout << "truss unb num: " << g->unbalance_num << endl;
+	// cout << "size of KTruss: " << g->size_of_truss << endl;
+	// cout << "truss unb num: " << g->unbalance_num << endl;
 }
 
 bool GetKtruss(int src, int k, Graph* g) {
@@ -1443,8 +1444,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 	// *new_g = * g;
 	GetmaximumKtruss(g);
 	if (!if_query_inside(g)) {
-		cout << "Cannot obtain any result \n";
-		exit(1);
+		return false;
 	}
 
 	// record all nodes with k hops, hop is initially set to 2
@@ -1468,7 +1468,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 			}
 		}
 	}
-	cout << "max hop is " << max_hop << "\n";
+	// cout << "max hop is " << max_hop << "\n";
 
 	// add one hop at a time
 	
@@ -1477,7 +1477,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 	int curr_hop = 1;
 
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
-		cout << "--------when hop is " << curr_hop << "\n";
+		// cout << "--------when hop is " << curr_hop << "\n";
 		Graph *g_hop = new Graph();
 		g_hop =  GetKtrusswith_Nhops(curr_hop, k, g);
 		
@@ -1595,106 +1595,226 @@ double calcualte_edge (Graph* g_ori) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-int main(int argc, char** argv) {
-	if (argc < 4) {
-		printf("Not enough args: ./base start_vertex k filename\n");
+int main(int argc, char** argv)  {
+	if (argc < 6) {
+		printf("Not enough args: ./base  k datafilename queryfilename i_th answer_floder\n");
 		return 0;
 	}
 
-    start_vertex = atoi(argv[1]);
-	k = atoi(argv[2]);
-    filename = argv[3];
+    // start_vertex = atoi(argv[1]);
+	k = atoi(argv[1]);
+    filename = argv[2];
+    string query_file = argv[3];
+	int query_number = atoi(argv[4]) - 1;
 
-	outname = filename + "_ba_solution.txt";
+	// outname = strcat(strcat(argv[3], "_f/"), strcat(argv[4], ".txt"));
+	// outname = sprintf(outname, "%s_f/%s.txt", argv[3], argv[4]);
 	filename += ".txt";
+	query_file += ".txt";
 	
+
+
+
 	Graph* original = build_graph();
-	cout << "graph build" << endl;
-    cout << "filename: " << filename <<endl;
-    cout << "start vertex: " << start_vertex<<endl;
-    cout << "k: " << k <<endl;
-    cout << "|V|: " << v_num <<endl;
-    cout << "|E|: " << e_num <<endl;
+	// cout << "graph build" << endl;
+    // cout << "filename: " << filename <<endl;
+    // cout << "start vertex: " << start_vertex<<endl;
+    // cout << "k: " << k <<endl;
+    // cout << "|V|: " << v_num <<endl;
+    // cout << "|E|: " << e_num <<endl;
 
 	struct timeval start, end;
     double timeuse;
-	bool result;
-
+    double timetotal = 0.00;
     double total_diameter = 0.00;
     double total_size_of_truss = 0.00;
     double total_unbalance_num=0.00;
     double total_percentage = 0.00;
     double total_density = 0.00;
     double attempt_time = 0.00;
-	Graph *g = new Graph();
+
+    vector<int> query_data;
+    // 打开文件
+    ifstream file(query_file); // 这里替换为你的文件名
+    if (!file) {
+        cerr << "Unable to open file\n";
+        // exit(1); // 退出程序，因为文件打开失败
+    }
+
+    // 从文件中读取数据
+    string line;
+    while (getline(file, line)) {
+        query_data.push_back(stoi(line));
+    }
+    file.close();
+
+
+    // for (auto query: query_data) {
+
+	cout << "query_data: NO"<<query_number<<"; vertex_id: "<<query_data[query_number] << endl;
+	start_vertex = query_data[query_number];
+	Graph *g = (Graph*) malloc(sizeof(Graph));
 	*g = *original;
+	gettimeofday(&start, NULL);
+	bool result = GetKtruss(start_vertex, k, g);
+	gettimeofday(&end, NULL);
+	timetotal = timetotal + ((end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0);
 
-	Graph *temp = new Graph();
-	*temp = *original;
-	GetmaximumKtruss(temp);
-	int large_graph = cc_vertex(temp, start_vertex);
-	cout << "large graph: " << large_graph <<endl;
-	delete(temp);
-
-    gettimeofday(&start, NULL);
-	result = GetKtruss(start_vertex, k, g);
-    gettimeofday(&end, NULL);
-    timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
-   	cout << "basline run time: " << timeuse << '\n' << endl;
 	if (result) {
-		attempt_time ++;
 		cout << "calculation success!"<<endl;
+		attempt_time ++;
 		total_diameter += g->diameter;
 		total_size_of_truss += g->size_of_truss;
 		total_unbalance_num += g->unbalance_num;
-
+		// int calcualte_vertex, calcualte_edge;
 		double vertexCount  = calcualte_vertex(g);
 		double edgeCount  = calcualte_edge(g);
-
 		total_density = total_density + ((2*edgeCount) / ((vertexCount) * (vertexCount-1)));
-		Graph *temp = new Graph();
+
+		Graph *temp = (Graph*) malloc(sizeof(Graph));
 		*temp = *original;
 		GetmaximumKtruss(temp);
 		double large_graph = cc_vertex(temp, start_vertex);
+
 		total_percentage += (vertexCount/large_graph);
-		delete(temp);
+		free(temp);
+		
 	}
-	ofstream outfile(outname);
-	// ifstream outfile{ "baseline_result.txt" };
-    if (!outfile) {
+	free(g);
+    
+
+    // string directory = string(argv[5]);
+    // std::filesystem::create_directories(directory);
+    // outname = directory + "/"+string(argv[4])+".txt";
+    outname = string(argv[5]);
+	std::ofstream outfile(outname, std::ios::app);
+
+	// ofstream outfile(outname);
+	if (!outfile) {
         cerr << "Error: Unable to open the file " << outname << endl;
-        exit(1);
+		// ofstream newFile(outname);
     }
 
 	outfile <<  "====baseline result: \n";
 	// Collect all unique vertices from all_edge_pairs into the set
-    outfile <<"" << filename  << endl;
-    outfile <<"Attempt Counter size: " << attempt_time  << endl;
-    outfile <<"AVE total_diameter: " << total_diameter/attempt_time << endl;
-    outfile <<"AVE total_size_of_truss: " << total_size_of_truss/attempt_time << endl;
-    outfile <<"AVE total_unbalance_num: " << total_unbalance_num/attempt_time << endl;
-    outfile <<"AVE total_percentage: " << total_percentage/attempt_time << endl;
-    outfile <<"AVE total_density: " << total_density/attempt_time << endl;
-
-
-
+    outfile << filename <<" " << query_file  << endl;
+	outfile << "query_data_No: "<<query_number<<"; vertex_id: "<<query_data[query_number] << endl;
+    outfile <<"Attempt: " << attempt_time  << endl;
+    outfile <<"time: " << timetotal << endl;
+    outfile <<"diameter: " << total_diameter << endl;
+    outfile <<"total_size_of_truss: " << total_size_of_truss << endl;
+    outfile <<"total_unbalance_num: " << total_unbalance_num << endl;
+    outfile <<"total_percentage: " << total_percentage << endl;
+    outfile <<"total_density: " << total_density << endl;
     outfile.close();
-	// if (result) print_result(g);
-
-	delete(g);
-
 	return 0;
 }
+
+
+
+// int main(int argc, char** argv)  {
+// 	if (argc < 4) {
+// 		printf("Not enough args: ./base  k datafilename queryfilename\n");
+// 		return 0;
+// 	}
+
+//     // start_vertex = atoi(argv[1]);
+// 	k = atoi(argv[1]);
+//     filename = argv[2];
+//     string query_file = argv[3];
+
+// 	outname = filename + "_base_exp_ans.txt";
+// 	filename += ".txt";
+	
+// 	Graph* original = build_graph();
+// 	cout << "graph build" << endl;
+//     cout << "filename: " << filename <<endl;
+//     // cout << "start vertex: " << start_vertex<<endl;
+//     // cout << "k: " << k <<endl;
+//     // cout << "|V|: " << v_num <<endl;
+//     // cout << "|E|: " << e_num <<endl;
+
+// 	struct timeval start, end;
+//     double timeuse;
+//     double timetotal = 0.00;
+//     double total_diameter = 0.00;
+//     double total_size_of_truss = 0.00;
+//     double total_unbalance_num=0.00;
+//     double total_percentage = 0.00;
+//     double total_density = 0.00;
+//     double attempt_time = 0.00;
+
+//     vector<int> query_data;
+//     // 打开文件
+//     ifstream file(query_file); // 这里替换为你的文件名
+//     if (!file) {
+//         cerr << "Unable to open file\n";
+//         // exit(1); // 退出程序，因为文件打开失败
+//     }
+
+//     // 从文件中读取数据
+//     string line;
+//     while (getline(file, line)) {
+//         query_data.push_back(stoi(line));
+//     }
+//     file.close();
+
+//     // for (auto query: query_data) {
+// 	for (int i = 0; i < query_data.size(); i++) {
+// 		cout << "query_data: NO"<<i<<"; vertex_id: "<<query_data[i] << endl;
+//         start_vertex = query_data[i];
+//         Graph *g = (Graph*) malloc(sizeof(Graph));
+//         *g = *original;
+//         gettimeofday(&start, NULL);
+//         bool result = GetKtruss(start_vertex, k, g);
+//         gettimeofday(&end, NULL);
+//         timetotal = timetotal + ((end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0);
+	
+//         if (result) {
+// 			cout << "calculation success!"<<endl;
+//             attempt_time ++;
+//             total_diameter += g->diameter;
+//             total_size_of_truss += g->size_of_truss;
+//             total_unbalance_num += g->unbalance_num;
+// 			// int calcualte_vertex, calcualte_edge;
+//             double vertexCount  = calcualte_vertex(g);
+//             double edgeCount  = calcualte_edge(g);
+//             total_density = total_density + ((2*edgeCount) / ((vertexCount) * (vertexCount-1)));
+
+//             Graph *temp = (Graph*) malloc(sizeof(Graph));
+//             *temp = *original;
+//             GetmaximumKtruss(temp);
+//             double large_graph = cc_vertex(temp, start_vertex);
+
+//             total_percentage += (vertexCount/large_graph);
+//             free(temp);
+//         }
+//         free(g);
+//     }
+
+//     ofstream outfile(outname);
+// 	// ifstream outfile{ "baseline_result.txt" };
+//     if (!outfile) {
+//         cerr << "Error: Unable to open the file " << outname << endl;
+//         exit(1);
+//     }
+
+// 	outfile <<  "====baseline result: \n";
+// 	// Collect all unique vertices from all_edge_pairs into the set
+//     outfile <<"" << filename  << endl;
+//     outfile <<"" << query_file  << endl;
+//     outfile <<"Attempt Counter size" << attempt_time  << endl;
+//     outfile <<"AVE time" << timetotal/100 << endl;
+//     outfile <<"AVE total_diameter" << total_diameter/attempt_time << endl;
+//     outfile <<"AVE total_size_of_truss" << total_size_of_truss/attempt_time << endl;
+//     outfile <<"AVE total_unbalance_num" << total_unbalance_num/attempt_time << endl;
+//     outfile <<"AVE total_percentage" << total_percentage/attempt_time << endl;
+//     outfile <<"AVE total_density" << total_density/attempt_time << endl;
+
+
+
+//     outfile.close();
+// 	return 0;
+// }
 
 

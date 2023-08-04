@@ -62,6 +62,8 @@ typedef struct {
 	int break_unb[MAX_E];
 	int support[MAX_E];
 	int edge_num;
+
+
 	int unbalance_num = 0;
 	vector<Triangle> Triangles;
 	int size_of_truss;
@@ -94,7 +96,7 @@ string filename, outname;
 
 
 Graph* build_graph() {
-	Graph *g = new Graph();
+	Graph *g = (Graph*) malloc(sizeof(Graph));
 	memset(g->is_delete_e, 0, sizeof(g->is_delete_e));
 	memset(g->is_delete_vec, 0, sizeof(g->is_delete_vec));
 	memset(g->support, 0, sizeof(g->support));
@@ -152,7 +154,7 @@ bool if_query_inside(Graph* g_ori) {
 Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	
 
-	Graph *g = new Graph();
+	Graph *g = (Graph*) malloc(sizeof(Graph));
 	int counts = 0;
 	//////////   No subgraph build Method /////////////////////////
 	// *g = *g_ori;
@@ -328,8 +330,8 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 			}
 		}
 	}
-	cout << "size of KTruss: " << g->size_of_truss << endl;
-	cout << "truss unb num: " << g->unbalance_num << endl;
+	// cout << "size of KTruss: " << g->size_of_truss << endl;
+	// cout << "truss unb num: " << g->unbalance_num << endl;
 
 	return g;
 	// return g->size_of_truss > 0;
@@ -665,10 +667,10 @@ bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 	//cout << newG->size_of_truss <<"abc\n";
 	if (newG->size_of_truss > 0 && if_query_inside(newG)) {
 		if (update_dia) findLongestPath(newG);
-		//cout << "delete on edge ended\n";
+		//cout << "free on edge ended\n";
 		return true;
 	} 
-	//cout << "delete on edge ended\n";
+	//cout << "free on edge ended\n";
 	return false;
 
 }
@@ -689,7 +691,7 @@ bool delete_on_node(int A, Graph*newG) {
 	newG->is_delete_vec[A] = 1;
 	if (newG->size_of_truss > 0) {
 		findLongestPath(newG);
-		//cout << "delete on edge ended\n";
+		//cout << "free on edge ended\n";
 		return true;
 	} 
 	return false;
@@ -726,16 +728,14 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	cout << "\n";
 	*/
 	//TODO
-	//Graph* tempGraph = new Graph();
+	//Graph* tempGraph = (Graph*) malloc(sizeof(Graph));
 	//*tempGraph = *g;
 	int curr_diameter = g->diameter;
 	if (curr_diameter < 1) return false;
 	queue<Graph*> Queue;
-	Graph *best = new Graph();
+	Graph *best = (Graph*) malloc(sizeof(Graph));
 	*best = *g;
 	Queue.push(best);
-
-	 
 	while (!Queue.empty()) {
 		
 		int size = Queue.size();
@@ -744,15 +744,13 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		Queue.pop();
 		
 		// cout << "mid1 queue \n";
-		Graph *right = new Graph();
+		Graph *right = (Graph*) malloc(sizeof(Graph));
 		// cout << "mid2 queue\n";
 		*right = *left;
 		if (delete_on_node(left->path[0], left)) {
 			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
-				// Graph *swap_temp = g;
-				// delete(swap_temp);
 				*g = *left;
 				best = true;
 			}
@@ -760,21 +758,17 @@ bool removeEdgeFromLongestPath(Graph* g) {
 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
 				filteredQueue.push(left);
 			} else {
-				// free_graph(left);
-				delete(left);
-				// if (!best) delete(left);
+				free(left);
+				// if (!best) free(left);
 			}
 		} else {
-			delete(left);
+			free(left);
 		}
 		if (delete_on_node(right->path[right->path.size() - 1], right)) {
 			bool best = false;
 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
 			right->diameter < g->diameter) {
-				// Graph *swap_temp = g;
-				// delete(swap_temp);
 				*g = *right;
-
 				best = true;
 			}
 
@@ -783,12 +777,12 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				filteredQueue.push(right);
 
 			} else {
-				delete(right);
+				free(right);
 
-				// if (!best) delete(right);
+				// if (!best) free(right);
 			}
 		} else {
-			delete(right);
+			free(right);
 		}
 	// Check each subgraph in Queue.
 		queue<Graph*> TempQueue;
@@ -807,7 +801,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 				if (!isSubgraphOfOther && isSubgraph(currentGraph, graphInFiltered)) {
 					isSubgraphOfOther = true;
 					// cout << "prunning queue\n";
-					delete (currentGraph);
+					free (currentGraph);
 				}
 				tempQueue.push(graphInFiltered);
 			}
@@ -823,9 +817,9 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 		// Clean up the original Queue if needed.
 		while (!filteredQueue.empty()) {
-			Graph *temp = filteredQueue.front();
+			Graph* tem= filteredQueue.front();
 			filteredQueue.pop();
-			delete(temp);
+			free (tem);
 		}
 
 		// Copy the filtered subgraphs back to the original Queue.
@@ -847,12 +841,12 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 	cout << "\n";
 // 	*/
 // 	//TODO
-// 	//Graph* tempGraph = new Graph();
+// 	//Graph* tempGraph = (Graph*) malloc(sizeof(Graph));
 // 	//*tempGraph = *g;
 // 	int curr_diameter = g->diameter;
 // 	if (curr_diameter < 1) return false;
 // 	queue<Graph*> Queue;
-// 	Graph *best = new Graph();
+// 	Graph *best = (Graph*) malloc(sizeof(Graph));
 // 	*best = *g;
 // 	Queue.push(best);
 // 	int que_in,que_out = 0;
@@ -864,7 +858,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 		que_out++;
 		
 // 		// cout << "mid1 queue \n";
-// 		Graph *right = new Graph();
+// 		Graph *right = (Graph*) malloc(sizeof(Graph));
 // 		// cout << "mid2 queue\n";
 // 		*right = *left;
 // 		if (delete_on_node(left->path[0], left)) {
@@ -879,11 +873,11 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 				Queue.push(left);
 // 				que_in++;
 // 			} else {
-// 				delete(left);
-// 				// if (!best) delete(left);
+// 				free(left);
+// 				// if (!best) free(left);
 // 			}
 // 		} else {
-// 			delete(left);
+// 			free(left);
 // 		}
 // 		if (delete_on_node(right->path[right->path.size() - 1], right)) {
 // 			bool best = false;
@@ -899,12 +893,12 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 				que_in++;
 
 // 			} else {
-// 				delete(right);
+// 				free(right);
 
-// 				// if (!best) delete(right);
+// 				// if (!best) free(right);
 // 			}
 // 		} else {
-// 			delete(right);
+// 			free(right);
 // 		}
 // 		queue<Graph*> filteredQueue;
 // 	// Check each subgraph in Queue.
@@ -931,8 +925,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 			if (!isSubgraphOfOther) {
 // 				filteredQueue.push(currentGraph);
 // 			} else {
-// 				// If currentGraph is a subgraph of some other subgraph, you may want to delete its memory.
-// 				delete currentGraph;
+// 				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
+// 				free currentGraph;
 // 			}
 // 		}
 
@@ -941,16 +935,16 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 // 		// Clean up the original Queue if needed.
 // 		while (!Queue.empty()) {
-// 			delete Queue.front();
+// 			free Queue.front();
 // 			Queue.pop();
 // 		}
 
 // 		// Copy the filtered subgraphs back to the original Queue.
 // 		Queue = filteredQueue;
 
-// 		    // Remember to delete memory of the Graph objects properly.
+// 		    // Remember to free memory of the Graph objects properly.
 // 		// while (!Queue.empty()) {
-// 		// 	delete Queue.front();
+// 		// 	free Queue.front();
 // 		// 	Queue.pop();
 // 		// }
 
@@ -966,7 +960,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 	if (curr_diameter < 1) return false;
 // 	bool first = true;
 // 	queue<Graph*> Queue;
-// 	Graph *best = new Graph();
+// 	Graph *best = (Graph*) malloc(sizeof(Graph));
 // 	*best = *g;
 // 	// g->diameter ++;
 // 	Queue.push(best);
@@ -985,13 +979,13 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 					first = false;
 // 				}
 // 				// cout << "test 1111\n";
-// 				Graph *left = new Graph();
+// 				Graph *left = (Graph*) malloc(sizeof(Graph));
 // 				*left = *graph_first;
 
-// 				Graph *middle = new Graph();
+// 				Graph *middle = (Graph*) malloc(sizeof(Graph));
 // 				*middle = *graph_first;
 
-// 				Graph *right = new Graph();
+// 				Graph *right = (Graph*) malloc(sizeof(Graph));
 // 				*right = *graph_first;
 // 				if (delete_on_edge(unb.edge1, left,true)) {
 // 					bool best = false;
@@ -1007,10 +1001,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 						Queue.push(left);
 // 						que_in++;
 // 					} else {
-// 						if (!best) delete(left);
+// 						if (!best) free(left);
 // 					}
 // 				} else {
-// 					delete(left);
+// 					free(left);
 // 				}
 // 				if (delete_on_edge(unb.edge2, middle,true)) {
 // 					bool best = false;
@@ -1029,10 +1023,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 						que_in++;
 
 // 					} else {
-// 						if (!best) delete(middle);
+// 						if (!best) free(middle);
 // 					}
 // 				} else {
-// 					delete(middle);
+// 					free(middle);
 // 				}
 // 				if (delete_on_edge(unb.edge3, right,true)) {
 // 					bool best = false;
@@ -1051,10 +1045,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 						que_in++;
 
 // 					} else {
-// 						if (!best) delete(right);
+// 						if (!best) free(right);
 // 					}
 // 				} else {
-// 					delete(right);
+// 					free(right);
 // 				}
 
 
@@ -1062,7 +1056,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 // 			}
 // 		}
-// 		delete(graph_first);
+// 		free(graph_first);
 
 // 		queue<Graph*> filteredQueue;
 // 		// Check each subgraph in Queue.
@@ -1089,8 +1083,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 // 			if (!isSubgraphOfOther) {
 // 				filteredQueue.push(currentGraph);
 // 			} else {
-// 				// If currentGraph is a subgraph of some other subgraph, you may want to delete its memory.
-// 				delete currentGraph;
+// 				// If currentGraph is a subgraph of some other subgraph, you may want to free its memory.
+// 				free currentGraph;
 // 			}
 // 		}
 
@@ -1099,7 +1093,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 // 		// Clean up the original Queue if needed.
 // 		while (!Queue.empty()) {
-// 			delete Queue.front();
+// 			free Queue.front();
 // 			Queue.pop();
 // 		}
 
@@ -1136,15 +1130,15 @@ bool removeNegativeTriangle(Graph* g) {
 	if (g->unbalance_num <= 0) return true;
 
 	queue<Graph*> Queue;
-	Graph *best_g = new Graph();
+	Graph *best_g = (Graph*) malloc(sizeof(Graph));
 	*best_g = *g;
 	// g->diameter ++;
 	Queue.push(best_g);
 	int que_in,que_out = 0;
-	Graph *temp_g = new Graph();
+	Graph *temp_g = (Graph*) malloc(sizeof(Graph));
 	*temp_g = *g;
     if (!quickremoveNegativeTriangle(temp_g)) {
-		cout << "quicl delete fail\n";
+		// cout << "quicl free fail\n";
 		*temp_g = *g;
 		bool check = false;
 		for (auto unb : temp_g->Triangles) {
@@ -1156,14 +1150,14 @@ bool removeNegativeTriangle(Graph* g) {
 			}
 		}
 		if (!check) {
-			cout<< "cannot delete \n";
-			delete(temp_g);
+			// cout<< "cannot free \n";
+			free(temp_g);
 			return false;
 		}
 
 	}
 	*g = *temp_g;
-	delete(temp_g);
+	free(temp_g);
 	findLongestPath(g);
 
 	while (!Queue.empty()) {
@@ -1179,13 +1173,13 @@ bool removeNegativeTriangle(Graph* g) {
 			if (!unb.is_balanced && !unb.is_broken) {
 
 				// cout << "test 1111\n";
-				Graph *left = new Graph();
+				Graph *left = (Graph*) malloc(sizeof(Graph));
 				*left = *graph_first;
 
-				Graph *middle = new Graph();
+				Graph *middle = (Graph*) malloc(sizeof(Graph));
 				*middle = *graph_first;
 
-				Graph *right = new Graph();
+				Graph *right = (Graph*) malloc(sizeof(Graph));
 				*right = *graph_first;
 				if (delete_on_edge(unb.edge1, left,true)) {
 					// bool best = false;
@@ -1200,11 +1194,11 @@ bool removeNegativeTriangle(Graph* g) {
 						filteredQueue.push(left);
 						que_in++;
 					} else {
-						delete(left);
-						// if (!best) delete(left);
+						free(left);
+						// if (!best) free(left);
 					}
 				} else {
-					delete(left);
+					free(left);
 				}
 				if (delete_on_edge(unb.edge2, middle,true)) {
 					// bool best = false;
@@ -1221,11 +1215,11 @@ bool removeNegativeTriangle(Graph* g) {
 						que_in++;
 
 					} else {
-						delete(middle);
-						// if (!best) delete(middle);
+						free(middle);
+						// if (!best) free(middle);
 					}
 				} else {
-					delete(middle);
+					free(middle);
 				}
 				if (delete_on_edge(unb.edge3, right,true)) {
 					// bool best = false;
@@ -1242,12 +1236,12 @@ bool removeNegativeTriangle(Graph* g) {
 						que_in++;
 
 					} else {
-						delete(right);
+						free(right);
 						
-						// if (!best) delete(right);
+						// if (!best) free(right);
 					}
 				} else {
-					delete(right);
+					free(right);
 				}
 
                 break;
@@ -1255,7 +1249,7 @@ bool removeNegativeTriangle(Graph* g) {
 
 			}
 		}
-		delete(graph_first);
+		free(graph_first);
 
 		queue<Graph*> TempQueue;
 		while (!filteredQueue.empty()) {
@@ -1273,7 +1267,7 @@ bool removeNegativeTriangle(Graph* g) {
 				if (!isSubgraphOfOther && isSubgraph(currentGraph, graphInFiltered)) {
 					isSubgraphOfOther = true;
 					// cout << "prunning queue\n";
-					delete (currentGraph);
+					free (currentGraph);
 				}
 				tempQueue.push(graphInFiltered);
 			}
@@ -1289,9 +1283,9 @@ bool removeNegativeTriangle(Graph* g) {
 
 		// Clean up the original Queue if needed.
 		while (!filteredQueue.empty()) {
-			Graph * temp=  filteredQueue.front();
+			Graph* tem= filteredQueue.front();
 			filteredQueue.pop();
-			delete(temp);
+			free (tem);
 		}
 
 	}
@@ -1372,7 +1366,7 @@ void GetmaximumKtruss(Graph *g) {
 	}
 	// cout << "counts:" << counts << endl;
 	//unbalance_num = Triangles.size() - num_of_balance;
-	cout << "orangial unbalance_num: " << g->unbalance_num << endl;
+	// cout << "orangial unbalance_num: " << g->unbalance_num << endl;
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < e_num; i++) {
@@ -1431,20 +1425,19 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
-	cout << "size of KTruss: " << g->size_of_truss << endl;
-	cout << "truss unb num: " << g->unbalance_num << endl;
+	// cout << "size of KTruss: " << g->size_of_truss << endl;
+	// cout << "truss unb num: " << g->unbalance_num << endl;
 }
 
 bool GetKtruss(int src, int k, Graph* g) {
 
 	// check if the original graph has k-truss including src
 
-	// Graph *new_g = new Graph();
+	// Graph *new_g = (Graph*) malloc(sizeof(Graph));
 	// *new_g = * g;
 	GetmaximumKtruss(g);
 	if (!if_query_inside(g)) {
-		cout << "Cannot obtain any result \n";
-		exit(1);
+		return false;
 	}
 
 	// record all nodes with k hops, hop is initially set to 2
@@ -1468,7 +1461,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 			}
 		}
 	}
-	cout << "max hop is " << max_hop << "\n";
+	// cout << "max hop is " << max_hop << "\n";
 
 	// add one hop at a time
 	
@@ -1477,22 +1470,22 @@ bool GetKtruss(int src, int k, Graph* g) {
 	int curr_hop = 1;
 
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
-		cout << "--------when hop is " << curr_hop << "\n";
-		Graph *g_hop = new Graph();
+		// cout << "--------when hop is " << curr_hop << "\n";
+		Graph *g_hop = (Graph*) malloc(sizeof(Graph));
 		g_hop =  GetKtrusswith_Nhops(curr_hop, k, g);
 		
 		if (g_hop->size_of_truss > 0 && if_query_inside(g_hop)) {
 
 			global_hop = curr_hop;
 
-			cout << "===================Deleting diameter ==================\n";
+			// cout << "===================Deleting diameter ==================\n";
 			findLongestPath(g_hop);
 			bool negative = false;	
 			
 			while (removeEdgeFromLongestPath(g_hop)) {
 				int best_dia = g_hop->diameter;
 
-				cout<<"===remove unbalanced==\n"<<endl;
+				// cout<<"===remove unbalanced==\n"<<endl;
 				if (removeNegativeTriangle(g_hop)) {
 					if (g_hop->diameter > best_dia) {
 						continue;
@@ -1521,7 +1514,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 		} 		
 		curr_hop += 1;
-		delete(g_hop);
+		free(g_hop);
 	}
 	cout<<"---calculation fail! \n"<<endl;
 	return false;
@@ -1603,74 +1596,87 @@ double calcualte_edge (Graph* g_ori) {
 
 
 
-
-
-
-int main(int argc, char** argv) {
+int main(int argc, char** argv)  {
 	if (argc < 4) {
-		printf("Not enough args: ./base start_vertex k filename\n");
+		printf("Not enough args: ./base  k datafilename queryfilename\n");
 		return 0;
 	}
 
-    start_vertex = atoi(argv[1]);
-	k = atoi(argv[2]);
-    filename = argv[3];
+    // start_vertex = atoi(argv[1]);
+	k = atoi(argv[1]);
+    filename = argv[2];
+    string query_file = argv[3];
 
-	outname = filename + "_ba_solution.txt";
+	outname = filename + "_base_exp_ans.txt";
 	filename += ".txt";
 	
 	Graph* original = build_graph();
 	cout << "graph build" << endl;
     cout << "filename: " << filename <<endl;
-    cout << "start vertex: " << start_vertex<<endl;
-    cout << "k: " << k <<endl;
-    cout << "|V|: " << v_num <<endl;
-    cout << "|E|: " << e_num <<endl;
+    // cout << "start vertex: " << start_vertex<<endl;
+    // cout << "k: " << k <<endl;
+    // cout << "|V|: " << v_num <<endl;
+    // cout << "|E|: " << e_num <<endl;
 
 	struct timeval start, end;
     double timeuse;
-	bool result;
-
+    double timetotal = 0.00;
     double total_diameter = 0.00;
     double total_size_of_truss = 0.00;
     double total_unbalance_num=0.00;
     double total_percentage = 0.00;
     double total_density = 0.00;
     double attempt_time = 0.00;
-	Graph *g = new Graph();
-	*g = *original;
 
-	Graph *temp = new Graph();
-	*temp = *original;
-	GetmaximumKtruss(temp);
-	int large_graph = cc_vertex(temp, start_vertex);
-	cout << "large graph: " << large_graph <<endl;
-	delete(temp);
+    vector<int> query_data;
+    // 打开文件
+    ifstream file(query_file); // 这里替换为你的文件名
+    if (!file) {
+        cerr << "Unable to open file\n";
+        // exit(1); // 退出程序，因为文件打开失败
+    }
 
-    gettimeofday(&start, NULL);
-	result = GetKtruss(start_vertex, k, g);
-    gettimeofday(&end, NULL);
-    timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
-   	cout << "basline run time: " << timeuse << '\n' << endl;
-	if (result) {
-		attempt_time ++;
-		cout << "calculation success!"<<endl;
-		total_diameter += g->diameter;
-		total_size_of_truss += g->size_of_truss;
-		total_unbalance_num += g->unbalance_num;
+    // 从文件中读取数据
+    string line;
+    while (getline(file, line)) {
+        query_data.push_back(stoi(line));
+    }
+    file.close();
 
-		double vertexCount  = calcualte_vertex(g);
-		double edgeCount  = calcualte_edge(g);
+    // for (auto query: query_data) {
+	for (int i = 0; i < query_data.size(); i++) {
+		cout << "query_data: NO"<<i<<"; vertex_id: "<<query_data[i] << endl;
+        start_vertex = query_data[i];
+        Graph *g = (Graph*) malloc(sizeof(Graph));
+        *g = *original;
+        gettimeofday(&start, NULL);
+        bool result = GetKtruss(start_vertex, k, g);
+        gettimeofday(&end, NULL);
+        timetotal = timetotal + ((end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0);
+	
+        if (result) {
+			cout << "calculation success!"<<endl;
+            attempt_time ++;
+            total_diameter += g->diameter;
+            total_size_of_truss += g->size_of_truss;
+            total_unbalance_num += g->unbalance_num;
+			// int calcualte_vertex, calcualte_edge;
+            double vertexCount  = calcualte_vertex(g);
+            double edgeCount  = calcualte_edge(g);
+            total_density = total_density + ((2*edgeCount) / ((vertexCount) * (vertexCount-1)));
 
-		total_density = total_density + ((2*edgeCount) / ((vertexCount) * (vertexCount-1)));
-		Graph *temp = new Graph();
-		*temp = *original;
-		GetmaximumKtruss(temp);
-		double large_graph = cc_vertex(temp, start_vertex);
-		total_percentage += (vertexCount/large_graph);
-		delete(temp);
-	}
-	ofstream outfile(outname);
+            Graph *temp = (Graph*) malloc(sizeof(Graph));
+            *temp = *original;
+            GetmaximumKtruss(temp);
+            double large_graph = cc_vertex(temp, start_vertex);
+
+            total_percentage += (vertexCount/large_graph);
+            free(temp);
+        }
+        free(g);
+    }
+
+    ofstream outfile(outname);
 	// ifstream outfile{ "baseline_result.txt" };
     if (!outfile) {
         cerr << "Error: Unable to open the file " << outname << endl;
@@ -1680,20 +1686,18 @@ int main(int argc, char** argv) {
 	outfile <<  "====baseline result: \n";
 	// Collect all unique vertices from all_edge_pairs into the set
     outfile <<"" << filename  << endl;
-    outfile <<"Attempt Counter size: " << attempt_time  << endl;
-    outfile <<"AVE total_diameter: " << total_diameter/attempt_time << endl;
-    outfile <<"AVE total_size_of_truss: " << total_size_of_truss/attempt_time << endl;
-    outfile <<"AVE total_unbalance_num: " << total_unbalance_num/attempt_time << endl;
-    outfile <<"AVE total_percentage: " << total_percentage/attempt_time << endl;
-    outfile <<"AVE total_density: " << total_density/attempt_time << endl;
+    outfile <<"" << query_file  << endl;
+    outfile <<"Attempt Counter size" << attempt_time  << endl;
+    outfile <<"AVE time" << timetotal/100 << endl;
+    outfile <<"AVE total_diameter" << total_diameter/attempt_time << endl;
+    outfile <<"AVE total_size_of_truss" << total_size_of_truss/attempt_time << endl;
+    outfile <<"AVE total_unbalance_num" << total_unbalance_num/attempt_time << endl;
+    outfile <<"AVE total_percentage" << total_percentage/attempt_time << endl;
+    outfile <<"AVE total_density" << total_density/attempt_time << endl;
 
 
 
     outfile.close();
-	// if (result) print_result(g);
-
-	delete(g);
-
 	return 0;
 }
 
