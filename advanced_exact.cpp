@@ -118,12 +118,16 @@ Graph* build_graph() {
     //inputFile >> vertexnum >> edgenum;
 
 	inputFile >> v_num >> e_num;
+	int max_v_number = 0;
+
 	for (int i = 0; i < e_num; i++)
 	{
 		int v1, v2, sign;
 		inputFile >> v1 >> v2 >> sign;
 		g->all_edge_pairs[i].v1 = v1;
 		g->all_edge_pairs[i].v2 = v2;
+		max_v_number = max(max(max_v_number,v1),v2);
+
 		g->all_edge_pairs[i].sign = sign;
 		g->vec[v1].push_back(v2);
 		g->vec[v2].push_back(v1);
@@ -135,6 +139,8 @@ Graph* build_graph() {
 	// }
 	g->diameter = e_num;
 	g->edge_num = e_num;
+	v_num = max_v_number+1;
+
 
 	return g;
 }
@@ -327,8 +333,8 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 			}
 		}
 	}
-	cout << "size of KTruss: " << g->size_of_truss << endl;
-	cout << "truss unb num: " << g->unbalance_num << endl;
+	// cout << "size of KTruss: " << g->size_of_truss << endl;
+	// cout << "truss unb num: " << g->unbalance_num << endl;
 
 	return g;
 	// return g->size_of_truss > 0;
@@ -407,7 +413,7 @@ vector<int> findLongestPath(Graph *g) {
 	int pathLength = -1;
 	vector<int> path;
 	
-	for (int i = 1; i < MAX_V - 1; i++) {
+	for (int i = 1; i < v_num-1; i++) {
 		if (g->is_delete_vec[i]) continue; // skip the vertices marked as deleted
 
 		memset(visited, -1, sizeof(visited));
@@ -687,8 +693,7 @@ bool quickremoveNegativeTriangle(Graph* g) {
 	if (curr_diameter < 1) return false;
 	if (g->unbalance_num <= 0) return true;
 
-
-
+	if (curr_diameter < 1) return false;
     for (auto unb : g->Triangles) {
         if (!unb.is_balanced && !unb.is_broken) {
             if (hop_num[g->all_edge_pairs[unb.edge1].v1] = hop_num[g->all_edge_pairs[unb.edge1].v2]) {
@@ -944,9 +949,9 @@ void GetmaximumKtruss(Graph *g) {
 			g->support[g->Triangles[i].edge3]++;
 		}
 	}
-	cout << "counts:" << counts << endl;
-	//unbalance_num = Triangles.size() - num_of_balance;
-	cout << "orangial:" << g->unbalance_num << endl;
+	// cout << "counts:" << counts << endl;
+	// //unbalance_num = Triangles.size() - num_of_balance;
+	// cout << "orangial:" << g->unbalance_num << endl;
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < e_num; i++) {
@@ -1005,8 +1010,8 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
-	cout << "size of KTruss" << g->size_of_truss << endl;
-	cout << "truss unb num:" << g->unbalance_num << endl;
+	// cout << "size of KTruss" << g->size_of_truss << endl;
+	// cout << "truss unb num:" << g->unbalance_num << endl;
 
 
 
@@ -1025,8 +1030,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 	GetmaximumKtruss(g);
 	if (!if_query_inside(g)) {
-		cout << "Cannot obtain any result \n";
-		exit(1);
+		return false;
 	}
 
 
@@ -1051,7 +1055,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 			}
 		}
 	}
-	cout << "max hop is " << max_hop << "\n";
+	// cout << "max hop is " << max_hop << "\n";
 
 	// add one hop at a time
 	
@@ -1060,7 +1064,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 	int curr_hop = 1;
 
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
-		cout << "--------when hop is " << curr_hop << "\n";
+		// cout << "--------when hop is " << curr_hop << "\n";
 		Graph *g_hop = new Graph();
 		g_hop =  GetKtrusswith_Nhops(curr_hop, k, g);
 		
@@ -1069,29 +1073,18 @@ bool GetKtruss(int src, int k, Graph* g) {
 			global_hop = curr_hop;
 			cout << "===================Deleting NegativeTriangle ==================\n";
             
-			if (!removeNegativeTriangle(g_hop)) {
-				cout<<"removeNegativeTriangle error\n"<<endl;
-				continue;
-			}
-		
-			
+			if (!removeNegativeTriangle(g_hop))	goto hop_add;
             vector<int> longest_list = findLongestDistanceFromStartVertex(g_hop);
 
-            if (g_hop->diameter <= (curr_hop)) {
-                *g = *g_hop;
-                return true;
-            } 
 			cout<<"---start to delete node \n"<<endl;
-
-			for (auto i : longest_list) {
-				if ( !delete_on_node(i,g_hop)) goto hop_add;
+			while (g_hop->diameter > (curr_hop)) {
+				for (auto i : longest_list) {
+					if ( !delete_on_node(i,g_hop)) goto hop_add;
+				}
+				findLongestDistanceFromStartVertex(g_hop);
 			}
-			findLongestDistanceFromStartVertex(g_hop);
-			if (g_hop->diameter <= (curr_hop)) {
-				*g = *g_hop;
-				return true;
-			} 
-            
+			*g = *g_hop;
+			return true;
 		} 
 		hop_add:
 		curr_hop += 1;

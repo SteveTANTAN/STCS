@@ -13,7 +13,7 @@ def compute_averages_and_sums(filename):
         print("No attempts found, cannot compute averages")
         return
     
-    fields = ["time", "diameter", "total_size_of_truss",
+    fields = ["query_data_No", "time", "diameter", "total_size_of_truss",
               "total_unbalance_num", "total_percentage", "total_density"]
 
     sums = {}
@@ -35,7 +35,10 @@ def compute_averages_and_sums(filename):
 
     print(f"The average for Attempt is 1")    
     for field in fields:
-        print(f"The average for {field} is {averages[field]}")
+        if field == "time":
+            print(f"The average for {field} is {sums[field]/100}")
+        else: 
+            print(f"The average for {field} is {averages[field]}")
 
 def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
