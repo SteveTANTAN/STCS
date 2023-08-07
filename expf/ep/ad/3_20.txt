@@ -1,0 +1,1001 @@
+
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 0; vertex_id: 1024
+Attempt: 1
+time: 2.12413
+diameter: 1
+total_size_of_truss: 2845
+total_unbalance_num: 0
+total_percentage: 0.0062919
+total_density: 0.0755143
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 1; vertex_id: 75424
+Attempt: 1
+time: 2.08731
+diameter: 1
+total_size_of_truss: 327
+total_unbalance_num: 0
+total_percentage: 0.000732148
+total_density: 0.659274
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 2; vertex_id: 58224
+Attempt: 1
+time: 1.96712
+diameter: 1
+total_size_of_truss: 799
+total_unbalance_num: 0
+total_percentage: 0.00128126
+total_density: 0.518831
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 3; vertex_id: 22855
+Attempt: 1
+time: 1.84578
+diameter: 1
+total_size_of_truss: 862
+total_unbalance_num: 0
+total_percentage: 0.00304299
+total_density: 0.0982
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 4; vertex_id: 27564
+Attempt: 1
+time: 1.85503
+diameter: 1
+total_size_of_truss: 175
+total_unbalance_num: 0
+total_percentage: 0.00116686
+total_density: 0.137255
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 5; vertex_id: 33161
+Attempt: 1
+time: 1.84037
+diameter: 1
+total_size_of_truss: 10
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 1
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 6; vertex_id: 54002
+Attempt: 1
+time: 1.855
+diameter: 1
+total_size_of_truss: 9
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.6
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 7; vertex_id: 107801
+Attempt: 1
+time: 1.85112
+diameter: 1
+total_size_of_truss: 39
+total_unbalance_num: 0
+total_percentage: 0.000251676
+total_density: 0.709091
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 8; vertex_id: 30459
+Attempt: 1
+time: 1.85594
+diameter: 1
+total_size_of_truss: 339
+total_unbalance_num: 0
+total_percentage: 0.0022422
+total_density: 0.0713234
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 9; vertex_id: 94412
+Attempt: 1
+time: 1.83851
+diameter: 1
+total_size_of_truss: 7
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 0.7
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 10; vertex_id: 15908
+Attempt: 1
+time: 1.85622
+diameter: 1
+total_size_of_truss: 6
+total_unbalance_num: 0
+total_percentage: 9.15185e-05
+total_density: 1
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 11; vertex_id: 107529
+Attempt: 1
+time: 1.86002
+diameter: 1
+total_size_of_truss: 159
+total_unbalance_num: 0
+total_percentage: 0.000800787
+total_density: 0.267227
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 12; vertex_id: 18215
+Attempt: 1
+time: 1.85714
+diameter: 1
+total_size_of_truss: 11
+total_unbalance_num: 0
+total_percentage: 0.000160157
+total_density: 0.52381
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 13; vertex_id: 15130
+Attempt: 1
+time: 1.8464
+diameter: 1
+total_size_of_truss: 2124
+total_unbalance_num: 0
+total_percentage: 0.0037065
+total_density: 0.162871
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 14; vertex_id: 27181
+Attempt: 1
+time: 1.86386
+diameter: 1
+total_size_of_truss: 141
+total_unbalance_num: 0
+total_percentage: 0.000960944
+total_density: 0.163763
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 15; vertex_id: 107661
+Attempt: 1
+time: 1.84036
+diameter: 1
+total_size_of_truss: 16
+total_unbalance_num: 0
+total_percentage: 0.000183037
+total_density: 0.571429
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 16; vertex_id: 31847
+Attempt: 1
+time: 1.85485
+diameter: 1
+total_size_of_truss: 18
+total_unbalance_num: 0
+total_percentage: 0.000251676
+total_density: 0.327273
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 17; vertex_id: 16020
+Attempt: 1
+time: 1.84646
+diameter: 1
+total_size_of_truss: 15
+total_unbalance_num: 0
+total_percentage: 0.000160157
+total_density: 0.714286
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 18; vertex_id: 117353
+Attempt: 1
+time: 1.85633
+diameter: 1
+total_size_of_truss: 22
+total_unbalance_num: 0
+total_percentage: 0.000205917
+total_density: 0.611111
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 19; vertex_id: 8832
+Attempt: 1
+time: 1.84637
+diameter: 1
+total_size_of_truss: 1041
+total_unbalance_num: 0
+total_percentage: 0.00423273
+total_density: 0.0611633
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 20; vertex_id: 1294
+Attempt: 1
+time: 1.85529
+diameter: 1
+total_size_of_truss: 57
+total_unbalance_num: 0
+total_percentage: 0.00061775
+total_density: 0.162393
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 21; vertex_id: 1287
+Attempt: 1
+time: 1.88708
+diameter: 1
+total_size_of_truss: 13089
+total_unbalance_num: 0
+total_percentage: 0.0181435
+total_density: 0.041681
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 22; vertex_id: 57054
+Attempt: 1
+time: 1.86062
+diameter: 1
+total_size_of_truss: 43
+total_unbalance_num: 0
+total_percentage: 0.000411833
+total_density: 0.281046
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 23; vertex_id: 105627
+Attempt: 1
+time: 1.85159
+diameter: 1
+total_size_of_truss: 3
+total_unbalance_num: 0
+total_percentage: 6.86389e-05
+total_density: 1
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 24; vertex_id: 43105
+Attempt: 1
+time: 1.84798
+diameter: 1
+total_size_of_truss: 39
+total_unbalance_num: 0
+total_percentage: 0.000343194
+total_density: 0.371429
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 25; vertex_id: 5522
+Attempt: 1
+time: 1.86818
+diameter: 1
+total_size_of_truss: 2461
+total_unbalance_num: 0
+total_percentage: 0.00601734
+total_density: 0.0714306
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 26; vertex_id: 65969
+Attempt: 1
+time: 1.85046
+diameter: 1
+total_size_of_truss: 9
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.6
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 27; vertex_id: 55024
+Attempt: 1
+time: 1.84506
+diameter: 1
+total_size_of_truss: 3
+total_unbalance_num: 0
+total_percentage: 6.86389e-05
+total_density: 1
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 28; vertex_id: 1869
+Attempt: 1
+time: 1.87381
+diameter: 1
+total_size_of_truss: 5219
+total_unbalance_num: 0
+total_percentage: 0.00768756
+total_density: 0.0927328
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 29; vertex_id: 8384
+Attempt: 1
+time: 1.85591
+diameter: 1
+total_size_of_truss: 18
+total_unbalance_num: 0
+total_percentage: 0.000205917
+total_density: 0.5
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 30; vertex_id: 2621
+Attempt: 1
+time: 1.86184
+diameter: 1
+total_size_of_truss: 1670
+total_unbalance_num: 0
+total_percentage: 0.00395818
+total_density: 0.112246
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 31; vertex_id: 71981
+Attempt: 1
+time: 1.8494
+diameter: 1
+total_size_of_truss: 14
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.933333
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 32; vertex_id: 62132
+Attempt: 1
+time: 2.16867
+diameter: 1
+total_size_of_truss: 28
+total_unbalance_num: 0
+total_percentage: 0.000205917
+total_density: 0.777778
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 33; vertex_id: 94898
+Attempt: 0
+time: 1.6161
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 34; vertex_id: 42108
+Attempt: 1
+time: 1.84996
+diameter: 1
+total_size_of_truss: 29
+total_unbalance_num: 0
+total_percentage: 0.000343194
+total_density: 0.27619
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 35; vertex_id: 2395
+Attempt: 1
+time: 2.1127
+diameter: 1
+total_size_of_truss: 216
+total_unbalance_num: 0
+total_percentage: 0.00130414
+total_density: 0.135338
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 36; vertex_id: 67439
+Attempt: 1
+time: 1.85523
+diameter: 1
+total_size_of_truss: 21
+total_unbalance_num: 0
+total_percentage: 0.000251676
+total_density: 0.381818
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 37; vertex_id: 6655
+Attempt: 1
+time: 1.86516
+diameter: 1
+total_size_of_truss: 1016
+total_unbalance_num: 0
+total_percentage: 0.00292859
+total_density: 0.125
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 38; vertex_id: 24501
+Attempt: 1
+time: 1.85988
+diameter: 1
+total_size_of_truss: 45
+total_unbalance_num: 0
+total_percentage: 0.000457593
+total_density: 0.236842
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 39; vertex_id: 43266
+Attempt: 1
+time: 1.85331
+diameter: 1
+total_size_of_truss: 24
+total_unbalance_num: 0
+total_percentage: 0.000274556
+total_density: 0.363636
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 40; vertex_id: 872
+Attempt: 1
+time: 1.85923
+diameter: 1
+total_size_of_truss: 8
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.533333
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 41; vertex_id: 18919
+Attempt: 1
+time: 1.84766
+diameter: 1
+total_size_of_truss: 6
+total_unbalance_num: 0
+total_percentage: 9.15185e-05
+total_density: 1
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 42; vertex_id: 122047
+Attempt: 1
+time: 1.87007
+diameter: 1
+total_size_of_truss: 1497
+total_unbalance_num: 0
+total_percentage: 0.00240236
+total_density: 0.274176
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 43; vertex_id: 44232
+Attempt: 1
+time: 1.85834
+diameter: 1
+total_size_of_truss: 535
+total_unbalance_num: 0
+total_percentage: 0.00242524
+total_density: 0.0961366
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 44; vertex_id: 63647
+Attempt: 1
+time: 1.86353
+diameter: 1
+total_size_of_truss: 15
+total_unbalance_num: 0
+total_percentage: 0.000183037
+total_density: 0.535714
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 45; vertex_id: 4098
+Attempt: 1
+time: 1.85201
+diameter: 1
+total_size_of_truss: 15
+total_unbalance_num: 0
+total_percentage: 0.000183037
+total_density: 0.535714
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 46; vertex_id: 12063
+Attempt: 1
+time: 1.8568
+diameter: 1
+total_size_of_truss: 96
+total_unbalance_num: 0
+total_percentage: 0.000480472
+total_density: 0.457143
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 47; vertex_id: 34497
+Attempt: 1
+time: 1.84052
+diameter: 1
+total_size_of_truss: 37
+total_unbalance_num: 0
+total_percentage: 0.000228796
+total_density: 0.822222
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 48; vertex_id: 30004
+Attempt: 1
+time: 1.85943
+diameter: 1
+total_size_of_truss: 102
+total_unbalance_num: 0
+total_percentage: 0.000800787
+total_density: 0.171429
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 49; vertex_id: 42532
+Attempt: 1
+time: 1.85568
+diameter: 1
+total_size_of_truss: 34
+total_unbalance_num: 0
+total_percentage: 0.000411833
+total_density: 0.222222
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 50; vertex_id: 30190
+Attempt: 1
+time: 1.85837
+diameter: 1
+total_size_of_truss: 11
+total_unbalance_num: 0
+total_percentage: 0.000160157
+total_density: 0.52381
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 51; vertex_id: 102735
+Attempt: 1
+time: 1.84599
+diameter: 1
+total_size_of_truss: 8
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 0.8
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 52; vertex_id: 27397
+Attempt: 0
+time: 1.6157
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 53; vertex_id: 1450
+Attempt: 1
+time: 1.86841
+diameter: 1
+total_size_of_truss: 1711
+total_unbalance_num: 0
+total_percentage: 0.00345482
+total_density: 0.151082
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 54; vertex_id: 50680
+Attempt: 1
+time: 1.85496
+diameter: 1
+total_size_of_truss: 9
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.6
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 55; vertex_id: 2294
+Attempt: 1
+time: 1.85483
+diameter: 1
+total_size_of_truss: 18
+total_unbalance_num: 0
+total_percentage: 0.000228796
+total_density: 0.4
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 56; vertex_id: 53892
+Attempt: 1
+time: 1.85484
+diameter: 1
+total_size_of_truss: 7
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 0.7
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 57; vertex_id: 57414
+Attempt: 1
+time: 1.84446
+diameter: 1
+total_size_of_truss: 109
+total_unbalance_num: 0
+total_percentage: 0.000366074
+total_density: 0.908333
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 58; vertex_id: 79482
+Attempt: 1
+time: 1.85779
+diameter: 1
+total_size_of_truss: 15
+total_unbalance_num: 0
+total_percentage: 0.000183037
+total_density: 0.535714
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 59; vertex_id: 7973
+Attempt: 1
+time: 2.08169
+diameter: 1
+total_size_of_truss: 680
+total_unbalance_num: 0
+total_percentage: 0.00221932
+total_density: 0.146048
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 60; vertex_id: 41915
+Attempt: 1
+time: 1.85559
+diameter: 1
+total_size_of_truss: 8
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.533333
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 61; vertex_id: 56143
+Attempt: 1
+time: 1.85165
+diameter: 1
+total_size_of_truss: 5237
+total_unbalance_num: 0
+total_percentage: 0.0025854
+total_density: 0.827592
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 62; vertex_id: 79045
+Attempt: 1
+time: 1.84998
+diameter: 1
+total_size_of_truss: 16
+total_unbalance_num: 0
+total_percentage: 0.000205917
+total_density: 0.444444
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 63; vertex_id: 1676
+Attempt: 1
+time: 1.8522
+diameter: 1
+total_size_of_truss: 972
+total_unbalance_num: 0
+total_percentage: 0.00304299
+total_density: 0.110731
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 64; vertex_id: 7796
+Attempt: 1
+time: 1.86686
+diameter: 1
+total_size_of_truss: 6
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 0.6
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 65; vertex_id: 94958
+Attempt: 1
+time: 1.84529
+diameter: 1
+total_size_of_truss: 11
+total_unbalance_num: 0
+total_percentage: 0.000160157
+total_density: 0.52381
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 66; vertex_id: 72307
+Attempt: 1
+time: 1.85444
+diameter: 1
+total_size_of_truss: 92
+total_unbalance_num: 0
+total_percentage: 0.000526231
+total_density: 0.363636
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 67; vertex_id: 37770
+Attempt: 1
+time: 1.85357
+diameter: 1
+total_size_of_truss: 13
+total_unbalance_num: 0
+total_percentage: 0.000137278
+total_density: 0.866667
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 68; vertex_id: 112424
+Attempt: 1
+time: 1.85485
+diameter: 1
+total_size_of_truss: 20
+total_unbalance_num: 0
+total_percentage: 0.000183037
+total_density: 0.714286
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 69; vertex_id: 1244
+Attempt: 1
+time: 1.85364
+diameter: 1
+total_size_of_truss: 39
+total_unbalance_num: 0
+total_percentage: 0.000480472
+total_density: 0.185714
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 70; vertex_id: 30193
+Attempt: 1
+time: 1.84449
+diameter: 1
+total_size_of_truss: 14
+total_unbalance_num: 0
+total_percentage: 0.000183037
+total_density: 0.5
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 71; vertex_id: 109706
+Attempt: 1
+time: 1.8669
+diameter: 1
+total_size_of_truss: 40
+total_unbalance_num: 0
+total_percentage: 0.000343194
+total_density: 0.380952
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 72; vertex_id: 123620
+Attempt: 1
+time: 1.8517
+diameter: 1
+total_size_of_truss: 712
+total_unbalance_num: 0
+total_percentage: 0.0014643
+total_density: 0.353175
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 73; vertex_id: 39921
+Attempt: 1
+time: 1.85997
+diameter: 1
+total_size_of_truss: 76
+total_unbalance_num: 0
+total_percentage: 0.000480472
+total_density: 0.361905
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 74; vertex_id: 18559
+Attempt: 1
+time: 1.84641
+diameter: 1
+total_size_of_truss: 236
+total_unbalance_num: 0
+total_percentage: 0.0011211
+total_density: 0.20068
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 75; vertex_id: 1533
+Attempt: 1
+time: 1.87326
+diameter: 1
+total_size_of_truss: 5385
+total_unbalance_num: 0
+total_percentage: 0.00919761
+total_density: 0.0668106
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 76; vertex_id: 33489
+Attempt: 1
+time: 1.85545
+diameter: 1
+total_size_of_truss: 286
+total_unbalance_num: 0
+total_percentage: 0.00139566
+total_density: 0.156284
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 77; vertex_id: 63961
+Attempt: 1
+time: 1.85029
+diameter: 1
+total_size_of_truss: 45
+total_unbalance_num: 0
+total_percentage: 0.000366074
+total_density: 0.375
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 78; vertex_id: 49341
+Attempt: 1
+time: 1.84812
+diameter: 1
+total_size_of_truss: 26
+total_unbalance_num: 0
+total_percentage: 0.000251676
+total_density: 0.472727
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 79; vertex_id: 57096
+Attempt: 1
+time: 1.857
+diameter: 1
+total_size_of_truss: 75
+total_unbalance_num: 0
+total_percentage: 0.00059487
+total_density: 0.230769
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 80; vertex_id: 65501
+Attempt: 1
+time: 1.84867
+diameter: 1
+total_size_of_truss: 47
+total_unbalance_num: 0
+total_percentage: 0.000366074
+total_density: 0.391667
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 81; vertex_id: 27221
+Attempt: 1
+time: 1.85733
+diameter: 1
+total_size_of_truss: 7
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 0.7
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 82; vertex_id: 11249
+Attempt: 1
+time: 1.84102
+diameter: 1
+total_size_of_truss: 7
+total_unbalance_num: 0
+total_percentage: 9.15185e-05
+total_density: 1.16667
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 83; vertex_id: 13539
+Attempt: 1
+time: 1.87758
+diameter: 1
+total_size_of_truss: 174
+total_unbalance_num: 0
+total_percentage: 0.00105246
+total_density: 0.168116
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 84; vertex_id: 15532
+Attempt: 1
+time: 1.84639
+diameter: 1
+total_size_of_truss: 208
+total_unbalance_num: 0
+total_percentage: 0.00114398
+total_density: 0.169796
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 85; vertex_id: 22137
+Attempt: 1
+time: 1.86378
+diameter: 1
+total_size_of_truss: 2836
+total_unbalance_num: 0
+total_percentage: 0.00521656
+total_density: 0.109591
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 86; vertex_id: 18000
+Attempt: 1
+time: 1.84478
+diameter: 1
+total_size_of_truss: 49
+total_unbalance_num: 0
+total_percentage: 0.000457593
+total_density: 0.257895
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 87; vertex_id: 1953
+Attempt: 1
+time: 1.8665
+diameter: 1
+total_size_of_truss: 800
+total_unbalance_num: 0
+total_percentage: 0.00242524
+total_density: 0.143756
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 88; vertex_id: 2606
+Attempt: 1
+time: 1.85052
+diameter: 1
+total_size_of_truss: 6
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 0.6
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 89; vertex_id: 114302
+Attempt: 1
+time: 2.09245
+diameter: 1
+total_size_of_truss: 86
+total_unbalance_num: 0
+total_percentage: 0.000457593
+total_density: 0.452632
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 90; vertex_id: 1653
+Attempt: 1
+time: 1.85812
+diameter: 1
+total_size_of_truss: 56
+total_unbalance_num: 0
+total_percentage: 0.000571991
+total_density: 0.186667
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 91; vertex_id: 108710
+Attempt: 1
+time: 1.84303
+diameter: 1
+total_size_of_truss: 14
+total_unbalance_num: 0
+total_percentage: 0.000160157
+total_density: 0.666667
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 92; vertex_id: 18929
+Attempt: 1
+time: 1.86272
+diameter: 1
+total_size_of_truss: 266
+total_unbalance_num: 0
+total_percentage: 0.000892306
+total_density: 0.358974
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 93; vertex_id: 11519
+Attempt: 1
+time: 1.84398
+diameter: 1
+total_size_of_truss: 20
+total_unbalance_num: 0
+total_percentage: 0.000251676
+total_density: 0.363636
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 94; vertex_id: 51632
+Attempt: 1
+time: 1.93131
+diameter: 1
+total_size_of_truss: 19388
+total_unbalance_num: 0
+total_percentage: 0.00649781
+total_density: 0.482457
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 95; vertex_id: 21658
+Attempt: 1
+time: 1.85658
+diameter: 1
+total_size_of_truss: 14
+total_unbalance_num: 0
+total_percentage: 0.000160157
+total_density: 0.666667
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 96; vertex_id: 66530
+Attempt: 1
+time: 1.8588
+diameter: 1
+total_size_of_truss: 119
+total_unbalance_num: 0
+total_percentage: 0.000434713
+total_density: 0.695906
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 97; vertex_id: 70767
+Attempt: 0
+time: 1.6081
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 98; vertex_id: 6759
+Attempt: 1
+time: 1.85758
+diameter: 1
+total_size_of_truss: 3
+total_unbalance_num: 0
+total_percentage: 1
+total_density: 1
+====advanced(2-approximate) result: 
+ep/ep.txt ep/Q/ep_20.txt
+query_data_No: 99; vertex_id: 3928
+Attempt: 1
+time: 1.85391
+diameter: 1
+total_size_of_truss: 767
+total_unbalance_num: 0
+total_percentage: 0.00260828
+total_density: 0.119081

@@ -6,7 +6,7 @@ def process_input(input_lines):
     vertex_counter = collections.Counter()
     edge_set = set()
     for line in input_lines:
-        v1, v2, operator, time = line.strip().split(',')
+        v1, v2, operator = line.strip().split()
         v1, v2 = int(v1), int(v2)  # Ensure that the vertices are integers
 
         # Check if the reverse order is already in the excluded lines
@@ -38,8 +38,8 @@ def process_input(input_lines):
 
 
 # Example usage
-filename = "data/ba.txt"
-outputname = 'expf/ba/ba1.txt'
+filename = "data/ep.txt"
+outputname = 'expf/ep/ep.txt'
 
 with open(filename, "r") as file:
     input_lines = file.readlines()

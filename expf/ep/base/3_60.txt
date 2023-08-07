@@ -1,0 +1,101 @@
+
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 0; vertex_id: 130104
+Attempt: 0
+time: 1.60258
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 1; vertex_id: 73220
+Attempt: 1
+time: 1.74549
+diameter: 1
+total_size_of_truss: 3
+total_unbalance_num: 0
+total_percentage: 6.86389e-05
+total_density: 1
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 2; vertex_id: 20140
+Attempt: 1
+time: 2.26118
+diameter: 1
+total_size_of_truss: 3
+total_unbalance_num: 0
+total_percentage: 6.86389e-05
+total_density: 1
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 3; vertex_id: 7546
+Attempt: 0
+time: 1.61437
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 4; vertex_id: 63933
+Attempt: 0
+time: 1.61023
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 5; vertex_id: 71514
+Attempt: 0
+time: 1.60486
+diameter: 0
+total_size_of_truss: 0
+total_unbalance_num: 0
+total_percentage: 0
+total_density: 0
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 6; vertex_id: 113184
+Attempt: 1
+time: 1.76418
+diameter: 1
+total_size_of_truss: 11
+total_unbalance_num: 0
+total_percentage: 0.000114398
+total_density: 1.1
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 7; vertex_id: 7125
+Attempt: 1
+time: 2.13724
+diameter: 1
+total_size_of_truss: 36
+total_unbalance_num: 0
+total_percentage: 0.000205917
+total_density: 1
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 8; vertex_id: 40146
+Attempt: 1
+time: 1.96931
+diameter: 1
+total_size_of_truss: 3
+total_unbalance_num: 0
+total_percentage: 6.86389e-05
+total_density: 1
+====baseline result: 
+ep/ep.txt ep/Q/ep_60.txt
+query_data_No: 9; vertex_id: 7571
+Attempt: 1
+time: 5.45505
+diameter: 1
+total_size_of_truss: 6
+total_unbalance_num: 0
+total_percentage: 9.15185e-05
+total_density: 1

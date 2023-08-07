@@ -258,3 +258,96 @@ query_data: NO68; vertex_id: 526
 candidate:1
 ===remove unbalanced==
 
+candidate:1
+calculation success!
+query_data: NO69; vertex_id: 796
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO70; vertex_id: 28
+query_data: NO71; vertex_id: 20
+===================Deleting diameter ==================
+candidate:4
+===remove unbalanced==
+
+candidate:4
+calculation success!
+query_data: NO72; vertex_id: 472
+query_data: NO73; vertex_id: 194
+query_data: NO74; vertex_id: 7571
+query_data: NO75; vertex_id: 224
+query_data: NO76; vertex_id: 6369
+query_data: NO77; vertex_id: 625
+query_data: NO78; vertex_id: 350
+===================Deleting diameter ==================
+candidate:2
+===remove unbalanced==
+
+candidate:2
+===remove unbalanced==
+
+candidate:2
+calculation success!
+query_data: NO79; vertex_id: 39
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO80; vertex_id: 181
+===================Deleting diameter ==================
+candidate:1
+===remove unbalanced==
+
+candidate:1
+calculation success!
+query_data: NO81; vertex_id: 7580
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO82; vertex_id: 42
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO83; vertex_id: 57
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO84; vertex_id: 3516
+query_data: NO85; vertex_id: 273
+query_data: NO86; vertex_id: 1401
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO87; vertex_id: 612
+query_data: NO88; vertex_id: 661
+query_data: NO89; vertex_id: 106
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO90; vertex_id: 367
+query_data: NO91; vertex_id: 958
+query_data: NO92; vertex_id: 69
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO93; vertex_id: 362
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO94; vertex_id: 603
+query_data: NO95; vertex_id: 177
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO96; vertex_id: 417
+query_data: NO97; vertex_id: 516
+query_data: NO98; vertex_id: 7594
+query_data: NO99; vertex_id: 681
+===================Deleting diameter ==================
+candidate:4
+===remove unbalanced==
+
+candidate:4
+===remove unbalanced==
+
+candidate:3
+calculation success!

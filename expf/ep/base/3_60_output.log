@@ -1,0 +1,30 @@
+
+query_data: NO0; vertex_id: 130104
+query_data: NO1; vertex_id: 73220
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO2; vertex_id: 20140
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO3; vertex_id: 7546
+query_data: NO4; vertex_id: 63933
+query_data: NO5; vertex_id: 71514
+query_data: NO6; vertex_id: 113184
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO7; vertex_id: 7125
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO8; vertex_id: 40146
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO9; vertex_id: 7571
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO10; vertex_id: 43025
