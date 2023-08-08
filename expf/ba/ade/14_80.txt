@@ -3,7 +3,7 @@
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 0; vertex_id: 1317
 Attempt: 0
-time: 0.008759
+time: 0.008474
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -13,7 +13,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 1; vertex_id: 1156
 Attempt: 0
-time: 0.009081
+time: 0.008551
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -23,7 +23,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 2; vertex_id: 1726
 Attempt: 0
-time: 0.009111
+time: 0.008486
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -33,7 +33,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 3; vertex_id: 1142
 Attempt: 0
-time: 0.008787
+time: 0.008515
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -43,7 +43,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 4; vertex_id: 2856
 Attempt: 0
-time: 0.007441
+time: 0.008517
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -53,7 +53,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 5; vertex_id: 380
 Attempt: 0
-time: 0.007919
+time: 0.008538
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -63,7 +63,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 6; vertex_id: 2841
 Attempt: 0
-time: 0.007972
+time: 0.008519
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -73,7 +73,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 7; vertex_id: 409
 Attempt: 0
-time: 0.007889
+time: 0.00846
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -83,7 +83,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 8; vertex_id: 3141
 Attempt: 0
-time: 0.007646
+time: 0.008512
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -93,7 +93,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 9; vertex_id: 2795
 Attempt: 0
-time: 0.008779
+time: 0.008475
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -103,7 +103,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 10; vertex_id: 937
 Attempt: 0
-time: 0.00914
+time: 0.008587
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -113,7 +113,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 11; vertex_id: 1473
 Attempt: 0
-time: 0.009085
+time: 0.008478
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -123,7 +123,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 12; vertex_id: 1673
 Attempt: 0
-time: 0.007655
+time: 0.008447
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -133,7 +133,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 13; vertex_id: 1932
 Attempt: 0
-time: 0.008748
+time: 0.008533
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -143,7 +143,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 14; vertex_id: 772
 Attempt: 0
-time: 0.007843
+time: 0.008454
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -153,7 +153,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 15; vertex_id: 56
 Attempt: 0
-time: 0.007812
+time: 0.008543
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -163,7 +163,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 16; vertex_id: 1751
 Attempt: 0
-time: 0.007956
+time: 0.008498
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -173,7 +173,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 17; vertex_id: 352
 Attempt: 0
-time: 0.007673
+time: 0.0085
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -183,7 +183,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 18; vertex_id: 565
 Attempt: 0
-time: 0.009126
+time: 0.008538
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -193,7 +193,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 19; vertex_id: 530
 Attempt: 0
-time: 0.009062
+time: 0.00851
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -203,7 +203,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 20; vertex_id: 624
 Attempt: 0
-time: 0.007938
+time: 0.00852
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -213,7 +213,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 21; vertex_id: 7556
 Attempt: 0
-time: 0.008748
+time: 0.008524
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -223,7 +223,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 22; vertex_id: 918
 Attempt: 0
-time: 0.007426
+time: 0.008429
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -233,7 +233,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 23; vertex_id: 2405
 Attempt: 0
-time: 0.009157
+time: 0.008527
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -243,7 +243,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 24; vertex_id: 35
 Attempt: 0
-time: 0.009042
+time: 0.008556
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -253,7 +253,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 25; vertex_id: 1134
 Attempt: 0
-time: 0.009207
+time: 0.00852
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -263,7 +263,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 26; vertex_id: 2267
 Attempt: 0
-time: 0.008741
+time: 0.008539
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -273,7 +273,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 27; vertex_id: 2445
 Attempt: 0
-time: 0.009144
+time: 0.008479
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -283,7 +283,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 28; vertex_id: 7334
 Attempt: 0
-time: 0.009183
+time: 0.008472
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -293,7 +293,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 29; vertex_id: 7520
 Attempt: 0
-time: 0.007919
+time: 0.008466
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -303,7 +303,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 30; vertex_id: 139
 Attempt: 0
-time: 0.007604
+time: 0.008466
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -313,7 +313,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 31; vertex_id: 2358
 Attempt: 0
-time: 0.009045
+time: 0.008473
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -323,7 +323,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 32; vertex_id: 1489
 Attempt: 0
-time: 0.009113
+time: 0.008462
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -333,7 +333,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 33; vertex_id: 3335
 Attempt: 0
-time: 0.00904
+time: 0.008493
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -343,7 +343,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 34; vertex_id: 2767
 Attempt: 0
-time: 0.007658
+time: 0.00849
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -353,7 +353,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 35; vertex_id: 2417
 Attempt: 0
-time: 0.008727
+time: 0.008509
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -363,7 +363,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 36; vertex_id: 1855
 Attempt: 0
-time: 0.009043
+time: 0.0085
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -373,7 +373,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 37; vertex_id: 7390
 Attempt: 0
-time: 0.007955
+time: 0.008553
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -383,7 +383,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 38; vertex_id: 449
 Attempt: 0
-time: 0.008731
+time: 0.008531
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -393,7 +393,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 39; vertex_id: 1176
 Attempt: 0
-time: 0.008764
+time: 0.008521
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -403,7 +403,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 40; vertex_id: 3038
 Attempt: 0
-time: 0.009038
+time: 0.008498
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -413,7 +413,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 41; vertex_id: 652
 Attempt: 0
-time: 0.009112
+time: 0.008546
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -423,7 +423,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 42; vertex_id: 1738
 Attempt: 0
-time: 0.009106
+time: 0.008493
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -433,7 +433,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 43; vertex_id: 3163
 Attempt: 0
-time: 0.008729
+time: 0.008556
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -443,7 +443,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 44; vertex_id: 1063
 Attempt: 0
-time: 0.009094
+time: 0.008504
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -453,7 +453,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 45; vertex_id: 63
 Attempt: 0
-time: 0.009085
+time: 0.008523
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -463,7 +463,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 46; vertex_id: 673
 Attempt: 0
-time: 0.007971
+time: 0.008535
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -473,7 +473,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 47; vertex_id: 304
 Attempt: 0
-time: 0.007661
+time: 0.008517
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -483,7 +483,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 48; vertex_id: 171
 Attempt: 0
-time: 0.007682
+time: 0.008482
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -493,7 +493,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 49; vertex_id: 2139
 Attempt: 0
-time: 0.009023
+time: 0.008604
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -503,7 +503,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 50; vertex_id: 2915
 Attempt: 0
-time: 0.00794
+time: 0.008495
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -513,7 +513,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 51; vertex_id: 99
 Attempt: 0
-time: 0.007957
+time: 0.008541
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -523,7 +523,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 52; vertex_id: 1981
 Attempt: 0
-time: 0.007635
+time: 0.008536
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -533,7 +533,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 53; vertex_id: 1306
 Attempt: 0
-time: 0.007811
+time: 0.008498
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -543,7 +543,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 54; vertex_id: 1059
 Attempt: 0
-time: 0.007919
+time: 0.008535
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -553,7 +553,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 55; vertex_id: 522
 Attempt: 0
-time: 0.009105
+time: 0.008522
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -563,7 +563,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 56; vertex_id: 270
 Attempt: 0
-time: 0.008747
+time: 0.008531
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -573,7 +573,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 57; vertex_id: 7410
 Attempt: 0
-time: 0.008697
+time: 0.008537
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -583,7 +583,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 58; vertex_id: 2786
 Attempt: 0
-time: 0.009122
+time: 0.008469
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -593,7 +593,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 59; vertex_id: 606
 Attempt: 0
-time: 0.009109
+time: 0.008511
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -603,7 +603,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 60; vertex_id: 647
 Attempt: 0
-time: 0.008703
+time: 0.008447
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -613,7 +613,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 61; vertex_id: 3065
 Attempt: 0
-time: 0.008701
+time: 0.008538
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -623,7 +623,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 62; vertex_id: 1688
 Attempt: 0
-time: 0.009105
+time: 0.008509
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -633,7 +633,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 63; vertex_id: 2599
 Attempt: 0
-time: 0.007866
+time: 0.008588
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -643,7 +643,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 64; vertex_id: 961
 Attempt: 0
-time: 0.00913
+time: 0.008491
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -653,7 +653,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 65; vertex_id: 1304
 Attempt: 0
-time: 0.007681
+time: 0.008507
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -663,7 +663,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 66; vertex_id: 1514
 Attempt: 0
-time: 0.00805
+time: 0.009794
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -673,7 +673,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 67; vertex_id: 366
 Attempt: 0
-time: 0.007801
+time: 0.008485
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -683,7 +683,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 68; vertex_id: 3361
 Attempt: 0
-time: 0.007866
+time: 0.0085
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -693,7 +693,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 69; vertex_id: 3348
 Attempt: 0
-time: 0.007545
+time: 0.008463
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -703,7 +703,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 70; vertex_id: 470
 Attempt: 0
-time: 0.007578
+time: 0.008554
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -713,7 +713,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 71; vertex_id: 2510
 Attempt: 0
-time: 0.007954
+time: 0.008418
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -723,7 +723,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 72; vertex_id: 90
 Attempt: 0
-time: 0.007941
+time: 0.008492
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -733,7 +733,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 73; vertex_id: 337
 Attempt: 0
-time: 0.00785
+time: 0.008498
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -743,7 +743,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 74; vertex_id: 1106
 Attempt: 0
-time: 0.008731
+time: 0.008561
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -753,7 +753,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 75; vertex_id: 2143
 Attempt: 0
-time: 0.008711
+time: 0.008505
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -763,7 +763,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 76; vertex_id: 557
 Attempt: 0
-time: 0.009146
+time: 0.008503
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -773,7 +773,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 77; vertex_id: 2387
 Attempt: 0
-time: 0.009105
+time: 0.008475
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -783,7 +783,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 78; vertex_id: 1017
 Attempt: 0
-time: 0.007625
+time: 0.008523
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -793,7 +793,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 79; vertex_id: 1232
 Attempt: 0
-time: 0.008724
+time: 0.008509
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -803,7 +803,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 80; vertex_id: 3264
 Attempt: 0
-time: 0.009058
+time: 0.008586
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -813,7 +813,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 81; vertex_id: 3367
 Attempt: 0
-time: 0.007915
+time: 0.008455
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -823,7 +823,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 82; vertex_id: 370
 Attempt: 0
-time: 0.009078
+time: 0.008507
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -833,7 +833,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 83; vertex_id: 2244
 Attempt: 0
-time: 0.008798
+time: 0.008508
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -843,7 +843,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 84; vertex_id: 2248
 Attempt: 0
-time: 0.009097
+time: 0.00849
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -853,7 +853,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 85; vertex_id: 1544
 Attempt: 0
-time: 0.009038
+time: 0.008529
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -863,7 +863,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 86; vertex_id: 1803
 Attempt: 0
-time: 0.009135
+time: 0.008514
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -873,7 +873,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 87; vertex_id: 79
 Attempt: 0
-time: 0.008705
+time: 0.008453
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -883,7 +883,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 88; vertex_id: 348
 Attempt: 0
-time: 0.008696
+time: 0.008501
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -893,7 +893,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 89; vertex_id: 787
 Attempt: 0
-time: 0.008349
+time: 0.008475
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -903,7 +903,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 90; vertex_id: 1674
 Attempt: 0
-time: 0.007945
+time: 0.008523
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -913,7 +913,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 91; vertex_id: 865
 Attempt: 0
-time: 0.007959
+time: 0.008494
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -923,7 +923,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 92; vertex_id: 1088
 Attempt: 0
-time: 0.007532
+time: 0.008555
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -933,7 +933,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 93; vertex_id: 502
 Attempt: 0
-time: 0.007676
+time: 0.00855
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -943,7 +943,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 94; vertex_id: 1877
 Attempt: 0
-time: 0.007879
+time: 0.008509
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -953,7 +953,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 95; vertex_id: 2182
 Attempt: 0
-time: 0.007938
+time: 0.008526
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -963,7 +963,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 96; vertex_id: 1127
 Attempt: 0
-time: 0.007924
+time: 0.008507
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -973,7 +973,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 97; vertex_id: 1584
 Attempt: 0
-time: 0.007629
+time: 0.008537
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -983,7 +983,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 98; vertex_id: 894
 Attempt: 0
-time: 0.008044
+time: 0.008515
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0
@@ -993,7 +993,7 @@ total_density: 0
 ba/ba.txt ba/Q/ba_80.txt
 query_data_No: 99; vertex_id: 150
 Attempt: 0
-time: 0.00778
+time: 0.008478
 diameter: 0
 total_size_of_truss: 0
 total_unbalance_num: 0

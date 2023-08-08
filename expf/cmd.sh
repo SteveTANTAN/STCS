@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set variables
-dataset="ep"
+dataset="ba"
 query_set_sizes=(20 40 60 80 100)
-program_names=("ad" "ade" "base")
-k_s=(3 4 5 6 7 8 9 10 11 12 13 14 15)
+program_names=("ad2")
+k_s=(5 6 7 8 9 10 11 12 13 14 15)
 
 # Loop over all combinations of query set sizes and program names
 for k in ${k_s[@]}
