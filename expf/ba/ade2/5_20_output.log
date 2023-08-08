@@ -2,6 +2,8 @@
 query_data: NO0; vertex_id: 7341
 ===================Deleting NegativeTriangle ==================
 check1
+===remove unbalanced==
+
 check2
 ---start to delete node 
 
@@ -10,8 +12,6 @@ calculation success!
 query_data: NO1; vertex_id: 946
 ===================Deleting NegativeTriangle ==================
 check1
-===remove unbalanced==
-
 check2
 ---start to delete node 
 
@@ -128,6 +128,8 @@ query_data: NO27; vertex_id: 720
 query_data: NO28; vertex_id: 683
 ===================Deleting NegativeTriangle ==================
 check1
+===remove unbalanced==
+
 check2
 ---start to delete node 
 
@@ -159,6 +161,8 @@ query_data: NO35; vertex_id: 299
 query_data: NO36; vertex_id: 371
 ===================Deleting NegativeTriangle ==================
 check1
+===remove unbalanced==
+
 check2
 ---start to delete node 
 
@@ -246,31 +250,11 @@ query_data: NO51; vertex_id: 403
 query_data: NO52; vertex_id: 876
 ===================Deleting NegativeTriangle ==================
 check1
-===remove unbalanced==
+check2
+---start to delete node 
 
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
----calculation fail! 
-
+check3
+calculation success!
 query_data: NO53; vertex_id: 7386
 ===================Deleting NegativeTriangle ==================
 check1
@@ -296,6 +280,8 @@ calculation success!
 query_data: NO57; vertex_id: 48
 ===================Deleting NegativeTriangle ==================
 check1
+===remove unbalanced==
+
 check2
 ---start to delete node 
 
@@ -351,33 +337,6 @@ check2
 check3
 calculation success!
 query_data: NO68; vertex_id: 526
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
----calculation fail! 
-
 query_data: NO69; vertex_id: 796
 ===================Deleting NegativeTriangle ==================
 check1
@@ -406,31 +365,11 @@ query_data: NO77; vertex_id: 625
 query_data: NO78; vertex_id: 350
 ===================Deleting NegativeTriangle ==================
 check1
-===remove unbalanced==
+check2
+---start to delete node 
 
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
-===================Deleting NegativeTriangle ==================
-check1
-===remove unbalanced==
-
-quicl delete fail
----calculation fail! 
-
+check3
+calculation success!
 query_data: NO79; vertex_id: 39
 ===================Deleting NegativeTriangle ==================
 check1
@@ -444,8 +383,100 @@ calculation success!
 query_data: NO80; vertex_id: 181
 ===================Deleting NegativeTriangle ==================
 check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO81; vertex_id: 7580
+===================Deleting NegativeTriangle ==================
+check1
 ===remove unbalanced==
 
 check2
 ---start to delete node 
 
+check3
+calculation success!
+query_data: NO82; vertex_id: 42
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO83; vertex_id: 57
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO84; vertex_id: 3516
+query_data: NO85; vertex_id: 273
+query_data: NO86; vertex_id: 1401
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO87; vertex_id: 612
+query_data: NO88; vertex_id: 661
+query_data: NO89; vertex_id: 106
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO90; vertex_id: 367
+query_data: NO91; vertex_id: 958
+query_data: NO92; vertex_id: 69
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO93; vertex_id: 362
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO94; vertex_id: 603
+query_data: NO95; vertex_id: 177
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO96; vertex_id: 417
+query_data: NO97; vertex_id: 516
+query_data: NO98; vertex_id: 7594
+query_data: NO99; vertex_id: 681
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+
+check2
+---start to delete node 
+
+check3
+calculation success!

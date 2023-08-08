@@ -3,7 +3,7 @@
 # Set variables
 dataset="ba"
 query_set_sizes=(20 40 60 80 100)
-program_names=("ad2")
+program_names=("ade2")
 k_s=(5 6 7 8 9 10 11 12 13 14 15)
 
 # Loop over all combinations of query set sizes and program names
