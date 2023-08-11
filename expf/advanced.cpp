@@ -551,6 +551,76 @@ vector<int> findLongestDistanceFromStartVertex(Graph *g) {
 
     return longest_list;
 }
+void findLongestPath(Graph *g) {
+	// little optimization by replace v_num by v_num-1
+	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
+	// cout << "in\n";
+	int pathLength = -1;
+	vector<int> path;
+	
+	for (int i = 1; i < v_num; i++) {
+		if (g->is_delete_vec[i]) continue; // skip the vertices marked as deleted
+
+		memset(visited, -1, sizeof(visited));
+		queue<pair<int,pair<int, vector<int>>>> q;
+		vector<int> curr_path;
+		curr_path.push_back(i);
+		q.push(make_pair(i, make_pair(0, curr_path)));
+		
+		while (!q.empty()) {
+			int size = q.size();
+			for (size; size > 0; size--) {
+				auto curr_pair = q.front();
+				q.pop();
+				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
+
+				visited[curr_pair.first] = curr_pair.second.first;
+				if (pathLength < curr_pair.second.first) {
+					path = curr_pair.second.second;
+					pathLength = curr_pair.second.first;
+
+				}
+				//cout << "neighour number is " << g->vec[4].size() << "\n";
+				for (int idx = 0; idx < adj_edge[curr_pair.first].size(); idx++) {
+
+					if (g->is_delete_e[adj_edge[curr_pair.first][idx]]) {
+						continue;
+					}
+					int v;
+					if (all_edge_pairs[adj_edge[curr_pair.first][idx]].v1 == curr_pair.first) {
+						v = all_edge_pairs[adj_edge[curr_pair.first][idx]].v2;
+					} else {
+						v = all_edge_pairs[adj_edge[curr_pair.first][idx]].v1;
+					}
+					// cout << "BFS to " << g->vec[curr_pair.first][idx] << "\n";
+					// cout << " newPath is :\n";
+					vector<int> nextPath = curr_pair.second.second;
+					nextPath.push_back(v);
+					// for (auto v : nextPath) {
+					// 	cout << v << "->";
+					// }
+					// cout << "\n";
+					q.push(make_pair(v, make_pair(curr_pair.second.first + 1, nextPath)));
+				}
+			}
+			
+		}
+		
+	}
+
+	cout << "================= current longest path is:\n";
+	for (auto v : path) {
+		cout << v << "->";
+	}
+	cout  <<"\n";
+	cout <<pathLength <<"\n";
+	result:
+	g->diameter = pathLength;
+	// g->path = path;
+	g->point1 = path[0];
+	g->point2 = path[path.size()-1];
+	// return path;
+}
 
 void print_result(Graph* g){
 		// Assuming vertices_set is your set of vertices
@@ -561,7 +631,7 @@ void print_result(Graph* g){
         cerr << "Error: Unable to open the file " << outname << endl;
         exit(1);
     }
-	// findLongestPath(g);
+	findLongestPath(g);
 	set<int> vertices_set;
 	cout <<  " ====result graph: \n";
 	// Collect all unique vertices from all_edge_pairs into the set
@@ -1535,7 +1605,6 @@ int main(int argc, char** argv)  {
 	bool result = GetKtruss(start_vertex, k, g);
 	gettimeofday(&end, NULL);
 	timetotal = timetotal + ((end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0);
-
 	if (result) {
 		cout << "calculation success!"<<endl;
 		attempt_time ++;
@@ -1554,6 +1623,8 @@ int main(int argc, char** argv)  {
 
 		total_percentage += (vertexCount/large_graph);
 		free(temp);
+		print_result(g);
+
 		
 	}
 	free(g);

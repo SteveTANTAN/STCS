@@ -542,6 +542,79 @@ vector<int> findLongestDistanceFromStartVertex(Graph *g) {
 
     return longest_list;
 }
+void findLongestPath(Graph *g) {
+	// little optimization by replace v_num by v_num-1
+	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
+	// cout << "in\n";
+	int pathLength = -1;
+	vector<int> path;
+	
+	for (int i = 1; i < v_num; i++) {
+		if (g->is_delete_vec[i]) continue; // skip the vertices marked as deleted
+
+		memset(visited, -1, sizeof(visited));
+		queue<pair<int,pair<int, vector<int>>>> q;
+		vector<int> curr_path;
+		curr_path.push_back(i);
+		q.push(make_pair(i, make_pair(0, curr_path)));
+		
+		while (!q.empty()) {
+			int size = q.size();
+			for (size; size > 0; size--) {
+				auto curr_pair = q.front();
+				q.pop();
+				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
+
+				visited[curr_pair.first] = curr_pair.second.first;
+				if (pathLength < curr_pair.second.first) {
+					path = curr_pair.second.second;
+					pathLength = curr_pair.second.first;
+					if (pathLength >= 2*global_hop) {
+						goto result;
+					}
+				}
+				//cout << "neighour number is " << g->vec[4].size() << "\n";
+				for (int idx = 0; idx < adj_edge[curr_pair.first].size(); idx++) {
+
+					if (g->is_delete_e[adj_edge[curr_pair.first][idx]]) {
+						continue;
+					}
+					int v;
+					if (all_edge_pairs[adj_edge[curr_pair.first][idx]].v1 == curr_pair.first) {
+						v = all_edge_pairs[adj_edge[curr_pair.first][idx]].v2;
+					} else {
+						v = all_edge_pairs[adj_edge[curr_pair.first][idx]].v1;
+					}
+					// cout << "BFS to " << g->vec[curr_pair.first][idx] << "\n";
+					// cout << " newPath is :\n";
+					vector<int> nextPath = curr_pair.second.second;
+					nextPath.push_back(v);
+					// for (auto v : nextPath) {
+					// 	cout << v << "->";
+					// }
+					// cout << "\n";
+					q.push(make_pair(v, make_pair(curr_pair.second.first + 1, nextPath)));
+				}
+			}
+			
+		}
+		
+	}
+
+	// cout << "================= current longest path is:\n";
+	// for (auto v : path) {
+	// 	cout << v << "->";
+	// }
+	// cout  <<"\n";
+	// cout <<pathLength <<"\n";
+	result:
+	g->diameter = pathLength;
+	// g->path = path;
+	g->point1 = path[0];
+	g->point2 = path[path.size()-1];
+	// return path;
+}
+
 
 void print_result(Graph* g){
 		// Assuming vertices_set is your set of vertices
@@ -552,7 +625,7 @@ void print_result(Graph* g){
         cerr << "Error: Unable to open the file " << outname << endl;
         exit(1);
     }
-	// findLongestPath(g);
+	findLongestPath(g);
 	set<int> vertices_set;
 	cout <<  " ====result graph: \n";
 	// Collect all unique vertices from all_edge_pairs into the set
@@ -731,7 +804,21 @@ bool quickremoveNegativeTriangle(Graph* g) {
             if (!runned && hop_num[all_edge_pairs[unb.edge1].v1] == hop_num[all_edge_pairs[unb.edge1].v2]) {
 				runned = true;
 				// cout<<"check2\n";
-				if (!delete_on_edge(unb.edge1, g,false)) return false;
+				Graph *temp_g = new Graph();
+				*temp_g = *g;
+				if (!delete_on_edge(unb.edge1, g,false)) {
+					*g = *temp_g;
+					if (!delete_on_edge(unb.edge2, g,false)) {
+						*g = *temp_g;
+						if (!delete_on_edge(unb.edge3, g,false)) {
+							*g = *temp_g;
+							delete(temp_g);
+							return false;
+						}
+					}
+
+				};
+				delete(temp_g);
                 // delete_on_edge(unb.edge1, g,false);
 
             } 
@@ -741,7 +828,21 @@ bool quickremoveNegativeTriangle(Graph* g) {
 				// cout<<"check3\n";
 
                 // delete_on_edge(unb.edge2, g,false);
-				if (!delete_on_edge(unb.edge2, g,false)) return false;
+				Graph *temp_g = new Graph();
+				*temp_g = *g;
+				if (!delete_on_edge(unb.edge2, g,false)) {
+					*g = *temp_g;
+					if (!delete_on_edge(unb.edge1, g,false)) {
+						*g = *temp_g;
+						if (!delete_on_edge(unb.edge3, g,false)) {
+							*g = *temp_g;
+							delete(temp_g);
+							return false;
+						}
+					}
+
+				};
+				delete(temp_g);
             } 
 
 			else if (!runned && hop_num[all_edge_pairs[unb.edge3].v1] == hop_num[all_edge_pairs[unb.edge3].v2]) {
@@ -749,7 +850,21 @@ bool quickremoveNegativeTriangle(Graph* g) {
 				runned = true;
 				// cout<<"check4\n";
                 // delete_on_edge(unb.edge3, g,false);
-                if (!delete_on_edge(unb.edge3, g,false)) return false;
+				Graph *temp_g = new Graph();
+				*temp_g = *g;
+				if (!delete_on_edge(unb.edge3, g,false)) {
+					*g = *temp_g;
+					if (!delete_on_edge(unb.edge1, g,false)) {
+						*g = *temp_g;
+						if (!delete_on_edge(unb.edge2, g,false)) {
+							*g = *temp_g;
+							delete(temp_g);
+							return false;
+						}
+					}
+
+				};
+				delete(temp_g);
 
             }
 			// cout<<"check=5\n";
@@ -791,29 +906,11 @@ bool removeNegativeTriangle(Graph* g) {
 	*temp_g = *g;
 	// cout<<"1\n";
     if (!quickremoveNegativeTriangle(temp_g)) {
-		cout << "quicl delete fail\n";
-		*temp_g = *g;
-		bool check = false;
-		// cout<<"1.1\n";
-
-		for (auto unb : Triangles) {
-			// if (!unb.is_balanced && !unb.is_broken) {
-			if (!temp_g->Triangle_balance[unb.id] && !temp_g->Triangle_broken[unb.id]){
-			
-				if (!check && delete_on_edge(unb.edge1, temp_g,false)) check = true;
-				if (!check && delete_on_edge(unb.edge2, temp_g,false)) check = true;
-				if (!check && delete_on_edge(unb.edge2, temp_g,false)) check = true;
-				break;
-			}
-		}
-		if (!check) {
-			cout<< "cannot delete \n";
-			delete(temp_g);
-			temp_g = NULL;
-
-			return false;
-		}
-
+		cout << "quicl delete fail\n";	
+		cout<< "cannot delete \n";
+		delete(temp_g);
+		temp_g = NULL;
+		return false;
 	}
 	// cout<<"2\n";
 
@@ -1309,18 +1406,18 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
-	cout<<"1\n";
+	// cout<<"1\n";
 
 	while (!q.empty()) {
 		int sub = q.front();
 		q.pop();
 		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
 		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
-			cout<<"1.0\n";
+			// cout<<"1.0\n";
 
 			if (!g->Triangle_broken[in_which_triangle[sub][i]]){
 			// if(!g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id]){
-				cout<<"1.1\n";
+				// cout<<"1.1\n";
 				
 				if (g->Triangle_balance[Triangles[in_which_triangle[sub][i]].id]) {
 					// 删除临边
@@ -1331,7 +1428,7 @@ void GetmaximumKtruss(Graph *g) {
 				else 
 					g->unbalance_num--;
 				// 删除一条边后check 他的临边
-				cout<<"1.2\n";
+				// cout<<"1.2\n";
 
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
@@ -1342,7 +1439,7 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
-				cout<<"1.3\n";
+				// cout<<"1.3\n";
 
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
@@ -1353,7 +1450,7 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
-				cout<<"1.4\n";
+				// cout<<"1.4\n";
 
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
@@ -1364,17 +1461,17 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
-				cout<<"1.5\n";
+				// cout<<"1.5\n";
 
 				g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id] = true;
-				cout<<"1.6\n";
+				// cout<<"1.6\n";
 
 			}
-			cout<<"1.7\n";
+			// cout<<"1.7\n";
 
 		}
 	}
-	cout<<"2\n";
+	// cout<<"2\n";
 
 	// cout << "size of KTruss" << g->size_of_truss << endl;
 	// cout << "truss unb num:" << g->unbalance_num << endl;
