@@ -49,8 +49,8 @@ typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
 	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_broken{vector<bool>(MAX_V,false)};
+	vector<bool> Triangle_balance{vector<bool>(MAX_E,false)};
+	vector<bool> Triangle_broken{vector<bool>(MAX_E,false)};
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;
@@ -1206,6 +1206,7 @@ void GetmaximumKtruss(Graph *g) {
 	vector<int> is_booked;
 	int two_dimension[MAX_E];
 	memset(g->support, 0, sizeof(g->support));
+	Triangles.clear();
 
 
 	for (int i = 0; i < e_num; i++) {
@@ -1272,12 +1273,14 @@ void GetmaximumKtruss(Graph *g) {
 		}
 		is_booked.clear();
 	}
+
 	for (int i = 0; i < Triangles.size(); i++) {
 		Triangles[i].id = i;
 		g->Triangle_balance[i] = Triangles[i].is_balanced;
 		g->Triangle_broken[i] = Triangles[i].is_broken;
 
 	}
+
 	for (int i = 0; i < Triangles.size(); i++) {
 		if (!g->Triangle_balance[Triangles[i].id])
 			g->unbalance_num++;
@@ -1290,6 +1293,7 @@ void GetmaximumKtruss(Graph *g) {
 			cout << "error\n";
 		}
 	}
+
 	// cout << "counts:" << counts << endl;
 	// //unbalance_num = Triangles.size() - num_of_balance;
 	// cout << "orangial:" << g->unbalance_num << endl;
@@ -1305,13 +1309,19 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
+	cout<<"1\n";
+
 	while (!q.empty()) {
 		int sub = q.front();
 		q.pop();
 		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
 		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
-			if (!g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id]){
+			cout<<"1.0\n";
+
+			if (!g->Triangle_broken[in_which_triangle[sub][i]]){
 			// if(!g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id]){
+				cout<<"1.1\n";
+				
 				if (g->Triangle_balance[Triangles[in_which_triangle[sub][i]].id]) {
 					// 删除临边
 					g->support[Triangles[in_which_triangle[sub][i]].edge1]--;
@@ -1321,6 +1331,8 @@ void GetmaximumKtruss(Graph *g) {
 				else 
 					g->unbalance_num--;
 				// 删除一条边后check 他的临边
+				cout<<"1.2\n";
+
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
 					{
@@ -1330,6 +1342,8 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
+				cout<<"1.3\n";
+
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
 					{
@@ -1339,6 +1353,8 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
+				cout<<"1.4\n";
+
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
 					{
@@ -1348,10 +1364,18 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
+				cout<<"1.5\n";
+
 				g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id] = true;
+				cout<<"1.6\n";
+
 			}
+			cout<<"1.7\n";
+
 		}
 	}
+	cout<<"2\n";
+
 	// cout << "size of KTruss" << g->size_of_truss << endl;
 	// cout << "truss unb num:" << g->unbalance_num << endl;
 
