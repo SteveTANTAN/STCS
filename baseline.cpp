@@ -528,9 +528,19 @@ vector<int> findLongestPath(Graph *g) {
 				// cout << "\n";
 				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
 
+				if (curr_pair.second.first > 2 * global_hop) {
+					// path = curr_pair.second.second;
+					// pathLength = curr_pair.second.first;
+					continue;
+				}
+				
 				visited[curr_pair.first] = curr_pair.second.first;
+
+
+
 				if (pathLength < curr_pair.second.first) {
 					path = curr_pair.second.second;
+					
 					pathLength = curr_pair.second.first;
 				}
 				//cout << "neighour number is " << g->vec[4].size() << "\n";
@@ -563,10 +573,7 @@ vector<int> findLongestPath(Graph *g) {
 		
 	}
 
-	// cout << "================= current longest path is:\n";
-	// for (auto v : path) {
-	// 	cout << v << "->";
-	// }
+	
 
 	//scout << "\n";
 	g->diameter = pathLength;
@@ -574,7 +581,12 @@ vector<int> findLongestPath(Graph *g) {
 	g->point1 = path[0];
 	g->point2 = path[path.size()-1];	
 
-	
+	// cout << "================= current longest path is: "  << global_hop << "\n";
+	// for (auto v : path) {
+	// 	cout << v << "->";
+	// }
+	// cout << "\n";
+
 	return path;
 }
 
@@ -841,7 +853,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		// cout << "mid1 queue \n";
 		Graph *right = new Graph();
 		*right = *left;
-		cout<<"1\n";
+		//cout<<"1\n";
 		if (delete_on_node(left->path[0], left)) {
 			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
@@ -861,7 +873,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(left);
 		}
-		cout<<"2\n";
+		//cout<<"2\n";
 
 		if (delete_on_node(right->path[right->path.size() - 1], right)) {
 			bool best = false;
@@ -886,7 +898,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(right);
 		}
-		cout<<"3\n";
+		//cout<<"3\n";
 
 	// Check each subgraph in Queue.
 		// queue<Graph*> TempQueue;
