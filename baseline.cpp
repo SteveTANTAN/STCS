@@ -7,8 +7,8 @@
 #include<fstream>
 //#include<Windows.h>
 #include<cstring>
-#include <set>
-#include <limits>
+#include<set>
+#include<limits>
 #include<sys/time.h>
 #include<algorithm>
 
@@ -61,7 +61,7 @@ typedef struct {
 	int diameter;
 	int point1;
 	int point2;
-	vector<int> path;
+	// vector<int> path;
 	// vector<int> path;
 } Graph;
 
@@ -419,86 +419,10 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 
 
 
-// vector<int> findLongestPath(Graph *g) {
-// 	// little optimization by replace v_num by v_num-1
-// 	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
-// 	// cout << "in\n";
-// 	int pathLength = -1;
-// 	vector<int> path;
-	
-// 	for (int i = 1; i < v_num-1; i++) {
-// 		if (g->is_delete_vec[i]) continue; // skip the vertices marked as deleted
-
-// 		memset(visited, -1, sizeof(visited));
-// 		queue<pair<int,pair<int, vector<int>>>> q;
-// 		vector<int> curr_path;
-// 		curr_path.push_back(i);
-// 		q.push(make_pair(i, make_pair(0, curr_path)));
-		
-// 		while (!q.empty()) {
-// 			int size = q.size();
-// 			for (size; size > 0; size--) {
-// 				auto curr_pair = q.front();
-// 				q.pop();
-// 				// cout << "current node is " << curr_pair.first << "\n";
-// 				// cout << "current path size is " << curr_pair.second.first << "\n";
-// 				// cout << "current path is :\n";
-// 				// for (auto v : curr_pair.second.second) {
-// 				// 	cout << v << "->";
-// 				// }
-// 				// cout << "\n";
-// 				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
-
-// 				visited[curr_pair.first] = curr_pair.second.first;
-// 				if (pathLength < curr_pair.second.first) {
-// 					path = curr_pair.second.second;
-// 					pathLength = curr_pair.second.first;
-// 				}
-// 				//cout << "neighour number is " << g->vec[4].size() << "\n";
-// 				for (int idx = 0; idx < adj_edge[curr_pair.first].size(); idx++) {
-
-// 					if (g->is_delete_e[adj_edge[curr_pair.first][idx]]) {
-// 						continue;
-// 					}
-// 					int v;
-// 					if (all_edge_pairs[adj_edge[curr_pair.first][idx]].v1 == curr_pair.first) {
-// 						v = all_edge_pairs[adj_edge[curr_pair.first][idx]].v2;
-// 					} else {
-// 						v = all_edge_pairs[adj_edge[curr_pair.first][idx]].v1;
-// 					}
-// 					// cout << "BFS to " << g->vec[curr_pair.first][idx] << "\n";
-// 					// cout << " newPath is :\n";
-// 					vector<int> nextPath = curr_pair.second.second;
-// 					nextPath.push_back(v);
-// 					// for (auto v : nextPath) {
-// 					// 	cout << v << "->";
-// 					// }
-// 					// cout << "\n";
-
-// 					q.push(make_pair(v, make_pair(curr_pair.second.first + 1, nextPath)));
-					
-// 				}
-// 			}
-			
-// 		}
-		
-// 	}
-
-// 	// cout << "================= current longest path is:\n";
-// 	// for (auto v : path) {
-// 	// 	cout << v << "->";
-// 	// }
-
-// 	//scout << "\n";
-// 	g->diameter = pathLength;
-// 	g->point1 = path[0];
-// 	g->point2 = path[path.size()-1];	
-// 	return path;
-// }
 
 
 
-vector<int> findLongestPath(Graph *g) {
+void findLongestPath(Graph *g) {
 	// little optimization by replace v_num by v_num-1
 	//int dist[MAX_V][MAX_V] = {MAX_E + 1};
 	// cout << "in\n";
@@ -519,13 +443,6 @@ vector<int> findLongestPath(Graph *g) {
 			for (size; size > 0; size--) {
 				auto curr_pair = q.front();
 				q.pop();
-				// cout << "current node is " << curr_pair.first << "\n";
-				// cout << "current path size is " << curr_pair.second.first << "\n";
-				// cout << "current path is :\n";
-				// for (auto v : curr_pair.second.second) {
-				// 	cout << v << "->";
-				// }
-				// cout << "\n";
 				if (visited[curr_pair.first] <= curr_pair.second.first && visited[curr_pair.first] != -1) continue;
 
 				if (curr_pair.second.first > 2 * global_hop) {
@@ -542,6 +459,7 @@ vector<int> findLongestPath(Graph *g) {
 					path = curr_pair.second.second;
 					
 					pathLength = curr_pair.second.first;
+
 				}
 				//cout << "neighour number is " << g->vec[4].size() << "\n";
 				for (int idx = 0; idx < adj_edge[curr_pair.first].size(); idx++) {
@@ -563,24 +481,35 @@ vector<int> findLongestPath(Graph *g) {
 					// 	cout << v << "->";
 					// }
 					// cout << "\n";
-
 					q.push(make_pair(v, make_pair(curr_pair.second.first + 1, nextPath)));
-					
 				}
 			}
 			
 		}
+		if (pathLength >= 2*global_hop) {
+			g->diameter = pathLength;
+			// g->path = path;
+			g->point1 = path[0];
+			g->point2 = path[path.size()-1];
+			return;
+		}
 		
 	}
 
+<<<<<<< HEAD
 	
 
 	//scout << "\n";
+=======
+	result:
+>>>>>>> 7bed299 (update find longest path)
 	g->diameter = pathLength;
-	g->path = path;
+	// g->path = path;
 	g->point1 = path[0];
-	g->point2 = path[path.size()-1];	
+	g->point2 = path[path.size()-1];
+	return;
 
+<<<<<<< HEAD
 	// cout << "================= current longest path is: "  << global_hop << "\n";
 	// for (auto v : path) {
 	// 	cout << v << "->";
@@ -588,7 +517,12 @@ vector<int> findLongestPath(Graph *g) {
 	// cout << "\n";
 
 	return path;
+=======
+	// return path;
+>>>>>>> 7bed299 (update find longest path)
 }
+
+
 
 
 
@@ -656,7 +590,7 @@ void print_result(Graph* g){
         cerr << "Error: Unable to open the file " << outname << endl;
         exit(1);
     }
-	// findLongestPath(g);
+	findLongestPath(g);
 	set<int> vertices_set;
 	cout <<  " ====result graph: \n";
 	// Collect all unique vertices from all_edge_pairs into the set
@@ -828,6 +762,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	//Graph* tempGraph = new Graph();
 	//*tempGraph = *g;
 	int curr_diameter = g->diameter;
+	int que_in = 0;
+	int que_out = 0;
 	if (curr_diameter < 1) return false;
 	if (curr_diameter == 1) {
 		if(first_round != global_hop) {
@@ -849,12 +785,18 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		Graph *left = Queue.front();
 		queue<Graph*> filteredQueue;
 		Queue.pop();
+		que_out++;
 		
 		// cout << "mid1 queue \n";
 		Graph *right = new Graph();
 		*right = *left;
+<<<<<<< HEAD
 		//cout<<"1\n";
 		if (delete_on_node(left->path[0], left)) {
+=======
+		// cout<<"1\n";
+		if (delete_on_node(left->point1, left)) {
+>>>>>>> 7bed299 (update find longest path)
 			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
@@ -866,6 +808,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 			if (left->diameter > global_hop) {
 			// if (if_query_inside(left) && left->size_of_truss >= g->size_of_truss) {
+				que_in++;
 				filteredQueue.push(left);
 			} else {
 				graph_list.push_back(left);
@@ -873,9 +816,13 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(left);
 		}
+<<<<<<< HEAD
 		//cout<<"2\n";
+=======
+		// cout<<"2\n";
+>>>>>>> 7bed299 (update find longest path)
 
-		if (delete_on_node(right->path[right->path.size() - 1], right)) {
+		if (delete_on_node(right->point2, right)) {
 			bool best = false;
 			if ((right->diameter == g->diameter && g->size_of_truss < right->size_of_truss ) ||
 			right->diameter < g->diameter) {
@@ -889,6 +836,8 @@ bool removeEdgeFromLongestPath(Graph* g) {
 
 			if (right->diameter > global_hop) {
 				// if (right->diameter >= g->diameter && )
+				que_in++;
+				
 				filteredQueue.push(right);
 
 			} else {
@@ -898,7 +847,11 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(right);
 		}
+<<<<<<< HEAD
 		//cout<<"3\n";
+=======
+		// cout<<"3\n";
+>>>>>>> 7bed299 (update find longest path)
 
 	// Check each subgraph in Queue.
 		// queue<Graph*> TempQueue;
@@ -925,8 +878,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 			// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
 			if (!isSubgraphOfOther) {
 
-				Queue.push(currentGraph);
+				tempQueue.push(currentGraph);
 			} 
+			Queue = move(tempQueue);
+
 		}
 
 		// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
@@ -938,9 +893,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 			filteredQueue.pop();
 			delete(temp);
 		}
+		// cout <<"que_in"<<que_in<<endl;
+		// cout <<"que_out"<<que_out+Queue.size()<<endl;
 
 		// Copy the filtered subgraphs back to the original Queue.
-		// Queue = move(filteredQueue);
 
 	}
 
@@ -956,6 +912,7 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	}
 
 	first_round = global_hop;
+
 	return true;
 }
 
@@ -1204,24 +1161,27 @@ bool removeNegativeTriangle(Graph* g) {
 							isSubgraphOfOther = true;
 							// cout << "prunning queue\n";
 							delete (currentGraph);
-							currentGraph = NULL;
-
 						}
 						tempQueue.push(graphInFiltered);
 					}
 
 					// If currentGraph is not a subgraph of any other subgraph in filteredQueue, keep it.
 					if (!isSubgraphOfOther) {
-						tempQueue.push(currentGraph);
-						count++;
-						// cout<< "count size: "<< count<< endl;
 
-						// Queue.push(currentGraph);
+						tempQueue.push(currentGraph);
 					} 
-					while (!tempQueue.empty()) {
-						Queue.push(tempQueue.front());
-						tempQueue.pop();
-					}
+					Queue = move(tempQueue);
+
+				}
+
+				// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
+				// You can continue using filteredQueue or copy its contents back to the original Queue.
+
+				// Clean up the original Queue if needed.
+				while (!filteredQueue.empty()) {
+					Graph *temp = filteredQueue.front();
+					filteredQueue.pop();
+					delete(temp);
 				}
                 break;
 
