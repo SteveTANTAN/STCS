@@ -730,6 +730,74 @@ bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 
 	return false;
 }
+vector<int> check_follower(int edge_num, Graph*newG){
+	vector<int> delCost_vertices;
+    //因为这个计算delCost不能破坏原本的值，所以就用了copy
+    vector<bool> is_delete_e_copy = newG->is_delete_e;
+	int support_copy[MAX_E];
+	copy(newG->support, newG->support + MAX_E, support_copy);
+	vector<bool> Triangle_broken_copy = newG->Triangle_broken;
+
+
+	queue<int> q;
+
+
+	if (!is_delete_e_copy[edge_num] ) {
+		is_delete_e_copy[edge_num] = 1;
+		q.push(edge_num);
+		delCost_vertices.push_back(edge_num);
+	}
+
+	// cout<<"11\n";
+
+	while (!q.empty()) {
+		int sub = q.front();
+		q.pop();
+		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
+		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
+			if (!Triangle_broken_copy[Triangles[in_which_triangle[sub][i]].id]){
+				if (newG->Triangle_balance[Triangles[in_which_triangle[sub][i]].id]) {
+					// 删除临边
+					support_copy[Triangles[in_which_triangle[sub][i]].edge1]--;
+					support_copy[Triangles[in_which_triangle[sub][i]].edge2]--;
+					support_copy[Triangles[in_which_triangle[sub][i]].edge3]--;
+				}
+				else 
+				// 删除一条边后check 他的临边
+				if (!is_delete_e_copy[Triangles[in_which_triangle[sub][i]].edge1]) {
+					if (support_copy[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
+					{
+						q.push(Triangles[in_which_triangle[sub][i]].edge1);
+						delCost_vertices.push_back(Triangles[in_which_triangle[sub][i]].edge1);
+
+						is_delete_e_copy[Triangles[in_which_triangle[sub][i]].edge1] = 1;
+					}
+				}
+				if (!is_delete_e_copy[Triangles[in_which_triangle[sub][i]].edge2]) {
+					if (support_copy[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
+					{
+						delCost_vertices.push_back(Triangles[in_which_triangle[sub][i]].edge2);
+						q.push(Triangles[in_which_triangle[sub][i]].edge2);
+						is_delete_e_copy[Triangles[in_which_triangle[sub][i]].edge2] = 1;
+					}
+				}
+				if (!is_delete_e_copy[Triangles[in_which_triangle[sub][i]].edge3]) {
+					if (support_copy[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
+					{
+						delCost_vertices.push_back(Triangles[in_which_triangle[sub][i]].edge3);
+						q.push(Triangles[in_which_triangle[sub][i]].edge3);
+						is_delete_e_copy[Triangles[in_which_triangle[sub][i]].edge3] = 1;
+					}
+				}
+				Triangle_broken_copy[Triangles[in_which_triangle[sub][i]].id] = true;
+			}
+		}
+	}
+	is_delete_e_copy.clear();
+	Triangle_broken_copy.clear();
+
+	return delCost_vertices;
+}
 
 bool delete_on_node(int A, Graph*newG) {
 
@@ -753,15 +821,17 @@ bool delete_on_node(int A, Graph*newG) {
 
 }
 bool delete_on_radius(Graph *g_hop) {
+	if (g_hop->size_of_truss == 0) return false;
 	vector<int> longest_list = findLongestDistanceFromStartVertex(g_hop);
 
-	while (g_hop->diameter > (global_hop)) {
+	while (g_hop->diameter > (global_hop)){
 		for (auto i : longest_list) {
 			if ( !delete_on_node(i,g_hop)) return false;
 		}
-		findLongestDistanceFromStartVertex(g_hop);
+		longest_list = findLongestDistanceFromStartVertex(g_hop);
 	}
 	return true;
+
 }
 
 // Assuming you have the Graph and related classes defined here...
@@ -887,13 +957,47 @@ auto compare = [](const Graph* a, const Graph* b) {
     } 
     return a->diameter > b->diameter;
 };
+int quick_delete(Graph* g, Triangle unb) {
+	if (hop_num[all_edge_pairs[unb.edge1].v1] == hop_num[all_edge_pairs[unb.edge1].v2]) {
+		return unb.edge1;
+	} else if (hop_num[all_edge_pairs[unb.edge2].v1] == hop_num[all_edge_pairs[unb.edge2].v2]) {
+			return unb.edge2;
+	} else return unb.edge3;
 
+}
 bool removeNegativeTriangle(Graph* g) {
 	int curr_diameter = g->diameter;
 	if (curr_diameter < 1) return false;
 	if (g->unbalance_num <= 0) return true;
 	cout<<"===remove unbalanced==\n"<<endl;	
+    // for (auto unb : Triangles) {
+	// 	if (!g->Triangle_balance[unb.id] && !g->Triangle_broken[unb.id]){
+	// 		vector<int> v1 = check_follower(unb.edge1,g);
+	// 		vector<int> v2 = check_follower(unb.edge2,g);
+	// 		vector<int> v3 = check_follower(unb.edge3,g);
+	// 		// 首先，需要确保三个向量都是排序的
+	// 		sort(v1.begin(), v1.end());
+	// 		sort(v2.begin(), v2.end());
+	// 		sort(v3.begin(), v3.end());
 
+	// 		// 计算第一个和第二个向量的交集
+	// 		vector<int> v1_v2_intersection;
+	// 		set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(v1_v2_intersection));
+
+	// 		// 然后计算 (v1 和 v2 的交集) 与 v3 的交集
+	// 		vector<int> result;
+	// 		set_intersection(v1_v2_intersection.begin(), v1_v2_intersection.end(), v3.begin(), v3.end(), back_inserter(result));
+	// 		// v1.clear();
+	// 		// v2.clear();
+	// 		// v3.clear();
+	// 		// v1_v2_intersection.clear();
+	// 		cout<< "size:" <<result.size()<<endl;
+	// 		// cout<< "size1:" <<v1.size()<<endl;
+	// 		// cout<< "size2:" <<v2.size()<<endl;
+	// 		// cout<< "size3:" <<v3.size()<<endl;
+
+	// 	}
+	// }
 
 	queue<Graph*> Queue;
 	Graph *best_g = new Graph();
@@ -944,9 +1048,9 @@ bool removeNegativeTriangle(Graph* g) {
 				*right = *first;
 				int max_value = 0;
 				Graph *max_graph;
+				int quick_d = quick_delete(left, unb);
 				// cout<<"4\n";
-
-				if (delete_on_edge(unb.edge1, left,true) && (left->size_of_truss- left->unbalance_num)> g->size_of_truss) {
+				if (delete_on_edge(unb.edge1, left,false) && delete_on_radius(left)) {
 					// bool best = false;
 					// cout<<"4.1\n";
 					// cout<< "checkkkk11\n";
@@ -984,7 +1088,7 @@ bool removeNegativeTriangle(Graph* g) {
 				// cout<<"5\n";
 
 
-				if (delete_on_edge(unb.edge2, middle,true) && (middle->size_of_truss-middle->unbalance_num) > g->size_of_truss) {
+				if (delete_on_edge(unb.edge2, middle,false)&&delete_on_radius(middle)) {
 					// bool best = false;
 					if ((middle->diameter == g->diameter && middle->unbalance_num == 0
 					&& g->size_of_truss < middle->size_of_truss ) ||
@@ -1017,7 +1121,7 @@ bool removeNegativeTriangle(Graph* g) {
 				}
 				// cout<< "checkkkk3\n";
 
-				if (delete_on_edge(unb.edge3, right,true) && (right->size_of_truss-right->unbalance_num) > g->size_of_truss) {
+				if (delete_on_edge(unb.edge3, right,false)&&delete_on_radius(right))  {
 					// bool best = false;
 					if ((right->diameter == g->diameter && right->unbalance_num == 0
 					&& g->size_of_truss < right->size_of_truss ) ||
@@ -1088,13 +1192,14 @@ bool removeNegativeTriangle(Graph* g) {
 			}
 		}
 		// if (count %10) {
-		// 	cout<< "count size: "<< count<< endl;
-		// 	cout<< "queue size: "<< Queue.size()<< endl;
+
 		// }
 		delete(first);
 		first = NULL;
 
 	}
+	cout<< "q-in size: "<< que_in << endl;
+	cout<< "queue out: "<< que_out + Queue.size()<< endl;
     if (g->unbalance_num >0) return false;
 	return true;
 

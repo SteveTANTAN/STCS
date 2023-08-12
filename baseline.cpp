@@ -496,30 +496,16 @@ void findLongestPath(Graph *g) {
 		
 	}
 
-<<<<<<< HEAD
 	
 
-	//scout << "\n";
-=======
-	result:
->>>>>>> 7bed299 (update find longest path)
+
 	g->diameter = pathLength;
 	// g->path = path;
 	g->point1 = path[0];
 	g->point2 = path[path.size()-1];
 	return;
 
-<<<<<<< HEAD
-	// cout << "================= current longest path is: "  << global_hop << "\n";
-	// for (auto v : path) {
-	// 	cout << v << "->";
-	// }
-	// cout << "\n";
 
-	return path;
-=======
-	// return path;
->>>>>>> 7bed299 (update find longest path)
 }
 
 
@@ -682,11 +668,6 @@ bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 	// cout<<"12\n";
 
 
-	// if (newG->unbalance_num == 0 && newG->size_of_truss > 0){
-	// 	return delete_on_radius(newG);
-
-	// }
-	// cout<<"13\n";
 
 	if (newG->size_of_truss > 0 && if_query_inside(newG)) {
 		//if (update_dia) findLongestDistanceFromStartVertex(newG);
@@ -696,6 +677,9 @@ bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 
 	return false;
 }
+
+
+
 
 bool delete_on_node(int A, Graph*newG) {
 
@@ -719,16 +703,19 @@ bool delete_on_node(int A, Graph*newG) {
 
 }
 bool delete_on_radius(Graph *g_hop) {
+	if (g_hop->size_of_truss == 0) return false;
+
 	vector<int> longest_list = findLongestDistanceFromStartVertex(g_hop);
-	
-	while (g_hop->diameter > (global_hop)) {
+
+	while (g_hop->diameter > (global_hop)){
 		for (auto i : longest_list) {
 			if ( !delete_on_node(i,g_hop)) return false;
 		}
-		findLongestDistanceFromStartVertex(g_hop);
+		longest_list = findLongestDistanceFromStartVertex(g_hop);
 	}
 	return true;
 }
+
 
 // Assuming you have the Graph and related classes defined here...
 
@@ -765,11 +752,11 @@ bool removeEdgeFromLongestPath(Graph* g) {
 	int que_in = 0;
 	int que_out = 0;
 	if (curr_diameter < 1) return false;
-	if (curr_diameter == 1) {
+	if (curr_diameter <= global_hop) {
 		if(first_round != global_hop) {
 			graphPtrs.push_back(g);
+			first_round = global_hop;
 		} 
-		first_round = global_hop;
 		return true;
 	}
 	queue<Graph*> Queue;
@@ -790,13 +777,10 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		// cout << "mid1 queue \n";
 		Graph *right = new Graph();
 		*right = *left;
-<<<<<<< HEAD
-		//cout<<"1\n";
-		if (delete_on_node(left->path[0], left)) {
-=======
+
 		// cout<<"1\n";
 		if (delete_on_node(left->point1, left)) {
->>>>>>> 7bed299 (update find longest path)
+
 			bool best = false;
 			if ((left->diameter == g->diameter && g->size_of_truss < left->size_of_truss ) ||
 			left->diameter < g->diameter) {
@@ -816,11 +800,6 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(left);
 		}
-<<<<<<< HEAD
-		//cout<<"2\n";
-=======
-		// cout<<"2\n";
->>>>>>> 7bed299 (update find longest path)
 
 		if (delete_on_node(right->point2, right)) {
 			bool best = false;
@@ -847,11 +826,6 @@ bool removeEdgeFromLongestPath(Graph* g) {
 		} else {
 			delete(right);
 		}
-<<<<<<< HEAD
-		//cout<<"3\n";
-=======
-		// cout<<"3\n";
->>>>>>> 7bed299 (update find longest path)
 
 	// Check each subgraph in Queue.
 		// queue<Graph*> TempQueue;
@@ -925,6 +899,8 @@ bool quickremoveNegativeTriangle(Graph* g) {
 
 	if (curr_diameter < 1) return false;
 
+
+
     for (auto unb : Triangles) {
 
 		if (!g->Triangle_balance[unb.id] && !g->Triangle_broken[unb.id]){
@@ -935,7 +911,21 @@ bool quickremoveNegativeTriangle(Graph* g) {
             if (!runned && hop_num[all_edge_pairs[unb.edge1].v1] == hop_num[all_edge_pairs[unb.edge1].v2]) {
 				runned = true;
 				// cout<<"check2\n";
-				if (!delete_on_edge(unb.edge1, g,false)) return false;
+				Graph *temp_g = new Graph();
+				*temp_g = *g;
+				if (!delete_on_edge(unb.edge1, g,false)) {
+					*g = *temp_g;
+					if (!delete_on_edge(unb.edge2, g,false)) {
+						*g = *temp_g;
+						if (!delete_on_edge(unb.edge3, g,false)) {
+							*g = *temp_g;
+							delete(temp_g);
+							return false;
+						}
+					}
+
+				};
+				delete(temp_g);
                 // delete_on_edge(unb.edge1, g,false);
 
             } 
@@ -945,7 +935,21 @@ bool quickremoveNegativeTriangle(Graph* g) {
 				// cout<<"check3\n";
 
                 // delete_on_edge(unb.edge2, g,false);
-				if (!delete_on_edge(unb.edge2, g,false)) return false;
+				Graph *temp_g = new Graph();
+				*temp_g = *g;
+				if (!delete_on_edge(unb.edge2, g,false)) {
+					*g = *temp_g;
+					if (!delete_on_edge(unb.edge1, g,false)) {
+						*g = *temp_g;
+						if (!delete_on_edge(unb.edge3, g,false)) {
+							*g = *temp_g;
+							delete(temp_g);
+							return false;
+						}
+					}
+
+				};
+				delete(temp_g);
             } 
 
 			else if (!runned && hop_num[all_edge_pairs[unb.edge3].v1] == hop_num[all_edge_pairs[unb.edge3].v2]) {
@@ -953,7 +957,21 @@ bool quickremoveNegativeTriangle(Graph* g) {
 				runned = true;
 				// cout<<"check4\n";
                 // delete_on_edge(unb.edge3, g,false);
-                if (!delete_on_edge(unb.edge3, g,false)) return false;
+				Graph *temp_g = new Graph();
+				*temp_g = *g;
+				if (!delete_on_edge(unb.edge3, g,false)) {
+					*g = *temp_g;
+					if (!delete_on_edge(unb.edge1, g,false)) {
+						*g = *temp_g;
+						if (!delete_on_edge(unb.edge2, g,false)) {
+							*g = *temp_g;
+							delete(temp_g);
+							return false;
+						}
+					}
+
+				};
+				delete(temp_g);
 
             }
 			// cout<<"check=5\n";
@@ -986,29 +1004,11 @@ bool removeNegativeTriangle(Graph* g) {
 	*temp_g = *g;
 	// cout<<"1\n";
     if (!quickremoveNegativeTriangle(temp_g)) {
-		cout << "quicl delete fail\n";
-		*temp_g = *g;
-		bool check = false;
-		// cout<<"1.1\n";
 
-		for (auto unb : Triangles) {
-			// if (!unb.is_balanced && !unb.is_broken) {
-			if (!temp_g->Triangle_balance[unb.id] && !temp_g->Triangle_broken[unb.id]){
-			
-				if (!check && delete_on_edge(unb.edge1, temp_g,false)) check = true;
-				if (!check && delete_on_edge(unb.edge2, temp_g,false)) check = true;
-				if (!check && delete_on_edge(unb.edge2, temp_g,false)) check = true;
-				break;
-			}
-		}
-		if (!check) {
-			cout<< "cannot delete \n";
-			delete(temp_g);
-			temp_g = NULL;
-
-			return false;
-		}
-
+		cout<< "cannot delete \n";
+		delete(temp_g);
+		temp_g = NULL;
+		return false;
 	}
 	// cout<<"2\n";
 
@@ -1044,7 +1044,7 @@ bool removeNegativeTriangle(Graph* g) {
 				Graph *max_graph;
 				// cout<<"4\n";
 
-				if (delete_on_edge(unb.edge1, left,true) && (left->size_of_truss- left->unbalance_num)> g->size_of_truss) {
+				if (delete_on_edge(unb.edge1, left,true) && removeEdgeFromLongestPath(left) ) {
 					// bool best = false;
 					// cout<<"4.1\n";
 					// cout<< "checkkkk11\n";
@@ -1082,7 +1082,7 @@ bool removeNegativeTriangle(Graph* g) {
 				// cout<<"5\n";
 
 
-				if (delete_on_edge(unb.edge2, middle,true) && (middle->size_of_truss-middle->unbalance_num) > g->size_of_truss) {
+				if (delete_on_edge(unb.edge2, middle,true) && removeEdgeFromLongestPath(middle)) {
 					// bool best = false;
 					if ((middle->diameter == g->diameter && middle->unbalance_num == 0
 					&& g->size_of_truss < middle->size_of_truss ) ||
@@ -1115,7 +1115,7 @@ bool removeNegativeTriangle(Graph* g) {
 				}
 				// cout<< "checkkkk3\n";
 
-				if (delete_on_edge(unb.edge3, right,true) && (right->size_of_truss-right->unbalance_num) > g->size_of_truss) {
+				if (delete_on_edge(unb.edge3, right,true) && removeEdgeFromLongestPath(right)) {
 					// bool best = false;
 					if ((right->diameter == g->diameter && right->unbalance_num == 0
 					&& g->size_of_truss < right->size_of_truss ) ||
@@ -1590,14 +1590,15 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 	// check if the original graph has k-truss including src
 
-	cout<<"check11\n";
+	// cout<<"check11\n";
 
 	GetmaximumKtruss(g);
 	if (!if_query_inside(g)) {
+		cout<< "not inside\n";
 		return false;
 	}
 
-	cout<<"check12\n";
+	// cout<<"check12\n";
 
 	// record all nodes with k hops, hop is initially set to 2
 	memset(hop_num, -1, sizeof(hop_num));
@@ -1632,10 +1633,10 @@ bool GetKtruss(int src, int k, Graph* g) {
 	bool isSuccess = false;
 
 	int curr_hop = 1;
-	cout<<"check13\n";
+	// cout<<"check13\n";
 
 	while (curr_hop >= 1 && curr_hop <= max_hop) {
-		// cout << "--------when hop is " << curr_hop << "\n";
+		cout << "--------when hop is " << curr_hop << "\n";
 		Graph *g_hop = new Graph();
 		g_hop =  GetKtrusswith_Nhops(curr_hop, k, g);
 		
@@ -1648,11 +1649,11 @@ bool GetKtruss(int src, int k, Graph* g) {
 			findLongestPath(g_hop);
 			bool negative = false;	
 			// print_result(g_hop);
-			cout<<"check14\n";
+			// cout<<"check14\n";
 
 			if (removeEdgeFromLongestPath(g_hop) && g_hop->diameter <= global_hop) {
 				// cout<<global_hop <<"  test\n";
-				cout<<"check15\n";
+				// cout<<"check15\n";
 
 				while (!graphPtrs.empty()) {
 					cout << "candidate:"<<graphPtrs.size() << "\n";
@@ -1664,7 +1665,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 					// 	cout <<"size:"<< graph->size_of_truss << "\n";
 
 					// }
-					cout<<"check17\n";
+					// cout<<"check17\n";
 
 					if (graphPtrs[0]->unbalance_num > 0) {
 						// cout <<"dia1:"<< graphPtrs[0]->size_of_truss << "\n";
@@ -1692,12 +1693,16 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 		} 		
 		hop_count:
+
 		for (Graph* graph : graphPtrs) {
 			delete graph;  // 释放动态分配的内存
 		}
 		graphPtrs.clear(); 
+
 		curr_hop += 1;
-		delete(g_hop);
+		// delete(g_hop);
+		cout<<"check17\n";
+
 	}
 	cout<<"---calculation fail! \n"<<endl;
 	return false;
