@@ -7,14 +7,14 @@
 #include<fstream>
 //#include<Windows.h>
 #include<cstring>
-#include <set>
-#include <limits>
+#include<set>
+#include<limits>
 #include<sys/time.h>
 #include<algorithm>
 
 
 using namespace std;
-const int MAX_V = 1000000;
+const int MAX_V = 516000;
 const int MAX_E = 1000000;
 int e_num, v_num , nhop_e_num;
 
@@ -47,18 +47,26 @@ vector<int> adj_edge[MAX_V];
 vector<int> in_which_triangle[MAX_E];
 typedef struct {
 
-	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
-	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(MAX_E,false)};
-	vector<bool> Triangle_broken{vector<bool>(MAX_E,false)};
+	// vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
+	// vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
+	// vector<bool> Triangle_balance{vector<bool>(MAX_E,false)};
+	// vector<bool> Triangle_broken{vector<bool>(MAX_E,false)};
+	bool is_delete_e[MAX_E];
+	bool is_delete_vec[MAX_V];
+	bool Triangle_balance[MAX_E];
+	bool Triangle_broken[MAX_E];
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;
 	// vector<Triangle> Triangles;
 	int size_of_truss;
 
+	
 	int diameter;
-
+	int point1;
+	int point2;
+	// vector<int> path;
+	// vector<int> path;
 } Graph;
 
 
@@ -75,13 +83,18 @@ int visited[MAX_V];
 
 string filename, outname;
 
+int first_round = 0;
+vector<Graph*> graphPtrs;
+
 bool delete_on_radius(Graph *g_hop);
 vector<int> findLongestDistanceFromStartVertex(Graph *g);
 
 Graph* build_graph() {
 	Graph *g = new Graph();
-	// memset(g->is_delete_e, false, sizeof(g->is_delete_e));
-	// memset(g->is_delete_vec, false, sizeof(g->is_delete_vec));
+	memset(g->is_delete_e, false, sizeof(g->is_delete_e));
+	memset(g->is_delete_vec, false, sizeof(g->is_delete_vec));	
+	memset(g->Triangle_balance, false, sizeof(g->Triangle_balance));
+	memset(g->Triangle_broken, false, sizeof(g->Triangle_broken));
 	memset(g->support, 0, sizeof(g->support));
 	// memset(book, 0, sizeof(book));
 	// memset(g->break_unb, 0, sizeof(g->break_unb));
@@ -357,7 +370,6 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 
 
 }
-
 
 // void findLongestPath(Graph *g) {
 // 	int pathLength = -1;
@@ -760,11 +772,15 @@ bool delete_on_edge(int edge_num, Graph*newG, int update_dia) {
 }
 vector<int> check_follower(int edge_num, Graph*newG){
 	vector<int> delCost_vertices;
-    //因为这个计算delCost不能破坏原本的值，所以就用了copy
-    vector<bool> is_delete_e_copy = newG->is_delete_e;
+    // //因为这个计算delCost不能破坏原本的值，所以就用了copy
+    // vector<bool> is_delete_e_copy = newG->is_delete_e;
 	int support_copy[MAX_E];
+	int is_delete_e_copy[MAX_E];
+	int Triangle_broken_copy[MAX_E];
 	copy(newG->support, newG->support + MAX_E, support_copy);
-	vector<bool> Triangle_broken_copy = newG->Triangle_broken;
+	copy(newG->is_delete_e, newG->is_delete_e + MAX_E, is_delete_e_copy);
+	copy(newG->Triangle_broken, newG->Triangle_broken + MAX_E, Triangle_broken_copy);
+	// vector<bool> Triangle_broken_copy = newG->Triangle_broken;
 
 
 	queue<int> q;
@@ -821,11 +837,12 @@ vector<int> check_follower(int edge_num, Graph*newG){
 			}
 		}
 	}
-	is_delete_e_copy.clear();
-	Triangle_broken_copy.clear();
+	// is_delete_e_copy.clear();
+	// Triangle_broken_copy.clear();
 
 	return delCost_vertices;
 }
+
 
 bool delete_on_node(int A, Graph*newG) {
 
@@ -1235,7 +1252,6 @@ int quick_delete(Graph* g, Triangle unb) {
 bool removeNegativeTriangle(Graph* g) {
 	int curr_diameter = g->diameter;
 	if (curr_diameter < 1) return false;
-	cout<<"test1\n";
 	if (g->unbalance_num <= 0) return true;
 	cout<<"===remove unbalanced==\n"<<endl;	
     // for (auto unb : Triangles) {
@@ -1719,11 +1735,13 @@ bool removeNegativeTriangle(Graph* g) {
 
 void GetmaximumKtruss(Graph *g) {
 	g->size_of_truss = e_num;
+	g->unbalance_num = 0;
+
 	int counts = 0;
 	int book[MAX_V];
 	vector<int> is_booked;
 	int two_dimension[MAX_E];
-	memset(g->support, 0, sizeof(g->support));
+	// memset(g->support, 0, sizeof(g->support));
 	Triangles.clear();
 
 
@@ -1791,25 +1809,20 @@ void GetmaximumKtruss(Graph *g) {
 		}
 		is_booked.clear();
 	}
+	int temp = 0;
+
 
 	for (int i = 0; i < Triangles.size(); i++) {
-		Triangles[i].id = i;
-		g->Triangle_balance[i] = Triangles[i].is_balanced;
-		g->Triangle_broken[i] = Triangles[i].is_broken;
-
-	}
-
-	for (int i = 0; i < Triangles.size(); i++) {
-		if (!g->Triangle_balance[Triangles[i].id])
+		if (!Triangles[i].is_balanced)
 			g->unbalance_num++;
 		else {
 			g->support[Triangles[i].edge1]++;
 			g->support[Triangles[i].edge2]++;
 			g->support[Triangles[i].edge3]++;
 		}
-		if (Triangles[i].is_balanced != g->Triangle_balance[Triangles[i].id]) {
-			cout << "error\n";
-		}
+		// if (Triangles[i].is_balanced != g->Triangle_balance[Triangles[i].id]) {
+		// 	cout << "error\n";
+		// }
 	}
 
 	// cout << "counts:" << counts << endl;
@@ -1827,20 +1840,17 @@ void GetmaximumKtruss(Graph *g) {
 			}
 		}
 	}
-	// cout<<"1\n";
 
 	while (!q.empty()) {
 		int sub = q.front();
 		q.pop();
 		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
 		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
-			// cout<<"1.0\n";
 
-			if (!g->Triangle_broken[in_which_triangle[sub][i]]){
+			if (!Triangles[in_which_triangle[sub][i]].is_broken){
 			// if(!g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id]){
-				// cout<<"1.1\n";
 				
-				if (g->Triangle_balance[Triangles[in_which_triangle[sub][i]].id]) {
+				if (Triangles[in_which_triangle[sub][i]].is_balanced) {
 					// 删除临边
 					g->support[Triangles[in_which_triangle[sub][i]].edge1]--;
 					g->support[Triangles[in_which_triangle[sub][i]].edge2]--;
@@ -1849,7 +1859,6 @@ void GetmaximumKtruss(Graph *g) {
 				else 
 					g->unbalance_num--;
 				// 删除一条边后check 他的临边
-				// cout<<"1.2\n";
 
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
@@ -1860,7 +1869,6 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
-				// cout<<"1.3\n";
 
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
@@ -1871,7 +1879,6 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
-				// cout<<"1.4\n";
 
 				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3]) {
 					if (g->support[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
@@ -1882,28 +1889,28 @@ void GetmaximumKtruss(Graph *g) {
 						g->size_of_truss--;
 					}
 				}
-				// cout<<"1.5\n";
 
-				g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id] = true;
-				// cout<<"1.6\n";
+				Triangles[in_which_triangle[sub][i]].is_broken = true;
 
 			}
-			// cout<<"1.7\n";
 
 		}
 	}
-	// cout<<"2\n";
 
-	// cout << "size of KTruss" << g->size_of_truss << endl;
-	// cout << "truss unb num:" << g->unbalance_num << endl;
+	cout << "size of KTruss" << g->size_of_truss << endl;
+	cout << "truss unb num:" << g->unbalance_num << endl;
 
+	for (int i = 0; i < Triangles.size(); i++) {
+		Triangles[i].id = i;
+		g->Triangle_balance[i] = Triangles[i].is_balanced;
+		g->Triangle_broken[i] = Triangles[i].is_broken;
 
+	}
 
 
 
 
 }
-
 
 
 bool GetKtruss(int src, int k, Graph* g) {
@@ -1913,6 +1920,8 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 	GetmaximumKtruss(g);
 	if (!if_query_inside(g)) {
+		cout << "Cannot obtain any result \n";
+
 		return false;
 	}
 
@@ -2180,6 +2189,8 @@ int main(int argc, char** argv)  {
     outfile <<"total_unbalance_num: " << total_unbalance_num << endl;
     outfile <<"total_percentage: " << total_percentage << endl;
     outfile <<"total_density: " << total_density << endl;
+	cout <<"diameter: " << total_diameter << endl;
+    cout <<"total_size_of_truss: " << total_size_of_truss << endl;
     outfile.close();
 	return 0;
 }

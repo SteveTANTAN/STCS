@@ -1,0 +1,43 @@
+
+query_data: NO0; vertex_id: 74869
+check1
+size of KTruss407230
+truss unb num:66585
+check1.1
+Cannot obtain any result 
+diameter: 0
+total_size_of_truss: 0
+query_data: NO1; vertex_id: 50027
+check1
+size of KTruss407230
+truss unb num:66585
+check1.1
+Cannot obtain any result 
+diameter: 0
+total_size_of_truss: 0
+query_data: NO2; vertex_id: 119597
+check1
+size of KTruss407230
+truss unb num:66585
+check1.1
+Cannot obtain any result 
+diameter: 0
+total_size_of_truss: 0
+query_data: NO3; vertex_id: 13674
+check1
+size of KTruss407230
+truss unb num:66585
+check1.1
+Cannot obtain any result 
+diameter: 0
+total_size_of_truss: 0
+query_data: NO4; vertex_id: 18539
+check1
+size of KTruss407230
+truss unb num:66585
+check1.1
+check2
+max hop is 10
+--------when hop is 1
+size of KTruss: 263
+truss unb num: 4231

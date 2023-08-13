@@ -10,9 +10,11 @@
 #include <set>
 #include <limits>
 #include<sys/time.h>
+#include<algorithm>
+
 
 using namespace std;
-const int MAX_V = 1160000;
+const int MAX_V = 1000000;
 const int MAX_E = 1000000;
 int e_num, v_num , nhop_e_num;
 
@@ -30,53 +32,35 @@ public:
 	int edge1;
 	int edge2;
 	int edge3;
-	int v1;
-	int v2;
-	int v3;
-	int is_balanced;
-	int is_broken;
-	Triangle() :edge1(-1), edge2(-1), edge3(-1), v1(-1), v2(-1), v3(-1), is_balanced(0), is_broken(0) {}
-};
+	int id;
 
-class Group {
-public:
-	vector<int> edges;
-	int is_delete;
-	int typ_edge;
-	Group():is_delete(0),typ_edge(-1){}
+	bool is_balanced;
+	bool is_broken;
+	Triangle() :edge1(-1), edge2(-1), edge3(-1),  id(-1), is_balanced(false), is_broken(false) {}
 };
+vector<Triangle> Triangles;
 
+// Edge all_edge_pairs[MAX_E];
+// vector<int> vec[MAX_V];
+// vector<int> adj_edge[MAX_V];
+vector<vector<int>> adj_edge;
+vector<Edge> all_edge_pairs;
+vector<vector<int>> in_which_triangle;
+//vector<int> edge_to_edge[MAX_E];
+// vector<int> in_which_triangle[MAX_E];
 typedef struct {
-	Edge all_edge_pairs[MAX_E];
-	vector<int> vec[MAX_V];
-	vector<int> adj_edge[MAX_V];
-	//vector<int> edge_to_edge[MAX_E];
-	vector<int> in_which_triangle[MAX_E];
-	vector<int> is_linked;
-	int book[MAX_V];
-	vector<int> is_booked;
-	int is_delete_e[MAX_V];
-	int is_delete_vec[MAX_E];
-	int link[MAX_E];
-	int temp_delete_e[MAX_E];
-	int break_unb[MAX_E];
+
+	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
+	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
+	vector<bool> Triangle_balance{vector<bool>(MAX_E,false)};
+	vector<bool> Triangle_broken{vector<bool>(MAX_E,false)};
 	int support[MAX_E];
 	int edge_num;
-
-
 	int unbalance_num = 0;
-	vector<Triangle> Triangles;
+	// vector<Triangle> Triangles;
 	int size_of_truss;
-	vector<int> followers[MAX_E + 1];
-	vector<int> two_dimension;
-	int grouped[MAX_E];
-	int candidate[MAX_E];
-	vector<int> candidates;
-	vector<Group> groups;
-	vector<int> id;
-
 	int diameter;
-	vector<int> path;
+	// vector<int> path;
 } Graph;
 
 
@@ -88,24 +72,26 @@ int start_vertex, k, global_hop;
 
 // modify from here
 int hop_num[MAX_V];
+int node_deleted[MAX_V];
 int visited[MAX_V];
 
 string filename, outname;
 
-
+bool delete_on_radius(Graph *g_hop);
+vector<int> findLongestDistanceFromStartVertex(Graph *g);
 
 Graph* build_graph() {
 	Graph *g = new Graph();
-	memset(g->is_delete_e, 0, sizeof(g->is_delete_e));
-	memset(g->is_delete_vec, 0, sizeof(g->is_delete_vec));
+	// memset(g->is_delete_e, false, sizeof(g->is_delete_e));
+	// memset(g->is_delete_vec, false, sizeof(g->is_delete_vec));
 	memset(g->support, 0, sizeof(g->support));
-	memset(g->book, 0, sizeof(g->book));
-	memset(g->break_unb, 0, sizeof(g->break_unb));
-	memset(g->temp_delete_e, 0, sizeof(g->temp_delete_e));
-	memset(g->link, 0, sizeof(g->link));
-	memset(g->grouped, -1, sizeof(g->grouped));
-	memset(g->candidate, 0, sizeof(g->candidate));
-	g->two_dimension.resize(MAX_E);
+	// memset(book, 0, sizeof(book));
+	// memset(g->break_unb, 0, sizeof(g->break_unb));
+	// memset(g->temp_delete_e, 0, sizeof(g->temp_delete_e));
+	// memset(g->link, 0, sizeof(g->link));
+	// memset(g->grouped, -1, sizeof(g->grouped));
+	// memset(g->candidate, 0, sizeof(g->candidate));
+	// g->two_dimension.resize(MAX_E);
 	ifstream inputFile{ filename };
     
     //ifstream inputFile("data/temp1.txt");
@@ -117,23 +103,43 @@ Graph* build_graph() {
     //inputFile >> vertexnum >> edgenum;
 
 	inputFile >> v_num >> e_num;
+	int max_v_number = 0;
+	adj_edge.resize(v_num +1);
+	in_which_triangle.resize(e_num +1);
+    all_edge_pairs.resize(e_num +1);
+	g->is_delete_vec.resize(v_num +1);
+	g->is_delete_e.resize(e_num +1);
+	g->Triangle_balance.resize(e_num +1);
+	g->Triangle_broken.resize(e_num +1);
 	for (int i = 0; i < e_num; i++)
 	{
 		int v1, v2, sign;
 		inputFile >> v1 >> v2 >> sign;
-		g->all_edge_pairs[i].v1 = v1;
-		g->all_edge_pairs[i].v2 = v2;
-		g->all_edge_pairs[i].sign = sign;
-		g->vec[v1].push_back(v2);
-		g->vec[v2].push_back(v1);
-		g->adj_edge[v1].push_back(i);
-		g->adj_edge[v2].push_back(i);
+        Edge edge_temp;
+        edge_temp.v1 = v1;
+        edge_temp.v2 = v2;
+        edge_temp.sign = sign;
+        all_edge_pairs.push_back(edge_temp);
+		// all_edge_pairs[i].v1 = v1;
+		// all_edge_pairs[i].v2 = v2;
+		g->is_delete_e[i] = false;
+		g->is_delete_vec[v1] = false;
+		g->is_delete_vec[v2] = false;
+		max_v_number = max(max(max_v_number,v1),v2);
+
+		// all_edge_pairs[i].sign = sign;
+		// g->vec[v1].push_back(v2);
+		// g->vec[v2].push_back(v1);
+		adj_edge[v1].push_back(i);
+		adj_edge[v2].push_back(i);
 	}
-	for (int i = 0; i < MAX_E; i++) {
-		g->followers[MAX_E].push_back(0);
-	}
+	// for (int i = 0; i < MAX_E; i++) {
+	// 	g->followers[MAX_E].push_back(0);
+	// }
 	g->diameter = e_num;
 	g->edge_num = e_num;
+	v_num = max_v_number+1;
+
 
 	return g;
 }
