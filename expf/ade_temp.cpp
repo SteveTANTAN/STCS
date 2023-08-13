@@ -14,7 +14,7 @@
 
 
 using namespace std;
-const int MAX_V = 516000;
+const int MAX_V = 1000000;
 const int MAX_E = 1000000;
 int e_num, v_num , nhop_e_num;
 

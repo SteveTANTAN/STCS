@@ -1,0 +1,211 @@
+
+query_data: NO0; vertex_id: 3262
+not inside
+query_data: NO1; vertex_id: 7500
+not inside
+query_data: NO2; vertex_id: 5140
+not inside
+query_data: NO3; vertex_id: 371
+not inside
+query_data: NO4; vertex_id: 1257
+not inside
+query_data: NO5; vertex_id: 3110
+not inside
+query_data: NO6; vertex_id: 1191
+not inside
+query_data: NO7; vertex_id: 3167
+not inside
+query_data: NO8; vertex_id: 7600
+not inside
+query_data: NO9; vertex_id: 6921
+not inside
+query_data: NO10; vertex_id: 1013
+not inside
+query_data: NO11; vertex_id: 2518
+not inside
+query_data: NO12; vertex_id: 1096
+not inside
+query_data: NO13; vertex_id: 7421
+not inside
+query_data: NO14; vertex_id: 201
+not inside
+query_data: NO15; vertex_id: 1966
+not inside
+query_data: NO16; vertex_id: 2780
+not inside
+query_data: NO17; vertex_id: 7380
+not inside
+query_data: NO18; vertex_id: 2806
+not inside
+query_data: NO19; vertex_id: 1643
+not inside
+query_data: NO20; vertex_id: 2130
+not inside
+query_data: NO21; vertex_id: 1502
+not inside
+query_data: NO22; vertex_id: 831
+not inside
+query_data: NO23; vertex_id: 844
+not inside
+query_data: NO24; vertex_id: 873
+not inside
+query_data: NO25; vertex_id: 2732
+not inside
+query_data: NO26; vertex_id: 417
+not inside
+query_data: NO27; vertex_id: 3400
+not inside
+query_data: NO28; vertex_id: 1097
+not inside
+query_data: NO29; vertex_id: 1615
+not inside
+query_data: NO30; vertex_id: 263
+not inside
+query_data: NO31; vertex_id: 1595
+not inside
+query_data: NO32; vertex_id: 1249
+not inside
+query_data: NO33; vertex_id: 3213
+not inside
+query_data: NO34; vertex_id: 3099
+not inside
+query_data: NO35; vertex_id: 2803
+not inside
+query_data: NO36; vertex_id: 1884
+not inside
+query_data: NO37; vertex_id: 2016
+not inside
+query_data: NO38; vertex_id: 963
+not inside
+query_data: NO39; vertex_id: 1839
+not inside
+query_data: NO40; vertex_id: 475
+not inside
+query_data: NO41; vertex_id: 3279
+not inside
+query_data: NO42; vertex_id: 3046
+not inside
+query_data: NO43; vertex_id: 559
+not inside
+query_data: NO44; vertex_id: 3135
+not inside
+query_data: NO45; vertex_id: 2317
+not inside
+query_data: NO46; vertex_id: 2878
+not inside
+query_data: NO47; vertex_id: 1653
+not inside
+query_data: NO48; vertex_id: 499
+not inside
+query_data: NO49; vertex_id: 480
+not inside
+query_data: NO50; vertex_id: 1547
+not inside
+query_data: NO51; vertex_id: 1873
+not inside
+query_data: NO52; vertex_id: 879
+not inside
+query_data: NO53; vertex_id: 839
+not inside
+query_data: NO54; vertex_id: 2670
+not inside
+query_data: NO55; vertex_id: 6
+--------when hop is 1
+size of KTruss: 203
+truss unb num: 7
+===================Deleting diameter ==================
+candidate:44
+calculation success!
+query_data: NO56; vertex_id: 2720
+not inside
+query_data: NO57; vertex_id: 1507
+not inside
+query_data: NO58; vertex_id: 2448
+not inside
+query_data: NO59; vertex_id: 2133
+not inside
+query_data: NO60; vertex_id: 7591
+not inside
+query_data: NO61; vertex_id: 2139
+not inside
+query_data: NO62; vertex_id: 1189
+not inside
+query_data: NO63; vertex_id: 3436
+not inside
+query_data: NO64; vertex_id: 1842
+not inside
+query_data: NO65; vertex_id: 196
+not inside
+query_data: NO66; vertex_id: 3170
+not inside
+query_data: NO67; vertex_id: 984
+not inside
+query_data: NO68; vertex_id: 2171
+not inside
+query_data: NO69; vertex_id: 1902
+not inside
+query_data: NO70; vertex_id: 1116
+not inside
+query_data: NO71; vertex_id: 55
+not inside
+query_data: NO72; vertex_id: 816
+not inside
+query_data: NO73; vertex_id: 380
+not inside
+query_data: NO74; vertex_id: 109
+not inside
+query_data: NO75; vertex_id: 7475
+not inside
+query_data: NO76; vertex_id: 5
+--------when hop is 1
+size of KTruss: 233
+truss unb num: 5
+===================Deleting diameter ==================
+candidate:16
+calculation success!
+query_data: NO77; vertex_id: 1688
+not inside
+query_data: NO78; vertex_id: 2827
+not inside
+query_data: NO79; vertex_id: 2504
+not inside
+query_data: NO80; vertex_id: 2041
+not inside
+query_data: NO81; vertex_id: 1224
+not inside
+query_data: NO82; vertex_id: 3139
+not inside
+query_data: NO83; vertex_id: 2942
+not inside
+query_data: NO84; vertex_id: 1378
+not inside
+query_data: NO85; vertex_id: 1697
+not inside
+query_data: NO86; vertex_id: 7516
+not inside
+query_data: NO87; vertex_id: 716
+not inside
+query_data: NO88; vertex_id: 3231
+not inside
+query_data: NO89; vertex_id: 1753
+not inside
+query_data: NO90; vertex_id: 2825
+not inside
+query_data: NO91; vertex_id: 3316
+not inside
+query_data: NO92; vertex_id: 3195
+not inside
+query_data: NO93; vertex_id: 998
+not inside
+query_data: NO94; vertex_id: 3230
+not inside
+query_data: NO95; vertex_id: 2813
+not inside
+query_data: NO96; vertex_id: 1172
+not inside
+query_data: NO97; vertex_id: 1219
+not inside
+query_data: NO98; vertex_id: 3340
+not inside
+query_data: NO99; vertex_id: 7518
+not inside

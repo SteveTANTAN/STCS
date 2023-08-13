@@ -5,12 +5,16 @@ def process_input(input_lines):
     output_lines = []
     vertex_counter = collections.Counter()
     edge_set = set()
+    increment_vertices = False # Use this flag to check if vertices need to be incremented
+
     for line in input_lines:
         v1, v2, operator = line.strip().split()
         v1, v2 = int(v1), int(v2)  # Ensure that the vertices are integers
 
         # Check if the reverse order is already in the excluded lines
         if (v2, v1) in edge_set or (v1, v2) in edge_set:
+            continue
+        if v1 == v2:
             continue
 
         # Add the current line to the excluded lines and vertex counter
@@ -24,11 +28,19 @@ def process_input(input_lines):
 
     # Check if vertex 0 exists, if yes, increment all vertices by 1
     if 0 in vertex_counter:
+        increment_vertices = True
+
+    if increment_vertices:
+        # Update all vertices in the output lines
+        updated_output_lines = []
+        for line in output_lines:
+            v1, v2, operator = line.strip().split()
+            updated_output_lines.append(f"{int(v1) + 1}\t{int(v2) + 1}\t{operator}\n")
+        output_lines = updated_output_lines
         edge_set = {(x + 1, y + 1) for x, y in edge_set}
-        vertex_counter = collections.Counter(x + 1 for x in vertex_counter.elements())
 
     # Calculate max_vertex and num_edges
-    max_vertex = max(vertex_counter)  
+    max_vertex = max(vertex_counter) + (1 if increment_vertices else 0)
     num_edges = len(edge_set)
 
     # Add max_vertex and num_edges at the beginning of the output

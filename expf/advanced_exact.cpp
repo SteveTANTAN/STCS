@@ -13,7 +13,7 @@
 
 using namespace std;
 const int MAX_V = 1160000;
-const int MAX_E = 3000000;
+const int MAX_E = 1000000;
 int e_num, v_num , nhop_e_num;
 
 class Edge {

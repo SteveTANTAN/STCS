@@ -1,0 +1,23 @@
+
+query_data: NO0; vertex_id: 3262
+Cannot obtain any result 
+query_data: NO1; vertex_id: 7500
+max hop is 6
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO2; vertex_id: 5140
+Cannot obtain any result 
+query_data: NO3; vertex_id: 371
+max hop is 6
+--------when hop is 1
+size of KTruss: 55
+truss unb num: 1
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO4; vertex_id: 1257
+Cannot obtain any result 
+query_data: NO5; vertex_id: 3110
+Cannot obtain any result 

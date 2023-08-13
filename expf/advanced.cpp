@@ -14,7 +14,7 @@
 
 
 using namespace std;
-const int MAX_V = 516000;
+const int MAX_V = 200000;
 const int MAX_E = 1000000;
 int e_num, v_num , nhop_e_num;
 
@@ -42,9 +42,11 @@ vector<Triangle> Triangles;
 
 Edge all_edge_pairs[MAX_E];
 // vector<int> vec[MAX_V];
-vector<int> adj_edge[MAX_V];
+// vector<int> adj_edge[MAX_V];
+vector<vector<int>> adj_edge;
+vector<vector<int>> in_which_triangle;
 //vector<int> edge_to_edge[MAX_E];
-vector<int> in_which_triangle[MAX_E];
+// vector<int> in_which_triangle[MAX_E];
 typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
@@ -101,6 +103,8 @@ Graph* build_graph() {
 
 	inputFile >> v_num >> e_num;
 	int max_v_number = 0;
+	adj_edge.resize(v_num +1);
+	in_which_triangle.resize(e_num +1);
 
 	for (int i = 0; i < e_num; i++)
 	{
@@ -884,19 +888,21 @@ auto compare = [](const Graph* a, const Graph* b) {
 void GetmaximumKtruss(Graph *g) {
 	g->size_of_truss = e_num;
 	int counts = 0;
-	int book[MAX_V];
-	vector<int> is_booked;
+
 	int two_dimension[MAX_E];
 	memset(g->support, 0, sizeof(g->support));
 	Triangles.clear();
+	int book[MAX_E];
+	vector<int> is_booked;
 
-
+	cout<<"test1\n";
 	for (int i = 0; i < e_num; i++) {
+		// bool book[MAX_V] = { 0 };
+		int book[v_num+1] = {-1};
 
-		Triangle temp_triangle;
 
 
-		temp_triangle.edge1 = i;
+		// cout<<"test3\n";
 
 		for (int j = 0; j < adj_edge[all_edge_pairs[i].v1].size(); j++) {
 			int edgeIndex = adj_edge[all_edge_pairs[i].v1][j];
@@ -909,10 +915,15 @@ void GetmaximumKtruss(Graph *g) {
 			// 	continue;
 
 			counts++;
-			book[v] = 1;
+			book[v] = edgeIndex;
+			// is_booked.push_back(v);
+
 			two_dimension[v] = j;
-			is_booked.push_back(v);
+
+
 		}
+		// cout<<"test4\n";
+
 		for (int j = 0; j < adj_edge[all_edge_pairs[i].v2].size(); j++) {
 			int edg2 = adj_edge[all_edge_pairs[i].v2][j];
 			int v = (all_edge_pairs[edg2].v1 == all_edge_pairs[i].v2)
@@ -924,9 +935,13 @@ void GetmaximumKtruss(Graph *g) {
 			// 	continue;
 
 			counts++;
-			if (book[v]) {
-				int edg1 = adj_edge[all_edge_pairs[i].v1][two_dimension[v]]; //?edg1
+			if (book[v]>-1) {
+				int edg1 = book[v]; //?edg1
 				if (edg1 > i && edg2 > i) {
+					Triangle temp_triangle;
+
+
+					temp_triangle.edge1 = i;
 					temp_triangle.edge2 = edg1;
 					temp_triangle.edge3 = edg2;
 					// temp_triangle.v3 = v;
@@ -941,19 +956,42 @@ void GetmaximumKtruss(Graph *g) {
 						// g->Triangle_balance[temp_triangle.id] = true;
 
 					}
-				
 					Triangles.push_back(temp_triangle);
 					in_which_triangle[i].push_back(Triangles.size() - 1);
 					in_which_triangle[edg1].push_back(Triangles.size() - 1);
 					in_which_triangle[edg2].push_back(Triangles.size() - 1);
+					// if (i == 452 || edg1 == 452 ||edg2==452) {
+					// 	cout<<"====v1 "<<all_edge_pairs[i].v1<<endl;
+					// 	cout<<"====v2 "<<all_edge_pairs[i].v2<<endl;
+					// 	cout<<"====v3 "<<v<<endl;
+					// 	cout<<"====edj1"<<edg1<<endl;
+					// 	cout<<"====v1 "<<all_edge_pairs[edg1].v1<<endl;
+					// 	cout<<"====v2 "<<all_edge_pairs[edg1].v2<<endl;
+
+					// 	cout<<"====edj2"<<edg2<<endl;
+					// 	cout<<"====v1 "<<all_edge_pairs[edg2].v1<<endl;
+					// 	cout<<"====v2 "<<all_edge_pairs[edg2].v2<<endl;
+					// 	cout<<"size   "<< Triangles.size() - 1<<endl;
+					// 	cout<<"+++++size   "<< in_which_triangle[452].size()<<endl;
+					// 	cout<<"+++++inside   "<< in_which_triangle[452][in_which_triangle[452].size()-1]<<endl;
+					// }
+				
+
 				}
 			}
 		}
+		// cout<<"test5\n";
+		// book.clear();
+		// for (int j = 0; j < is_booked.size(); j++) {
+		// 	book[is_booked[j]] = 0;
+		// }
+		// is_booked.clear();
+	}
+	for (auto tri_id: in_which_triangle[452]) {
+		cout<<"1++++++++++++=========\n";
 
-		for (int j = 0; j < is_booked.size(); j++) {
-			book[is_booked[j]] = 0;
-		}
-		is_booked.clear();
+		cout<<tri_id<<" test7.4\n";
+		// cout<<Triangles[tri_id].id<<" ID test7.4\n";
 	}
 
 	for (int i = 0; i < Triangles.size(); i++) {
@@ -961,6 +999,12 @@ void GetmaximumKtruss(Graph *g) {
 		g->Triangle_balance[i] = Triangles[i].is_balanced;
 		g->Triangle_broken[i] = Triangles[i].is_broken;
 
+	}
+	for (auto tri_id: in_which_triangle[452]) {
+		cout<<"2++++++++++++=========\n";
+
+		cout<<tri_id<<" test7.4\n";
+		// cout<<Triangles[tri_id].id<<" ID test7.4\n";
 	}
 
 	for (int i = 0; i < Triangles.size(); i++) {
@@ -975,6 +1019,13 @@ void GetmaximumKtruss(Graph *g) {
 			cout << "error\n";
 		}
 	}
+	for (auto tri_id: in_which_triangle[452]) {
+		cout<<"3++++++++++++=========\n";
+
+		cout<<tri_id<<" test7.4\n";
+		// cout<<Triangles[tri_id].id<<" ID test7.4\n";
+	}
+
 
 	// cout << "counts:" << counts << endl;
 	// //unbalance_num = Triangles.size() - num_of_balance;
@@ -982,71 +1033,114 @@ void GetmaximumKtruss(Graph *g) {
 	queue<int> q;
 	// 找出所有不满足 support的边
 	for (int i = 0; i < e_num; i++) {
+
 		if (!g->is_delete_e[i] ) {
+
 			if (g->support[i] < k - 2) {
+
 				g->is_delete_e[i] = 1;
 				g->size_of_truss--;
 				// g->temp_delete_e[i] = 1;
 				q.push(i);
-			}
-		}
-	}
 
+			}
+
+		}
+
+	}
+	for (auto tri_id: in_which_triangle[452]) {
+		cout<<"4++++++++++++=========\n";
+
+		cout<<tri_id<<" test7.4\n";
+		// cout<<Triangles[tri_id].id<<" ID test7.4\n";
+	}
 	while (!q.empty()) {
+
 		int sub = q.front();
 		q.pop();
+		if (sub == 452) {
+			// for (auto tri_id: in_which_triangle[452]) {
+			// 	cout<<sub<<"++++++++++++=========\n";
+
+			// 	cout<<tri_id<<" test7.4\n";
+			// 	cout<<Triangles[tri_id].id<<" ID test7.4\n";
+			// }
+			
+		}
 		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
-		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
+		for (auto tri_id: in_which_triangle[sub]) {
 
-			if (!g->Triangle_broken[in_which_triangle[sub][i]]){
-			// if(!g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id]){
+			// cout<<tri_id<<" test7.4\n";
+			// cout<<sub<<" =========\n";
+			// cout<<Triangles[tri_id].id<<" ID test7.4\n";
+
+
+			if (!g->Triangle_broken[tri_id]){
+			// if(!g->Triangle_broken[Triangles[tri_id].id]){
+
+				// cout<<Triangles[tri_id].id<<" test7.4\n";
+				// cout<<"test7.4\n";
 				
-				if (g->Triangle_balance[Triangles[in_which_triangle[sub][i]].id]) {
+				if (g->Triangle_balance[tri_id]) {
 					// 删除临边
-					g->support[Triangles[in_which_triangle[sub][i]].edge1]--;
-					g->support[Triangles[in_which_triangle[sub][i]].edge2]--;
-					g->support[Triangles[in_which_triangle[sub][i]].edge3]--;
+					// cout<<"test7.5\n";
+
+					g->support[Triangles[tri_id].edge1]--;
+					g->support[Triangles[tri_id].edge2]--;
+					g->support[Triangles[tri_id].edge3]--;
+					// cout<<"test7.6\n";
+
 				}
-				else 
+				else {
 					g->unbalance_num--;
+
+				}
 				// 删除一条边后check 他的临边
+				// cout<<"test7.5\n";
 
-				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1]) {
-					if (g->support[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
+				if (!g->is_delete_e[Triangles[tri_id].edge1]) {
+					if (g->support[Triangles[tri_id].edge1] < k - 2)
 					{
-						q.push(Triangles[in_which_triangle[sub][i]].edge1);
-						g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1] = 1;
-						// g->temp_delete_e[Triangles[in_which_triangle[sub][i]].edge1] = 1;
+						q.push(Triangles[tri_id].edge1);
+						g->is_delete_e[Triangles[tri_id].edge1] = 1;
+						// g->temp_delete_e[Triangles[tri_id].edge1] = 1;
 						g->size_of_truss--;
 					}
 				}
+				// cout<<"test7.6\n";
 
-				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2]) {
-					if (g->support[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
+
+				if (!g->is_delete_e[Triangles[tri_id].edge2]) {
+					if (g->support[Triangles[tri_id].edge2] < k - 2)
 					{
-						q.push(Triangles[in_which_triangle[sub][i]].edge2);
-						g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2] = 1;
-						// g->temp_delete_e[Triangles[in_which_triangle[sub][i]].edge2] = 1;
+						q.push(Triangles[tri_id].edge2);
+						g->is_delete_e[Triangles[tri_id].edge2] = 1;
+						// g->temp_delete_e[Triangles[tri_id].edge2] = 1;
 						g->size_of_truss--;
 					}
 				}
+				// cout<<"test9\n";
 
-				if (!g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3]) {
-					if (g->support[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
+				if (!g->is_delete_e[Triangles[tri_id].edge3]) {
+					if (g->support[Triangles[tri_id].edge3] < k - 2)
 					{
-						q.push(Triangles[in_which_triangle[sub][i]].edge3);
-						g->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3] = 1;
-						// g->temp_delete_e[Triangles[in_which_triangle[sub][i]].edge3] = 1;
+						q.push(Triangles[tri_id].edge3);
+						g->is_delete_e[Triangles[tri_id].edge3] = 1;
+						// g->temp_delete_e[Triangles[tri_id].edge3] = 1;
 						g->size_of_truss--;
 					}
 				}
+				// cout<<"test10\n";
 
-				g->Triangle_broken[Triangles[in_which_triangle[sub][i]].id] = true;
-
+				g->Triangle_broken[tri_id] = true;
+				// cout<<"test11\n";
 			}
 
 		}
+		// cout<<"test8\n";
+
 	}
+	// cout<<"test6\n";
 
 	// cout << "size of KTruss" << g->size_of_truss << endl;
 	// cout << "truss unb num:" << g->unbalance_num << endl;
@@ -1065,7 +1159,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 	// check if the original graph has k-truss including src
 
-
+	cout<<"check1\n";
 	GetmaximumKtruss(g);
 	if (!if_query_inside(g)) {
 		cout << "Cannot obtain any result \n";
@@ -1074,6 +1168,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 
 
 
+	cout<<"check2\n";
 
 
 	// record all nodes with k hops, hop is initially set to 2
