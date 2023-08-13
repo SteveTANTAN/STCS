@@ -1,0 +1,229 @@
+
+query_data: NO0; vertex_id: 2510
+not inside
+query_data: NO1; vertex_id: 598
+not inside
+query_data: NO2; vertex_id: 2997
+not inside
+query_data: NO3; vertex_id: 740
+not inside
+query_data: NO4; vertex_id: 1179
+not inside
+query_data: NO5; vertex_id: 1433
+not inside
+query_data: NO6; vertex_id: 1164
+not inside
+query_data: NO7; vertex_id: 2018
+not inside
+query_data: NO8; vertex_id: 1438
+not inside
+query_data: NO9; vertex_id: 3001
+not inside
+query_data: NO10; vertex_id: 7535
+not inside
+query_data: NO11; vertex_id: 148
+not inside
+query_data: NO12; vertex_id: 2053
+not inside
+query_data: NO13; vertex_id: 145
+--------when hop is 1
+size of KTruss: 339
+truss unb num: 18
+===================Deleting diameter ==================
+candidate:324
+calculation success!
+query_data: NO14; vertex_id: 1574
+not inside
+query_data: NO15; vertex_id: 532
+not inside
+query_data: NO16; vertex_id: 665
+not inside
+query_data: NO17; vertex_id: 2195
+not inside
+query_data: NO18; vertex_id: 1190
+not inside
+query_data: NO19; vertex_id: 1987
+not inside
+query_data: NO20; vertex_id: 1933
+not inside
+query_data: NO21; vertex_id: 2120
+not inside
+query_data: NO22; vertex_id: 7489
+not inside
+query_data: NO23; vertex_id: 2190
+not inside
+query_data: NO24; vertex_id: 1251
+not inside
+query_data: NO25; vertex_id: 1769
+not inside
+query_data: NO26; vertex_id: 1352
+not inside
+query_data: NO27; vertex_id: 304
+--------when hop is 1
+size of KTruss: 47
+truss unb num: 1
+===================Deleting diameter ==================
+candidate:6
+===remove unbalanced==
+
+candidate:6
+calculation success!
+query_data: NO28; vertex_id: 7515
+not inside
+query_data: NO29; vertex_id: 860
+not inside
+query_data: NO30; vertex_id: 3316
+not inside
+query_data: NO31; vertex_id: 341
+not inside
+query_data: NO32; vertex_id: 1803
+not inside
+query_data: NO33; vertex_id: 561
+not inside
+query_data: NO34; vertex_id: 67
+--------when hop is 1
+size of KTruss: 93
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:46
+calculation success!
+query_data: NO35; vertex_id: 537
+not inside
+query_data: NO36; vertex_id: 1173
+not inside
+query_data: NO37; vertex_id: 1077
+not inside
+query_data: NO38; vertex_id: 914
+not inside
+query_data: NO39; vertex_id: 2046
+not inside
+query_data: NO40; vertex_id: 3130
+not inside
+query_data: NO41; vertex_id: 539
+not inside
+query_data: NO42; vertex_id: 864
+not inside
+query_data: NO43; vertex_id: 3053
+not inside
+query_data: NO44; vertex_id: 127
+not inside
+query_data: NO45; vertex_id: 442
+not inside
+query_data: NO46; vertex_id: 228
+--------when hop is 1
+size of KTruss: 27
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO47; vertex_id: 2989
+not inside
+query_data: NO48; vertex_id: 717
+not inside
+query_data: NO49; vertex_id: 2121
+not inside
+query_data: NO50; vertex_id: 7572
+not inside
+query_data: NO51; vertex_id: 7381
+not inside
+query_data: NO52; vertex_id: 1314
+not inside
+query_data: NO53; vertex_id: 843
+not inside
+query_data: NO54; vertex_id: 2251
+not inside
+query_data: NO55; vertex_id: 3020
+not inside
+query_data: NO56; vertex_id: 3275
+not inside
+query_data: NO57; vertex_id: 2102
+not inside
+query_data: NO58; vertex_id: 3428
+not inside
+query_data: NO59; vertex_id: 89
+not inside
+query_data: NO60; vertex_id: 1035
+not inside
+query_data: NO61; vertex_id: 2632
+not inside
+query_data: NO62; vertex_id: 7540
+not inside
+query_data: NO63; vertex_id: 224
+not inside
+query_data: NO64; vertex_id: 3088
+not inside
+query_data: NO65; vertex_id: 2952
+not inside
+query_data: NO66; vertex_id: 2324
+not inside
+query_data: NO67; vertex_id: 1783
+not inside
+query_data: NO68; vertex_id: 2781
+not inside
+query_data: NO69; vertex_id: 1320
+not inside
+query_data: NO70; vertex_id: 186
+not inside
+query_data: NO71; vertex_id: 356
+not inside
+query_data: NO72; vertex_id: 307
+not inside
+query_data: NO73; vertex_id: 874
+not inside
+query_data: NO74; vertex_id: 1111
+not inside
+query_data: NO75; vertex_id: 1089
+not inside
+query_data: NO76; vertex_id: 1738
+not inside
+query_data: NO77; vertex_id: 589
+not inside
+query_data: NO78; vertex_id: 2599
+not inside
+query_data: NO79; vertex_id: 3328
+not inside
+query_data: NO80; vertex_id: 3163
+not inside
+query_data: NO81; vertex_id: 1147
+not inside
+query_data: NO82; vertex_id: 2898
+not inside
+query_data: NO83; vertex_id: 1895
+not inside
+query_data: NO84; vertex_id: 1489
+not inside
+query_data: NO85; vertex_id: 1573
+not inside
+query_data: NO86; vertex_id: 757
+not inside
+query_data: NO87; vertex_id: 2171
+not inside
+query_data: NO88; vertex_id: 2656
+not inside
+query_data: NO89; vertex_id: 3448
+not inside
+query_data: NO90; vertex_id: 1601
+not inside
+query_data: NO91; vertex_id: 2683
+not inside
+query_data: NO92; vertex_id: 2160
+not inside
+query_data: NO93; vertex_id: 290
+--------when hop is 1
+size of KTruss: 32
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO94; vertex_id: 1383
+not inside
+query_data: NO95; vertex_id: 883
+not inside
+query_data: NO96; vertex_id: 3354
+not inside
+query_data: NO97; vertex_id: 1569
+not inside
+query_data: NO98; vertex_id: 1782
+not inside
+query_data: NO99; vertex_id: 346
+not inside

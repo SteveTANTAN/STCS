@@ -56,10 +56,7 @@ typedef struct {
 	int unbalance_num = 0;
 	// vector<Triangle> Triangles;
 	int size_of_truss;
-
 	int diameter;
-	int point1;
-	int point2;
 	// vector<int> path;
 } Graph;
 
@@ -78,6 +75,7 @@ int visited[MAX_V];
 string filename, outname;
 
 bool delete_on_radius(Graph *g_hop);
+vector<int> findLongestDistanceFromStartVertex(Graph *g);
 
 Graph* build_graph() {
 	Graph *g = new Graph();
@@ -280,6 +278,7 @@ Graph* GetKtrusswith_Nhops(int n, int k, Graph* g_ori) {
 	// cout << "counts:" << counts << endl;
 	// unbalance_num = Triangles.size() - num_of_balance;
 	queue<int> q;
+	findLongestDistanceFromStartVertex(g);
 	// 找出所有不满足 support的边
 	// 找出所有不满足 support的边
 	for (int i = 0; i < g->edge_num; i++) {
@@ -562,65 +561,46 @@ void findLongestPath(Graph *g) {
 
 
 	g->diameter = pathLength;
-	// g->path = path;
-	g->point1 = path[0];
-	g->point2 = path[path.size()-1];
 	return;
-
-
 }
 
 vector<int> findLongestDistanceFromStartVertex(Graph *g) {
-    vector<int> distances(MAX_V, -1);
-    vector<vector<int>> paths(MAX_V);
-    vector<bool> visited(MAX_V, false);
-    queue<int> q;
 
-    distances[start_vertex] = 0;
-    paths[start_vertex].push_back(start_vertex);
-    visited[start_vertex] = true;
-    q.push(start_vertex);
 
     int max_distance = 0;
     vector<int> longest_path;
 	vector<int> longest_list;
+	memset(hop_num, -1, sizeof(hop_num));
 
-    while (!q.empty()) {
-        int curr_vertex = q.front();
-        q.pop();
+	queue<pair<int,int>> q;
+	int hop = 2;
+	int max_hop = -1;
+	q.push(make_pair(start_vertex,0));
+	hop_num[start_vertex] = 0;
+	
+	while (!q.empty()) {
+		int curr_v = q.front().first;
+		int curr_hop = q.front().second;
+		q.pop();
+		for (int i = 0; i < adj_edge[curr_v].size(); i++) {
+			int edgeIndex = adj_edge[curr_v][i];
+			if (g->is_delete_e[edgeIndex]) continue;
 
-        if(distances[curr_vertex] > max_distance){
-            max_distance = distances[curr_vertex];
-            longest_path = paths[curr_vertex];
-        }
-		if (distances[curr_vertex] > global_hop) longest_list.push_back(curr_vertex);
+			int v = (all_edge_pairs[edgeIndex].v1 == curr_v)
+					? all_edge_pairs[edgeIndex].v2
+					: all_edge_pairs[edgeIndex].v1;
 
-
-        for (int idx = 0; idx < adj_edge[curr_vertex].size(); idx++) {
-            if (g->is_delete_e[adj_edge[curr_vertex][idx]]) {
-                continue;
-            }
-
-            int v;
-            if (all_edge_pairs[adj_edge[curr_vertex][idx]].v1 == curr_vertex) {
-                v = all_edge_pairs[adj_edge[curr_vertex][idx]].v2;
-            } else {
-                v = all_edge_pairs[adj_edge[curr_vertex][idx]].v1;
-            }
-
-            if (!visited[v]) {
-                q.push(v);
-                visited[v] = true;
-                distances[v] = distances[curr_vertex] + 1;
-                paths[v] = paths[curr_vertex];
-                paths[v].push_back(v);
-            }
-        }
-    }
-
-    g->diameter = max_distance;
-	g->point1 = longest_path[0];
-	g->point2 = longest_path[longest_path.size()-1];	
+			if (hop_num[v] == -1 || hop_num[v] > curr_hop + 1) {
+				hop_num[v] = curr_hop + 1;
+				if (max_hop < curr_hop + 1) max_hop = curr_hop + 1;
+				if (hop_num[v] > global_hop) longest_list.push_back(v);
+				q.push(make_pair(v, curr_hop + 1));
+			}
+		}
+	}
+	
+    g->diameter = max_hop;
+	// cout<<max_hop<<endl;
 
     return longest_list;
 }

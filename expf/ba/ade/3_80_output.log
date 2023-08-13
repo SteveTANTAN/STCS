@@ -1,0 +1,83 @@
+
+query_data: NO0; vertex_id: 2510
+query_data: NO1; vertex_id: 598
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO2; vertex_id: 2997
+query_data: NO3; vertex_id: 740
+size of KTruss: 7
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO4; vertex_id: 1179
+size of KTruss: 16
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO5; vertex_id: 1433
+size of KTruss: 3
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO6; vertex_id: 1164
+query_data: NO7; vertex_id: 2018
+query_data: NO8; vertex_id: 1438
+query_data: NO9; vertex_id: 3001
+query_data: NO10; vertex_id: 7535
+size of KTruss: 19
+truss unb num: 2
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+
+q-in size: 32754
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO11; vertex_id: 148
+size of KTruss: 95
+truss unb num: 3
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+
+q-in size: 32716
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO12; vertex_id: 2053
+query_data: NO13; vertex_id: 145
+size of KTruss: 587
+truss unb num: 43
+===================Deleting NegativeTriangle ==================
+check1
+===remove unbalanced==
+

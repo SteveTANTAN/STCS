@@ -357,3 +357,117 @@ size of KTruss: 10
 truss unb num: 0
 ===================Deleting NegativeTriangle ==================
 calculation success!
+query_data: NO73; vertex_id: 874
+max hop is 6
+--------when hop is 1
+size of KTruss: 23
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO74; vertex_id: 1111
+max hop is 6
+--------when hop is 1
+size of KTruss: 3
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO75; vertex_id: 1089
+Cannot obtain any result 
+query_data: NO76; vertex_id: 1738
+Cannot obtain any result 
+query_data: NO77; vertex_id: 589
+max hop is 6
+--------when hop is 1
+size of KTruss: 16
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO78; vertex_id: 2599
+Cannot obtain any result 
+query_data: NO79; vertex_id: 3328
+Cannot obtain any result 
+query_data: NO80; vertex_id: 3163
+Cannot obtain any result 
+query_data: NO81; vertex_id: 1147
+max hop is 6
+--------when hop is 1
+size of KTruss: 20
+truss unb num: 3
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO82; vertex_id: 2898
+Cannot obtain any result 
+query_data: NO83; vertex_id: 1895
+max hop is 7
+--------when hop is 1
+size of KTruss: 5
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO84; vertex_id: 1489
+max hop is 6
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO85; vertex_id: 1573
+max hop is 6
+--------when hop is 1
+size of KTruss: 3
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO86; vertex_id: 757
+max hop is 6
+--------when hop is 1
+size of KTruss: 26
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO87; vertex_id: 2171
+Cannot obtain any result 
+query_data: NO88; vertex_id: 2656
+Cannot obtain any result 
+query_data: NO89; vertex_id: 3448
+Cannot obtain any result 
+query_data: NO90; vertex_id: 1601
+max hop is 6
+--------when hop is 1
+size of KTruss: 3
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO91; vertex_id: 2683
+Cannot obtain any result 
+query_data: NO92; vertex_id: 2160
+Cannot obtain any result 
+query_data: NO93; vertex_id: 290
+max hop is 6
+--------when hop is 1
+size of KTruss: 87
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO94; vertex_id: 1383
+Cannot obtain any result 
+query_data: NO95; vertex_id: 883
+max hop is 6
+--------when hop is 1
+size of KTruss: 13
+truss unb num: 1
+===================Deleting NegativeTriangle ==================
+calculation success!
+query_data: NO96; vertex_id: 3354
+Cannot obtain any result 
+query_data: NO97; vertex_id: 1569
+Cannot obtain any result 
+query_data: NO98; vertex_id: 1782
+Cannot obtain any result 
+query_data: NO99; vertex_id: 346
+max hop is 6
+--------when hop is 1
+size of KTruss: 60
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+calculation success!
