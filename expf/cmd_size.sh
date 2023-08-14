@@ -3,11 +3,11 @@
 # Set variables
 dataset="ba"
 # query_set_sizes=(20 40 60 80 100)
-query_set_sizes=(100 80 60 40 20)
+query_set_sizes=(60)
 program_names=("ad" "ade" "base")
 # k_s=(3 4 5 6 7 8 9 10 11 12 13 14 15)
-# k_s=(3 4 5 6 7)
-k_s=(4)
+k_s=(3 4 5 6 7)
+# k_s=(4)
 
 # Timeout in seconds (3 hours = 10800 seconds)
 # timeout_duration=10800

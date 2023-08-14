@@ -1,52 +1,46 @@
 
 query_data: NO0; vertex_id: 74869
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO1; vertex_id: 50027
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO2; vertex_id: 119597
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO3; vertex_id: 13674
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO4; vertex_id: 18539
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss1173
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -54,44 +48,40 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 1173
 query_data: NO5; vertex_id: 36345
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO6; vertex_id: 103883
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO7; vertex_id: 106572
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO8; vertex_id: 85105
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss920
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -99,44 +89,40 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 920
 query_data: NO9; vertex_id: 83892
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO10; vertex_id: 53012
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO11; vertex_id: 48074
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO12; vertex_id: 72989
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss949
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -144,71 +130,65 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 949
 query_data: NO13; vertex_id: 61963
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO14; vertex_id: 50667
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO15; vertex_id: 42036
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO16; vertex_id: 65435
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO17; vertex_id: 82415
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO18; vertex_id: 43671
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO19; vertex_id: 3904
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 6
 --------when hop is 1
 size of KTruss7986
 truss unb num:642
-===================Deleting NegativeTriangle ==================
+check1
+dia642
+===remove unbalanced==
+
+q-in size: -1783767424
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -216,80 +196,72 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 7625
 query_data: NO20; vertex_id: 92044
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO21; vertex_id: 22586
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO22; vertex_id: 20399
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO23; vertex_id: 90620
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO24; vertex_id: 9526
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO25; vertex_id: 63052
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO26; vertex_id: 41243
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO27; vertex_id: 16994
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 6
 --------when hop is 1
 size of KTruss6897
 truss unb num:1021
-===================Deleting NegativeTriangle ==================
+check1
+dia1021
+===remove unbalanced==
+
+q-in size: -1909453576
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -297,35 +269,33 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 6358
 query_data: NO28; vertex_id: 108561
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO29; vertex_id: 52410
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO30; vertex_id: 28374
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss933
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -333,17 +303,23 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 933
 query_data: NO31; vertex_id: 8175
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss1039
 truss unb num:2
-===================Deleting NegativeTriangle ==================
+check1
+dia2
+===remove unbalanced==
+
+q-in size: 1868102880
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -351,17 +327,19 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 1032
 query_data: NO32; vertex_id: 73418
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss920
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -369,39 +347,30 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 920
 query_data: NO33; vertex_id: 70115
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO34; vertex_id: 50638
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO35; vertex_id: 120348
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO36; vertex_id: 114334
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss185816
@@ -409,7 +378,16 @@ truss unb num:7986
 --------when hop is 2
 size of KTruss82845
 truss unb num:25879
-===================Deleting NegativeTriangle ==================
+check1
+dia25879
+===remove unbalanced==
+
+q-in size: 124
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -417,35 +395,33 @@ truss unb num:66585
 diameter: 3
 total_size_of_truss: 69013
 query_data: NO37; vertex_id: 14965
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO38; vertex_id: 37574
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO39; vertex_id: 22402
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss920
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -453,233 +429,191 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 920
 query_data: NO40; vertex_id: 31894
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO41; vertex_id: 1197
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO42; vertex_id: 119544
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO43; vertex_id: 127423
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO44; vertex_id: 53299
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO45; vertex_id: 104427
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO46; vertex_id: 53281
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO47; vertex_id: 121797
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO48; vertex_id: 28482
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO49; vertex_id: 49762
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO50; vertex_id: 51598
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO51; vertex_id: 1248
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO52; vertex_id: 74288
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO53; vertex_id: 48550
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO54; vertex_id: 67769
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO55; vertex_id: 22720
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO56; vertex_id: 2121
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO57; vertex_id: 106536
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO58; vertex_id: 34590
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO59; vertex_id: 85230
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO60; vertex_id: 53022
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO61; vertex_id: 103480
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO62; vertex_id: 26184
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO63; vertex_id: 28881
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO64; vertex_id: 9271
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss2621
 truss unb num:154
-===================Deleting NegativeTriangle ==================
+check1
+dia154
+===remove unbalanced==
+
+q-in size: -127968024
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -687,17 +621,19 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 2487
 query_data: NO65; vertex_id: 60787
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss924
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -705,53 +641,47 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 924
 query_data: NO66; vertex_id: 15122
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO67; vertex_id: 11052
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO68; vertex_id: 54574
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO69; vertex_id: 47462
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO70; vertex_id: 48854
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 8
 --------when hop is 1
 size of KTruss920
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -759,12 +689,9 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 920
 query_data: NO71; vertex_id: 16131
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 6
 --------when hop is 1
 size of KTruss187507
@@ -772,7 +699,16 @@ truss unb num:16628
 --------when hop is 2
 size of KTruss124713
 truss unb num:23688
-===================Deleting NegativeTriangle ==================
+check1
+dia23688
+===remove unbalanced==
+
+q-in size: 124
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -780,107 +716,89 @@ truss unb num:66585
 diameter: 4
 total_size_of_truss: 82194
 query_data: NO72; vertex_id: 43751
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO73; vertex_id: 100562
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO74; vertex_id: 94985
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO75; vertex_id: 51418
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO76; vertex_id: 119328
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO77; vertex_id: 44230
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO78; vertex_id: 72991
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO79; vertex_id: 74115
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO80; vertex_id: 117552
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO81; vertex_id: 50566
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO82; vertex_id: 58485
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss924
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -888,44 +806,40 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 924
 query_data: NO83; vertex_id: 106985
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO84; vertex_id: 101043
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO85; vertex_id: 82680
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO86; vertex_id: 71955
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 7
 --------when hop is 1
 size of KTruss929
 truss unb num:0
-===================Deleting NegativeTriangle ==================
+check1
+dia0
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -933,26 +847,30 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 929
 query_data: NO87; vertex_id: 110543
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO88; vertex_id: 11498
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 6
 --------when hop is 1
 size of KTruss3491
 truss unb num:288
-===================Deleting NegativeTriangle ==================
+check1
+dia288
+===remove unbalanced==
+
+q-in size: -934089488
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -960,62 +878,58 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 3268
 query_data: NO89; vertex_id: 127182
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO90; vertex_id: 131527
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO91; vertex_id: 109590
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO92; vertex_id: 95804
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO93; vertex_id: 107650
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO94; vertex_id: 3367
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
-check2
 max hop is 8
 --------when hop is 1
 size of KTruss976
 truss unb num:2
-===================Deleting NegativeTriangle ==================
+check1
+dia2
+===remove unbalanced==
+
+q-in size: 1548037344
+queue out: 1
+check2
+---start to delete node 
+
+check3
 calculation success!
 Triangle in total: 4910076
 size of KTruss407230
@@ -1023,47 +937,37 @@ truss unb num:66585
 diameter: 2
 total_size_of_truss: 974
 query_data: NO95; vertex_id: 28582
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO96; vertex_id: 92834
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO97; vertex_id: 27416
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO98; vertex_id: 50227
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0
 query_data: NO99; vertex_id: 19144
-check1
 Triangle in total: 4910076
 size of KTruss407230
 truss unb num:66585
-check1.1
 Cannot obtain any result 
 diameter: 0
 total_size_of_truss: 0

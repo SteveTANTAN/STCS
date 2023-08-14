@@ -606,6 +606,8 @@ bool quickremoveNegativeTriangle(Graph* g) {
 
 
 int quick_delete(Graph* g, Triangle unb) {
+
+	// findLongestDistanceFromStartVertex(g);
 	if (hop_num[all_edge_pairs[unb.edge1].v1] == hop_num[all_edge_pairs[unb.edge1].v2]) {
 		return unb.edge1;
 	} else if (hop_num[all_edge_pairs[unb.edge2].v1] == hop_num[all_edge_pairs[unb.edge2].v2]) {
@@ -617,7 +619,7 @@ bool removeNegativeTriangle(Graph* g) {
 	findLongestDistanceFromStartVertex(g);
 
 	int curr_diameter = g->diameter;
-	cout<<"dia" << g->unbalance_num<<endl;
+	// cout<<"dia" << g->unbalance_num<<endl;
 	if (curr_diameter < 1) return false;
 	if (g->unbalance_num <= 0) return true;
 	cout<<"===remove unbalanced==\n"<<endl;	
@@ -663,7 +665,6 @@ bool removeNegativeTriangle(Graph* g) {
 	int count  = 0;
 	Graph *temp_g = new Graph();
 	*temp_g = *g;
-	// cout<<"1\n";
     if (!quickremoveNegativeTriangle(temp_g)) {
 		cout << "quicl delete fail\n";	
 		cout<< "cannot delete \n";
@@ -671,13 +672,13 @@ bool removeNegativeTriangle(Graph* g) {
 		temp_g = NULL;
 		return false;
 	}
-	// cout<<"2\n";
 
 	*g = *temp_g;
 	delete(temp_g);
 	temp_g = NULL;
 
 	findLongestDistanceFromStartVertex(g);
+	cout<<"=========1\n";
 
 	while (!Queue.empty()) {
 		
@@ -691,22 +692,23 @@ bool removeNegativeTriangle(Graph* g) {
 
 		for (int number = 0; number < Triangles.size();number++) {
 
-			if (!g->Triangle_balance[number] && !g->Triangle_broken[number]){
+			// if (!g->Triangle_balance[number] && !g->Triangle_broken[number]){
+			if (!g->Triangle_balance[number] && g->Triangle_broken[number]){
 			// if (!unb.is_balanced && !unb.is_broken) {
 				Triangle unb = Triangles[number];
 
 				int check = quick_delete(first, unb);
 				vector<int> v1 = check_follower(check,first);
-				// cout<< "size1:" <<v1.size()<<endl;
+				cout<< "=============size1:" <<v1.size()<<endl;
 			
 				if (v1.size() == 1) {
 					Graph *left = new Graph();
 					*left = *first;
-					// cout<<"4.1\n";
+					cout<<"4.1\n";
 
 					if (delete_on_edge(check, left,false) && delete_on_radius(left)) {
 						// bool best = false;
-						// cout<< "checkkkk11\n";
+						cout<< "checkkkk11\n";
 
 						if ((left->diameter == g->diameter && left->unbalance_num == 0
 						&& g->size_of_truss < left->size_of_truss) ||
@@ -722,6 +724,7 @@ bool removeNegativeTriangle(Graph* g) {
 							// if (left->unbalance_num != 0) {
 								// if (left->size_of_truss > max_value) 
 								filteredQueue.push(left);
+								cout<<"====2\n";
 								
 								que_in++;
 							} else {
@@ -751,7 +754,7 @@ bool removeNegativeTriangle(Graph* g) {
 					int max_value = 0;
 					Graph *max_graph;
 					int quick_d = quick_delete(left, unb);
-					// cout<<"4\n";
+					cout<<"==========4\n";
 					if (delete_on_edge(unb.edge1, left,false) && delete_on_radius(left)) {
 						// bool best = false;
 						// cout<<"4.1\n";
@@ -880,19 +883,25 @@ bool removeNegativeTriangle(Graph* g) {
 					}
 
 					if (!isSubgraphOfOther) {
+						cout<<"test\n";
 
 						tempQueue.push(currentGraph);
-					} 
+					} else {
+						cout<<"test1\n";
+
+					}
+					// while (!tempQueue.empty()) {
+					// 	Queue.push(tempQueue.front());
+					// 	tempQueue.pop();
+					// }
 					Queue = move(tempQueue);
+					
+
+
 					// Now, filteredQueue contains only the subgraphs that are not subgraphs of any other subgraph.
 					// You can continue using filteredQueue or copy its contents back to the original Queue.
 
-					// Clean up the original Queue if needed.
-					while (!filteredQueue.empty()) {
-						Graph *temp = filteredQueue.front();
-						filteredQueue.pop();
-						delete(temp);
-					}
+
 				}
                 break;
 
@@ -1105,14 +1114,18 @@ void GetmaximumKtruss(Graph *g) {
 	cout << "size of KTruss" << g->size_of_truss << endl;
 	cout << "truss unb num:" << g->unbalance_num << endl;
 	g->Triangle_balance.resize(tri_cout, false);
-	g->Triangle_broken.resize(tri_cout, true);
-	// g->Triangle_broken{vector<bool>(tri_cout,true)};
+	g->Triangle_broken.resize(tri_cout, false);
+
+	// g->Triangle_balance.clear();
+	// g->Triangle_broken.clear();
 	for (int i = 0; i < Triangles.size(); i++) {
 		// Triangles[i].id = i;
 		bool bal = Triangles[i].is_balanced;
 		bool bro = Triangles[i].is_broken;
 		g->Triangle_balance[i] = bal;
-		g->Triangle_broken[i] = bro;
+		g->Triangle_broken[i] = bro;		
+		// g->Triangle_balance.push_back(bal);
+		// g->Triangle_broken.push_back(bro);
 	}
 
 }
