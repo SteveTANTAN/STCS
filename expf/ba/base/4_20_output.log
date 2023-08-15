@@ -1,0 +1,543 @@
+
+query_data: NO0; vertex_id: 247
+--------when hop is 1
+size of KTruss: 38
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:16
+calculation success!
+query_data: NO1; vertex_id: 564
+not inside
+query_data: NO2; vertex_id: 669
+not inside
+query_data: NO3; vertex_id: 7565
+--------when hop is 1
+size of KTruss: 247
+truss unb num: 29
+===================Deleting diameter ==================
+candidate:953
+===remove unbalanced==
+
+candidate:953
+===remove unbalanced==
+
+candidate:953
+===remove unbalanced==
+
+candidate:953
+===remove unbalanced==
+
+candidate:953
+===remove unbalanced==
+
+candidate:953
+===remove unbalanced==
+
+candidate:953
+===remove unbalanced==
+
+candidate:952
+===remove unbalanced==
+
+candidate:951
+calculation success!
+query_data: NO4; vertex_id: 57
+--------when hop is 1
+size of KTruss: 59
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:33
+calculation success!
+query_data: NO5; vertex_id: 430
+not inside
+query_data: NO6; vertex_id: 358
+--------when hop is 1
+size of KTruss: 14
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO7; vertex_id: 85
+--------when hop is 1
+size of KTruss: 733
+truss unb num: 75
+Execution of program base with k=4 and query_set_size=20 timed out.
+query_data: NO8; vertex_id: 386
+not inside
+query_data: NO9; vertex_id: 725
+not inside
+query_data: NO10; vertex_id: 278
+--------when hop is 1
+size of KTruss: 54
+truss unb num: 6
+===================Deleting diameter ==================
+candidate:22
+===remove unbalanced==
+
+candidate:22
+===remove unbalanced==
+
+candidate:22
+===remove unbalanced==
+
+candidate:22
+===remove unbalanced==
+
+candidate:22
+===remove unbalanced==
+
+candidate:22
+calculation success!
+query_data: NO11; vertex_id: 643
+--------when hop is 1
+size of KTruss: 16
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:6
+calculation success!
+query_data: NO12; vertex_id: 253
+--------when hop is 1
+size of KTruss: 18
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:5
+calculation success!
+query_data: NO13; vertex_id: 7570
+not inside
+query_data: NO14; vertex_id: 136
+--------when hop is 1
+size of KTruss: 165
+truss unb num: 7
+===================Deleting diameter ==================
+candidate:346
+calculation success!
+query_data: NO15; vertex_id: 437
+--------when hop is 1
+size of KTruss: 12
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:4
+calculation success!
+query_data: NO16; vertex_id: 906
+--------when hop is 1
+size of KTruss: 78
+truss unb num: 3
+===================Deleting diameter ==================
+candidate:67
+===remove unbalanced==
+
+candidate:67
+calculation success!
+query_data: NO17; vertex_id: 480
+not inside
+query_data: NO18; vertex_id: 517
+not inside
+query_data: NO19; vertex_id: 214
+--------when hop is 1
+size of KTruss: 31
+truss unb num: 2
+===================Deleting diameter ==================
+candidate:13
+===remove unbalanced==
+
+candidate:13
+===remove unbalanced==
+
+candidate:13
+calculation success!
+query_data: NO20; vertex_id: 296
+--------when hop is 1
+size of KTruss: 46
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:30
+calculation success!
+query_data: NO21; vertex_id: 617
+not inside
+query_data: NO22; vertex_id: 1
+--------when hop is 1
+size of KTruss: 640
+truss unb num: 9
+===================Deleting diameter ==================
+candidate:2467
+===remove unbalanced==
+
+candidate:2467
+===remove unbalanced==
+
+candidate:2467
+calculation success!
+query_data: NO23; vertex_id: 354
+--------when hop is 1
+size of KTruss: 9
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO24; vertex_id: 419
+--------when hop is 1
+size of KTruss: 11
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO25; vertex_id: 129
+--------when hop is 1
+size of KTruss: 14
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:3
+calculation success!
+query_data: NO26; vertex_id: 7588
+--------when hop is 1
+size of KTruss: 72
+truss unb num: 10
+===================Deleting diameter ==================
+candidate:67
+===remove unbalanced==
+
+candidate:67
+===remove unbalanced==
+
+candidate:67
+===remove unbalanced==
+
+candidate:67
+===remove unbalanced==
+
+candidate:67
+===remove unbalanced==
+
+candidate:67
+===remove unbalanced==
+
+candidate:66
+===remove unbalanced==
+
+candidate:66
+calculation success!
+query_data: NO27; vertex_id: 146
+--------when hop is 1
+size of KTruss: 59
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:66
+calculation success!
+query_data: NO28; vertex_id: 2417
+--------when hop is 1
+size of KTruss: 34
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:4
+calculation success!
+query_data: NO29; vertex_id: 257
+--------when hop is 1
+size of KTruss: 12
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO30; vertex_id: 303
+not inside
+query_data: NO31; vertex_id: 240
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO32; vertex_id: 7551
+not inside
+query_data: NO33; vertex_id: 40
+--------when hop is 1
+size of KTruss: 325
+truss unb num: 4
+===================Deleting diameter ==================
+candidate:1074
+===remove unbalanced==
+
+candidate:1074
+===remove unbalanced==
+
+candidate:1074
+===remove unbalanced==
+
+candidate:1074
+calculation success!
+query_data: NO34; vertex_id: 813
+--------when hop is 1
+size of KTruss: 25
+truss unb num: 2
+===================Deleting diameter ==================
+candidate:5
+===remove unbalanced==
+
+candidate:5
+===remove unbalanced==
+
+candidate:5
+calculation success!
+query_data: NO35; vertex_id: 3
+--------when hop is 1
+size of KTruss: 1409
+truss unb num: 101
+Execution of program base with k=4 and query_set_size=20 timed out.
+query_data: NO36; vertex_id: 7602
+--------when hop is 1
+size of KTruss: 161
+truss unb num: 33
+===================Deleting diameter ==================
+candidate:333
+calculation success!
+query_data: NO37; vertex_id: 324
+not inside
+query_data: NO38; vertex_id: 337
+--------when hop is 1
+size of KTruss: 93
+truss unb num: 4
+===================Deleting diameter ==================
+candidate:150
+calculation success!
+query_data: NO39; vertex_id: 7577
+--------when hop is 1
+size of KTruss: 27
+truss unb num: 1
+===================Deleting diameter ==================
+candidate:13
+===remove unbalanced==
+
+candidate:13
+calculation success!
+query_data: NO40; vertex_id: 97
+--------when hop is 1
+size of KTruss: 153
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:331
+calculation success!
+query_data: NO41; vertex_id: 283
+not inside
+query_data: NO42; vertex_id: 702
+--------when hop is 1
+size of KTruss: 20
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:6
+calculation success!
+query_data: NO43; vertex_id: 596
+--------when hop is 1
+size of KTruss: 24
+truss unb num: 1
+===================Deleting diameter ==================
+candidate:7
+===remove unbalanced==
+
+candidate:7
+calculation success!
+query_data: NO44; vertex_id: 483
+--------when hop is 1
+size of KTruss: 9
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:2
+calculation success!
+query_data: NO45; vertex_id: 476
+not inside
+query_data: NO46; vertex_id: 412
+--------when hop is 1
+size of KTruss: 55
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:65
+calculation success!
+query_data: NO47; vertex_id: 7594
+not inside
+query_data: NO48; vertex_id: 86
+--------when hop is 1
+size of KTruss: 274
+truss unb num: 5
+Execution of program base with k=4 and query_set_size=20 timed out.
+query_data: NO49; vertex_id: 362
+--------when hop is 1
+size of KTruss: 36
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:19
+calculation success!
+query_data: NO50; vertex_id: 231
+--------when hop is 1
+size of KTruss: 16
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:7
+calculation success!
+query_data: NO51; vertex_id: 12
+--------when hop is 1
+size of KTruss: 572
+truss unb num: 11
+Execution of program base with k=4 and query_set_size=20 timed out.
+query_data: NO52; vertex_id: 92
+--------when hop is 1
+size of KTruss: 207
+truss unb num: 4
+===================Deleting diameter ==================
+candidate:848
+calculation success!
+query_data: NO53; vertex_id: 7585
+--------when hop is 1
+size of KTruss: 27
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:6
+calculation success!
+query_data: NO54; vertex_id: 680
+--------when hop is 1
+size of KTruss: 15
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:4
+calculation success!
+query_data: NO55; vertex_id: 397
+--------when hop is 1
+size of KTruss: 20
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:5
+calculation success!
+query_data: NO56; vertex_id: 27
+--------when hop is 1
+size of KTruss: 377
+truss unb num: 5
+===================Deleting diameter ==================
+candidate:2363
+calculation success!
+query_data: NO57; vertex_id: 7509
+not inside
+query_data: NO58; vertex_id: 7583
+--------when hop is 1
+size of KTruss: 18
+truss unb num: 1
+===================Deleting diameter ==================
+candidate:4
+===remove unbalanced==
+
+candidate:4
+===remove unbalanced==
+
+candidate:4
+calculation success!
+query_data: NO59; vertex_id: 7518
+--------when hop is 1
+size of KTruss: 24
+truss unb num: 3
+===================Deleting diameter ==================
+candidate:5
+===remove unbalanced==
+
+candidate:5
+===remove unbalanced==
+
+candidate:5
+calculation success!
+query_data: NO60; vertex_id: 882
+--------when hop is 1
+size of KTruss: 32
+truss unb num: 4
+===================Deleting diameter ==================
+candidate:8
+===remove unbalanced==
+
+candidate:8
+===remove unbalanced==
+
+candidate:7
+calculation success!
+query_data: NO61; vertex_id: 201
+--------when hop is 1
+size of KTruss: 23
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:8
+calculation success!
+query_data: NO62; vertex_id: 32
+--------when hop is 1
+size of KTruss: 499
+truss unb num: 24
+query_data: NO63; vertex_id: 251
+--------when hop is 1
+size of KTruss: 17
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:5
+calculation success!
+query_data: NO64; vertex_id: 180
+--------when hop is 1
+size of KTruss: 54
+truss unb num: 5
+===================Deleting diameter ==================
+candidate:36
+===remove unbalanced==
+
+candidate:36
+===remove unbalanced==
+
+candidate:36
+===remove unbalanced==
+
+candidate:36
+===remove unbalanced==
+
+candidate:36
+===remove unbalanced==
+
+candidate:36
+calculation success!
+query_data: NO65; vertex_id: 801
+--------when hop is 1
+size of KTruss: 66
+truss unb num: 3
+===================Deleting diameter ==================
+candidate:68
+===remove unbalanced==
+
+candidate:68
+===remove unbalanced==
+
+candidate:68
+calculation success!
+query_data: NO66; vertex_id: 189
+--------when hop is 1
+size of KTruss: 31
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:16
+calculation success!
+query_data: NO67; vertex_id: 530
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO68; vertex_id: 30
+--------when hop is 1
+size of KTruss: 802
+truss unb num: 90
+query_data: NO69; vertex_id: 433
+--------when hop is 1
+size of KTruss: 15
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:5
+calculation success!
+query_data: NO70; vertex_id: 552
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting diameter ==================
+candidate:1
+calculation success!
+query_data: NO71; vertex_id: 211
+--------when hop is 1
+size of KTruss: 175
+truss unb num: 10

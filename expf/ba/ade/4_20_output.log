@@ -1,0 +1,1077 @@
+
+query_data: NO0; vertex_id: 247
+--------when hop is 1
+size of KTruss: 38
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO1; vertex_id: 564
+query_data: NO2; vertex_id: 669
+query_data: NO3; vertex_id: 7565
+--------when hop is 1
+size of KTruss: 247
+truss unb num: 29
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32576
+queue out: 26
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO4; vertex_id: 57
+--------when hop is 1
+size of KTruss: 59
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO5; vertex_id: 430
+query_data: NO6; vertex_id: 358
+--------when hop is 1
+size of KTruss: 14
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO7; vertex_id: 85
+--------when hop is 1
+size of KTruss: 733
+truss unb num: 75
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32580
+queue out: 47
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO8; vertex_id: 386
+query_data: NO9; vertex_id: 725
+query_data: NO10; vertex_id: 278
+--------when hop is 1
+size of KTruss: 54
+truss unb num: 6
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32754
+queue out: 5
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO11; vertex_id: 643
+--------when hop is 1
+size of KTruss: 16
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO12; vertex_id: 253
+--------when hop is 1
+size of KTruss: 18
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO13; vertex_id: 7570
+query_data: NO14; vertex_id: 136
+--------when hop is 1
+size of KTruss: 165
+truss unb num: 7
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32766
+queue out: 4
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO15; vertex_id: 437
+--------when hop is 1
+size of KTruss: 12
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO16; vertex_id: 906
+--------when hop is 1
+size of KTruss: 78
+truss unb num: 3
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32637
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO17; vertex_id: 480
+query_data: NO18; vertex_id: 517
+query_data: NO19; vertex_id: 214
+--------when hop is 1
+size of KTruss: 31
+truss unb num: 2
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32727
+queue out: 2
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO20; vertex_id: 296
+--------when hop is 1
+size of KTruss: 46
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO21; vertex_id: 617
+query_data: NO22; vertex_id: 1
+--------when hop is 1
+size of KTruss: 640
+truss unb num: 9
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32710
+queue out: 26
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO23; vertex_id: 354
+--------when hop is 1
+size of KTruss: 9
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO24; vertex_id: 419
+--------when hop is 1
+size of KTruss: 11
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO25; vertex_id: 129
+--------when hop is 1
+size of KTruss: 14
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO26; vertex_id: 7588
+--------when hop is 1
+size of KTruss: 72
+truss unb num: 10
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32668
+queue out: 9
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO27; vertex_id: 146
+--------when hop is 1
+size of KTruss: 59
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO28; vertex_id: 2417
+--------when hop is 1
+size of KTruss: 34
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO29; vertex_id: 257
+--------when hop is 1
+size of KTruss: 12
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO30; vertex_id: 303
+query_data: NO31; vertex_id: 240
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO32; vertex_id: 7551
+query_data: NO33; vertex_id: 40
+--------when hop is 1
+size of KTruss: 325
+truss unb num: 4
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32737
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO34; vertex_id: 813
+--------when hop is 1
+size of KTruss: 25
+truss unb num: 2
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32548
+queue out: 2
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO35; vertex_id: 3
+--------when hop is 1
+size of KTruss: 1409
+truss unb num: 101
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 33798
+queue out: 1096
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO36; vertex_id: 7602
+--------when hop is 1
+size of KTruss: 161
+truss unb num: 33
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32668
+queue out: 10
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO37; vertex_id: 324
+query_data: NO38; vertex_id: 337
+--------when hop is 1
+size of KTruss: 93
+truss unb num: 4
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32716
+queue out: 4
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO39; vertex_id: 7577
+--------when hop is 1
+size of KTruss: 27
+truss unb num: 1
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32556
+queue out: 1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO40; vertex_id: 97
+--------when hop is 1
+size of KTruss: 153
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO41; vertex_id: 283
+query_data: NO42; vertex_id: 702
+--------when hop is 1
+size of KTruss: 20
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO43; vertex_id: 596
+--------when hop is 1
+size of KTruss: 24
+truss unb num: 1
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32742
+queue out: 1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO44; vertex_id: 483
+--------when hop is 1
+size of KTruss: 9
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO45; vertex_id: 476
+query_data: NO46; vertex_id: 412
+--------when hop is 1
+size of KTruss: 55
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO47; vertex_id: 7594
+query_data: NO48; vertex_id: 86
+--------when hop is 1
+size of KTruss: 274
+truss unb num: 5
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32685
+queue out: 5
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO49; vertex_id: 362
+--------when hop is 1
+size of KTruss: 36
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO50; vertex_id: 231
+--------when hop is 1
+size of KTruss: 16
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO51; vertex_id: 12
+--------when hop is 1
+size of KTruss: 572
+truss unb num: 11
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32641
+queue out: 8
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO52; vertex_id: 92
+--------when hop is 1
+size of KTruss: 207
+truss unb num: 4
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32661
+queue out: 4
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO53; vertex_id: 7585
+--------when hop is 1
+size of KTruss: 27
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO54; vertex_id: 680
+--------when hop is 1
+size of KTruss: 15
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO55; vertex_id: 397
+--------when hop is 1
+size of KTruss: 20
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO56; vertex_id: 27
+--------when hop is 1
+size of KTruss: 377
+truss unb num: 5
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32673
+queue out: 5
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO57; vertex_id: 7509
+query_data: NO58; vertex_id: 7583
+--------when hop is 1
+size of KTruss: 18
+truss unb num: 1
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32571
+queue out: 1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO59; vertex_id: 7518
+--------when hop is 1
+size of KTruss: 24
+truss unb num: 3
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32579
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO60; vertex_id: 882
+--------when hop is 1
+size of KTruss: 32
+truss unb num: 4
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32565
+queue out: 4
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO61; vertex_id: 201
+--------when hop is 1
+size of KTruss: 23
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO62; vertex_id: 32
+--------when hop is 1
+size of KTruss: 499
+truss unb num: 24
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32693
+queue out: 17
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO63; vertex_id: 251
+--------when hop is 1
+size of KTruss: 17
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO64; vertex_id: 180
+--------when hop is 1
+size of KTruss: 54
+truss unb num: 5
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32645
+queue out: 13
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO65; vertex_id: 801
+--------when hop is 1
+size of KTruss: 66
+truss unb num: 3
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32688
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO66; vertex_id: 189
+--------when hop is 1
+size of KTruss: 31
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO67; vertex_id: 530
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO68; vertex_id: 30
+--------when hop is 1
+size of KTruss: 802
+truss unb num: 90
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 64963
+queue out: 28088
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO69; vertex_id: 433
+--------when hop is 1
+size of KTruss: 15
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO70; vertex_id: 552
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO71; vertex_id: 211
+--------when hop is 1
+size of KTruss: 175
+truss unb num: 10
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32744
+queue out: 9
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO72; vertex_id: 375
+--------when hop is 1
+size of KTruss: 157
+truss unb num: 1
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32762
+queue out: 1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO73; vertex_id: 487
+--------when hop is 1
+size of KTruss: 83
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO74; vertex_id: 144
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO75; vertex_id: 651
+--------when hop is 1
+size of KTruss: 24
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO76; vertex_id: 266
+--------when hop is 1
+size of KTruss: 93
+truss unb num: 2
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32681
+queue out: 2
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO77; vertex_id: 622
+query_data: NO78; vertex_id: 16
+--------when hop is 1
+size of KTruss: 244
+truss unb num: 3
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32603
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO79; vertex_id: 7334
+--------when hop is 1
+size of KTruss: 48
+truss unb num: 5
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32724
+queue out: 3
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO80; vertex_id: 150
+--------when hop is 1
+size of KTruss: 98
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO81; vertex_id: 368
+query_data: NO82; vertex_id: 235
+query_data: NO83; vertex_id: 854
+query_data: NO84; vertex_id: 100
+--------when hop is 1
+size of KTruss: 129
+truss unb num: 9
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32539
+queue out: 8
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO85; vertex_id: 236
+--------when hop is 1
+size of KTruss: 15
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO86; vertex_id: 348
+--------when hop is 1
+size of KTruss: 45
+truss unb num: 2
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32716
+queue out: 2
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO87; vertex_id: 39
+--------when hop is 1
+size of KTruss: 235
+truss unb num: 5
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32586
+queue out: 4
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO88; vertex_id: 79
+--------when hop is 1
+size of KTruss: 63
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO89; vertex_id: 361
+query_data: NO90; vertex_id: 792
+query_data: NO91; vertex_id: 120
+--------when hop is 1
+size of KTruss: 94
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO92; vertex_id: 7403
+--------when hop is 1
+size of KTruss: 10
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO93; vertex_id: 493
+--------when hop is 1
+size of KTruss: 9
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO94; vertex_id: 89
+--------when hop is 1
+size of KTruss: 95
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO95; vertex_id: 478
+query_data: NO96; vertex_id: 504
+query_data: NO97; vertex_id: 588
+--------when hop is 1
+size of KTruss: 21
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO98; vertex_id: 43
+--------when hop is 1
+size of KTruss: 653
+truss unb num: 56
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 135776
+queue out: 89156
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO99; vertex_id: 406
+--------when hop is 1
+size of KTruss: 6
+truss unb num: 0
+===================Deleting NegativeTriangle ==================
+check1
+test1
+check2
+---start to delete node 
+
+check3
+calculation success!

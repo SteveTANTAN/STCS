@@ -2,9 +2,9 @@
 
 # Set variables
 dataset="ba"
-query_set_sizes=(20 40 60 80 100)
+query_set_sizes=(60)
 program_names=("ad" "ade" "base")
-k_s=(5 6 7 8 9 10)
+k_s=(4 5 6 7)
 
 # Generate folder and log names
 output_log=${dataset}/query_output_sum.txt

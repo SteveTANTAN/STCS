@@ -12,6 +12,8 @@ def process_input(input_lines):
         # Check if the reverse order is already in the excluded lines
         if (v2, v1) in edge_set or (v1, v2) in edge_set:
             continue
+        if v2 == v1:
+            continue
 
         # Add the current line to the excluded lines and vertex counter
         vertex_counter.update([v1, v2])
@@ -38,8 +40,8 @@ def process_input(input_lines):
 
 
 # Example usage
-filename = "ep.txt"
-outputname = 'expf/ep/ep.txt'
+filename = "sl.txt"
+outputname = '../expf/sl/sl.txt'
 
 with open(filename, "r") as file:
     input_lines = file.readlines()

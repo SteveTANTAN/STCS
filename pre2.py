@@ -50,8 +50,8 @@ def process_input(input_lines):
 
 
 # Example usage
-filename = "data/ep.txt"
-outputname = 'expf/ep/ep.txt'
+filename = "data/sl.txt"
+outputname = 'expf/sl/sl.txt'
 
 with open(filename, "r") as file:
     input_lines = file.readlines()

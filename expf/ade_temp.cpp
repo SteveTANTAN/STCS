@@ -49,8 +49,8 @@ typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
 	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(6000000,false)};
-	vector<bool> Triangle_broken{vector<bool>(6000000,false)};
+	vector<bool> Triangle_balance{vector<bool>(1000000,false)};
+	vector<bool> Triangle_broken{vector<bool>(1000000,false)};
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;
@@ -1934,6 +1934,7 @@ bool GetKtruss(int src, int k, Graph* g) {
 			int v = (all_edge_pairs[edgeIndex].v1 == curr_v)
 					? all_edge_pairs[edgeIndex].v2
 					: all_edge_pairs[edgeIndex].v1;
+			if (g->is_delete_e[edgeIndex]) continue;
 
 			if (hop_num[v] == -1 || hop_num[v] > curr_hop + 1) {
 				hop_num[v] = curr_hop + 1;
@@ -2014,6 +2015,7 @@ double cc_vertex(Graph* g, int v1)  {
         for (int i = 0; i < adj_edge[v].size(); i++) {
             int edge_id = adj_edge[v][i];  // 相邻的边的 ID
             int v2 = all_edge_pairs[edge_id].v1;
+			
             if (v2 == v) v2 = all_edge_pairs[edge_id].v2;
 
 
