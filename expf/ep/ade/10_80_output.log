@@ -1,0 +1,155 @@
+
+query_data: NO0; vertex_id: 109602
+query_data: NO1; vertex_id: 105856
+query_data: NO2; vertex_id: 108241
+query_data: NO3; vertex_id: 62085
+query_data: NO4; vertex_id: 38847
+query_data: NO5; vertex_id: 54842
+query_data: NO6; vertex_id: 4853
+query_data: NO7; vertex_id: 24015
+query_data: NO8; vertex_id: 87549
+query_data: NO9; vertex_id: 60316
+query_data: NO10; vertex_id: 32937
+query_data: NO11; vertex_id: 14658
+query_data: NO12; vertex_id: 94045
+query_data: NO13; vertex_id: 85020
+query_data: NO14; vertex_id: 25525
+query_data: NO15; vertex_id: 94022
+query_data: NO16; vertex_id: 7904
+query_data: NO17; vertex_id: 35543
+query_data: NO18; vertex_id: 17612
+query_data: NO19; vertex_id: 61294
+--------when hop is 1
+size of KTruss: 0
+truss unb num: 0
+--------when hop is 2
+size of KTruss: 28218
+truss unb num: 3683
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+Execution of program ade with k=10 and query_set_size=80 timed out.
+query_data: NO20; vertex_id: 111647
+query_data: NO21; vertex_id: 69383
+query_data: NO22; vertex_id: 131626
+query_data: NO23; vertex_id: 58292
+query_data: NO24; vertex_id: 49497
+query_data: NO25; vertex_id: 56126
+query_data: NO26; vertex_id: 44833
+--------when hop is 1
+size of KTruss: 16266
+truss unb num: 284
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32639
+queue out: 18
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO27; vertex_id: 69409
+query_data: NO28; vertex_id: 58027
+query_data: NO29; vertex_id: 111648
+query_data: NO30; vertex_id: 63914
+query_data: NO31; vertex_id: 17556
+query_data: NO32; vertex_id: 89690
+query_data: NO33; vertex_id: 45881
+query_data: NO34; vertex_id: 56821
+query_data: NO35; vertex_id: 41861
+query_data: NO36; vertex_id: 76564
+query_data: NO37; vertex_id: 92424
+query_data: NO38; vertex_id: 15846
+query_data: NO39; vertex_id: 8658
+query_data: NO40; vertex_id: 9555
+query_data: NO41; vertex_id: 39526
+query_data: NO42; vertex_id: 27037
+query_data: NO43; vertex_id: 116330
+--------when hop is 1
+size of KTruss: 0
+truss unb num: 0
+--------when hop is 2
+size of KTruss: 108909
+truss unb num: 32418
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+Execution of program ade with k=10 and query_set_size=80 timed out.
+query_data: NO44; vertex_id: 68390
+query_data: NO45; vertex_id: 47985
+query_data: NO46; vertex_id: 60383
+query_data: NO47; vertex_id: 40137
+query_data: NO48; vertex_id: 67474
+query_data: NO49; vertex_id: 73325
+query_data: NO50; vertex_id: 26206
+query_data: NO51; vertex_id: 30894
+--------when hop is 1
+size of KTruss: 14814
+truss unb num: 174
+===================Deleting NegativeTriangle ==================
+check1
+test1
+===remove unbalanced==
+
+q-in size: 32515
+queue out: 5
+check2
+---start to delete node 
+
+check3
+calculation success!
+query_data: NO52; vertex_id: 85191
+query_data: NO53; vertex_id: 1901
+query_data: NO54; vertex_id: 50887
+query_data: NO55; vertex_id: 87712
+query_data: NO56; vertex_id: 52409
+query_data: NO57; vertex_id: 13026
+query_data: NO58; vertex_id: 38401
+query_data: NO59; vertex_id: 91614
+query_data: NO60; vertex_id: 20743
+query_data: NO61; vertex_id: 59427
+query_data: NO62; vertex_id: 115269
+query_data: NO63; vertex_id: 75865
+query_data: NO64; vertex_id: 24171
+query_data: NO65; vertex_id: 34974
+query_data: NO66; vertex_id: 12094
+query_data: NO67; vertex_id: 125310
+query_data: NO68; vertex_id: 77703
+query_data: NO69; vertex_id: 41231
+query_data: NO70; vertex_id: 50762
+query_data: NO71; vertex_id: 81348
+query_data: NO72; vertex_id: 21606
+query_data: NO73; vertex_id: 52015
+query_data: NO74; vertex_id: 622
+query_data: NO75; vertex_id: 74573
+query_data: NO76; vertex_id: 95643
+query_data: NO77; vertex_id: 126927
+query_data: NO78; vertex_id: 124854
+query_data: NO79; vertex_id: 46786
+query_data: NO80; vertex_id: 7037
+query_data: NO81; vertex_id: 114348
+query_data: NO82; vertex_id: 120029
+query_data: NO83; vertex_id: 112341
+query_data: NO84; vertex_id: 34666
+query_data: NO85; vertex_id: 58501
+query_data: NO86; vertex_id: 20086
+query_data: NO87; vertex_id: 300
+query_data: NO88; vertex_id: 25636
+query_data: NO89; vertex_id: 94279
+query_data: NO90; vertex_id: 54685
+query_data: NO91; vertex_id: 131682
+query_data: NO92; vertex_id: 35686
+query_data: NO93; vertex_id: 1257
+query_data: NO94; vertex_id: 56351
+query_data: NO95; vertex_id: 127321
+query_data: NO96; vertex_id: 50052
+query_data: NO97; vertex_id: 67207
+query_data: NO98; vertex_id: 32701
+query_data: NO99; vertex_id: 126465
