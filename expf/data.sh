@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set variables
-dataset="ba"
+dataset="ep"
 query_set_sizes=(20 40 60 80 100)
-program_names=("ad" "ade" "base")
-k_s=(4)
+program_names=("ad" "ade")
+k_s=(10)
 
 # Generate folder and log names
 output_log=${dataset}/query_output_sum.txt

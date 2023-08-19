@@ -1,0 +1,181 @@
+
+Running: python3 datacollect.py ep/ad/10_20.txt
+The total for Attempt is 18
+The total for query_data_No is 4950.0
+The total for time is 321.2481700000001
+The total for diameter is 39.0
+The total for total_size_of_truss is 311563.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 1.2762453
+The total for total_density is 8.0549428
+===============================
+The average for Attempt is 1
+The average for query_data_No is 275.0
+The average for time is 3.2124817000000006
+The average for diameter is 2.1666666666666665
+The average for total_size_of_truss is 17309.055555555555
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.07090251666666667
+The average for total_density is 0.4474968222222222
+Running: python3 datacollect.py ep/ade/10_20.txt
+The total for Attempt is 10
+The total for query_data_No is 4461.0
+The total for time is 25501.41312
+The total for diameter is 18.0
+The total for total_size_of_truss is 50764.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.1845954
+The total for total_density is 6.43246
+===============================
+The average for Attempt is 1
+The average for query_data_No is 446.1
+The average for time is 255.0141312
+The average for diameter is 1.8
+The average for total_size_of_truss is 5076.4
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.01845954
+The average for total_density is 0.643246
+Running: python3 datacollect.py ep/ad/10_40.txt
+The total for Attempt is 10
+The total for query_data_No is 4950.0
+The total for time is 248.67743000000016
+The total for diameter is 22.0
+The total for total_size_of_truss is 222582.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.8602115100000001
+The total for total_density is 4.9532598
+===============================
+The average for Attempt is 1
+The average for query_data_No is 495.0
+The average for time is 2.4867743000000018
+The average for diameter is 2.2
+The average for total_size_of_truss is 22258.2
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.086021151
+The average for total_density is 0.49532597999999994
+Running: python3 datacollect.py ep/ade/10_40.txt
+The total for Attempt is 6
+The total for query_data_No is 4712.0
+The total for time is 14684.34262
+The total for diameter is 12.0
+The total for total_size_of_truss is 2543.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.04351046
+The total for total_density is 3.645123
+===============================
+The average for Attempt is 1
+The average for query_data_No is 785.3333333333334
+The average for time is 146.84342619999998
+The average for diameter is 2.0
+The average for total_size_of_truss is 423.8333333333333
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.007251743333333334
+The average for total_density is 0.6075205
+Running: python3 datacollect.py ep/ad/10_60.txt
+The total for Attempt is 8
+The total for query_data_No is 4950.0
+The total for time is 250.04897999999997
+The total for diameter is 24.0
+The total for total_size_of_truss is 436370.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 1.6782073899999999
+The total for total_density is 2.2665017
+===============================
+The average for Attempt is 1
+The average for query_data_No is 618.75
+The average for time is 2.5004897999999995
+The average for diameter is 3.0
+The average for total_size_of_truss is 54546.25
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.20977592374999998
+The average for total_density is 0.2833127125
+Running: python3 datacollect.py ep/ade/10_60.txt
+The total for Attempt is 2
+The total for query_data_No is 4593.0
+The total for time is 21797.18794
+The total for diameter is 4.0
+The total for total_size_of_truss is 381.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.008702089999999999
+The total for total_density is 1.4322949999999999
+===============================
+The average for Attempt is 1
+The average for query_data_No is 2296.5
+The average for time is 217.9718794
+The average for diameter is 2.0
+The average for total_size_of_truss is 190.5
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.0043510449999999996
+The average for total_density is 0.7161474999999999
+Running: python3 datacollect.py ep/ad/10_80.txt
+The total for Attempt is 4
+The total for query_data_No is 4950.0
+The total for time is 228.61239000000006
+The total for diameter is 10.0
+The total for total_size_of_truss is 111771.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.4404739
+The total for total_density is 1.522388
+===============================
+The average for Attempt is 1
+The average for query_data_No is 1237.5
+The average for time is 2.2861239000000007
+The average for diameter is 2.5
+The average for total_size_of_truss is 27942.75
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.110118475
+The average for total_density is 0.380597
+Running: python3 datacollect.py ep/ade/10_80.txt
+The total for Attempt is 2
+The total for query_data_No is 4888.0
+The total for time is 7405.9595500000005
+The total for diameter is 4.0
+The total for total_size_of_truss is 31057.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.0796149
+The total for total_density is 1.361145
+===============================
+The average for Attempt is 1
+The average for query_data_No is 2444.0
+The average for time is 74.0595955
+The average for diameter is 2.0
+The average for total_size_of_truss is 15528.5
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.03980745
+The average for total_density is 0.6805725
+Running: python3 datacollect.py ep/ad/10_100.txt
+The total for Attempt is 5
+The total for query_data_No is 4950.0
+The total for time is 212.93681000000004
+The total for diameter is 10.0
+The total for total_size_of_truss is 13104.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.10461026999999999
+The total for total_density is 2.2171209999999997
+===============================
+The average for Attempt is 1
+The average for query_data_No is 990.0
+The average for time is 2.1293681
+The average for diameter is 2.0
+The average for total_size_of_truss is 2620.8
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.020922054
+The average for total_density is 0.44342419999999994
+Running: python3 datacollect.py ep/ade/10_100.txt
+The total for Attempt is 1
+The total for query_data_No is 4752.0
+The total for time is 14603.772069999999
+The total for diameter is 2.0
+The total for total_size_of_truss is 250.0
+The total for total_unbalance_num is 0.0
+The total for total_percentage is 0.00462877
+The total for total_density is 0.833333
+===============================
+The average for Attempt is 1
+The average for query_data_No is 4752.0
+The average for time is 146.0377207
+The average for diameter is 2.0
+The average for total_size_of_truss is 250.0
+The average for total_unbalance_num is 0.0
+The average for total_percentage is 0.00462877
+The average for total_density is 0.833333
