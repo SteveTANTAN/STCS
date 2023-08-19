@@ -49,8 +49,8 @@ typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
 	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(1000000,false)};
-	vector<bool> Triangle_broken{vector<bool>(1000000,false)};
+	vector<bool> Triangle_balance;
+	vector<bool> Triangle_broken;
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;
@@ -1791,7 +1791,9 @@ void GetmaximumKtruss(Graph *g) {
 		}
 		is_booked.clear();
 	}
-
+	int tri_size = Triangles.size() +1;
+	g->Triangle_balance.resize(tri_size,false);
+	g->Triangle_broken.resize(tri_size,false);
 	for (int i = 0; i < Triangles.size(); i++) {
 		Triangles[i].id = i;
 		g->Triangle_balance[i] = Triangles[i].is_balanced;

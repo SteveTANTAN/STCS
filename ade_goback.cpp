@@ -688,34 +688,6 @@ bool removeNegativeTriangle(Graph* g) {
 	cout<<"test1\n";
 	if (g->unbalance_num <= 0) return true;
 	cout<<"===remove unbalanced==\n"<<endl;	
-    // for (auto unb : Triangles) {
-	// 	if (!g->Triangle_balance[unb.id] && !g->Triangle_broken[unb.id]){
-	// 		vector<int> v1 = check_follower(unb.edge1,g);
-	// 		vector<int> v2 = check_follower(unb.edge2,g);
-	// 		vector<int> v3 = check_follower(unb.edge3,g);
-	// 		// 首先，需要确保三个向量都是排序的
-	// 		sort(v1.begin(), v1.end());
-	// 		sort(v2.begin(), v2.end());
-	// 		sort(v3.begin(), v3.end());
-
-	// 		// 计算第一个和第二个向量的交集
-	// 		vector<int> v1_v2_intersection;
-	// 		set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(v1_v2_intersection));
-
-	// 		// 然后计算 (v1 和 v2 的交集) 与 v3 的交集
-	// 		vector<int> result;
-	// 		set_intersection(v1_v2_intersection.begin(), v1_v2_intersection.end(), v3.begin(), v3.end(), back_inserter(result));
-	// 		// v1.clear();
-	// 		// v2.clear();
-	// 		// v3.clear();
-	// 		// v1_v2_intersection.clear();
-	// 		cout<< "size:" <<result.size()<<endl;
-	// 		cout<< "size1:" <<v1.size()<<endl;
-	// 		cout<< "size2:" <<v2.size()<<endl;
-	// 		cout<< "size3:" <<v3.size()<<endl;
-
-	// 	}
-	// }
 
 	queue<Graph*> Queue;
 	Graph *best_g = new Graph();
@@ -1294,6 +1266,60 @@ int exact(Graph*g,int maxSize) {
 
 }
 
+int exact_removeNegativeTriangle(Graph* g, int maxSize) {
+    int process_id = -11; // Current triangle to process
+    Triangle temp;
+
+    for (auto unb : Triangles) {
+        if (!g->Triangle_balance[unb.id] && !g->Triangle_broken[unb.id]) {
+            process_id = unb.id;
+            temp = unb;
+            break;
+        }
+    }
+
+    if (process_id == -11) {
+        return g->size_of_truss;
+    }
+
+    // Store the current state of the graph before trying each edge removal.
+    Graph *temp_g = new Graph();
+    *temp_g = *g; 
+
+    for(int i = 0; i < 3; i++) {
+        // Select which edge to delete based on the iteration
+        int edgeToDelete;
+        switch(i) {
+            case 0:
+                edgeToDelete = temp.edge1;
+                break;
+            case 1:
+                edgeToDelete = temp.edge2;
+                break;
+            case 2:
+                edgeToDelete = temp.edge3;
+                break;
+        }
+		int result = 0;
+        if(delete_on_edge(edgeToDelete, g, false) && delete_on_radius(g)) {
+			// PRUNING rules:
+			// We'll only proceed with this graph state if the current state is not worse than the previously best
+			if (g->diameter >= global_hop) {
+				result = exact_removeNegativeTriangle(g, maxSize);
+				
+			}
+			// We'll only update maxSize if the result is strictly better than the previous maxSize
+		}
+		if (result > maxSize) {
+			maxSize = result;
+		}
+        *g = *temp_g; // Reset the graph to the stored state
+    }
+
+    delete(temp_g);
+
+    return maxSize;
+}
 
 
 bool GetKtruss(int src, int k, Graph* g) {
@@ -1353,8 +1379,9 @@ bool GetKtruss(int src, int k, Graph* g) {
 			cout << "===================Deleting NegativeTriangle ==================\n";
             cout<<"check1\n";
 			// if (!removeNegativeTriangle(g_hop))	goto hop_add;
-			maxSize = exact(g_hop,0);
-            cout<<"check2\n";
+			// maxSize = exact(g_hop,0);
+            maxSize = exact_removeNegativeTriangle(g_hop,0);
+			cout<<"check2\n";
 			cout << "maxSize : " << maxSize << endl;
             // vector<int> longest_list = findLongestDistanceFromStartVertex(g_hop);
 

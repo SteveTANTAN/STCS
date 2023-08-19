@@ -49,8 +49,8 @@ typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
 	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(1000000,false)};
-	vector<bool> Triangle_broken{vector<bool>(1000000,false)};
+	vector<bool> Triangle_balance;
+	vector<bool> Triangle_broken;
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;
@@ -1307,9 +1307,9 @@ bool removeNegativeTriangle(Graph* g) {
 			if (!first->Triangle_balance[unb.id] && !first->Triangle_broken[unb.id]){
 				int check = quick_delete(first, unb);
 				vector<int> v1 = check_follower(check,first);
-				cout<< "size1:" <<v1.size()<<endl;
+				// cout<< "size1:" <<v1.size()<<endl;
 			
-				if (v1.size() == 1) {
+				if (v1.size() < 0 ) {
 					Graph *left = new Graph();
 					*left = *first;
 					// cout<<"4.1\n";
@@ -1791,7 +1791,9 @@ void GetmaximumKtruss(Graph *g) {
 		}
 		is_booked.clear();
 	}
-
+	int tri_size = Triangles.size() +1;
+	g->Triangle_balance.resize(tri_size,false);
+	g->Triangle_broken.resize(tri_size,false);
 	for (int i = 0; i < Triangles.size(); i++) {
 		Triangles[i].id = i;
 		g->Triangle_balance[i] = Triangles[i].is_balanced;
@@ -2018,7 +2020,7 @@ int main(int argc, char** argv) {
 	result = GetKtruss(start_vertex, k, g);
     gettimeofday(&end, NULL);
     timeuse = (end.tv_sec - start.tv_sec) + (double)(end.tv_usec - start.tv_usec)/1000000.0;
-   	cout << "advanced time: " << timeuse << '\n' << endl;
+   	cout << "advanced-exact time: " << timeuse << '\n' << endl;
 	if (result) print_result(g);
 
 	return 0;
