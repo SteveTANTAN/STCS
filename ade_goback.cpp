@@ -49,8 +49,8 @@ typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
 	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(1000000,false)};
-	vector<bool> Triangle_broken{vector<bool>(1000000,false)};
+	vector<bool> Triangle_balance{vector<bool>(5000000,false)};
+	vector<bool> Triangle_broken{vector<bool>(5000000,false)};
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;

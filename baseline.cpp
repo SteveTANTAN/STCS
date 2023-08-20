@@ -49,8 +49,8 @@ typedef struct {
 
 	vector<bool> is_delete_e{vector<bool>(MAX_E,false)};
 	vector<bool> is_delete_vec{vector<bool>(MAX_V,false)};
-	vector<bool> Triangle_balance{vector<bool>(MAX_E,false)};
-	vector<bool> Triangle_broken{vector<bool>(MAX_E,false)};
+	vector<bool> Triangle_balance;
+	vector<bool> Triangle_broken;
 	int support[MAX_E];
 	int edge_num;
 	int unbalance_num = 0;
@@ -693,95 +693,7 @@ bool quickremoveNegativeTriangle(Graph* g) {
 
 
 
-bool quick_delete_helper(Graph* tep, int edge_num) {
-	queue<int> q;
-	vector<int> delCost_vertices;
 
-	Graph *newG = new Graph();
-	*newG = *tep;
-	if (!newG->is_delete_e[edge_num] ) {
-		newG->is_delete_e[edge_num] = 1;
-		newG->size_of_truss--;
-		// cout<<"11\n";
-		// newG->temp_delete_e[edge_num] = 1;
-		q.push(edge_num);
-		delCost_vertices.push_back(edge_num);
-	}
-
-	// cout<<"11\n";
-
-	while (!q.empty()) {
-		int sub = q.front();
-		q.pop();
-		//in_which_triangle[sub][i]].edge1 表示包含 边SUB的第 i 个三角形的 三边
-		for (int i = 0; i < in_which_triangle[sub].size(); i++) {
-			if (!newG->Triangle_broken[Triangles[in_which_triangle[sub][i]].id]){
-				if (newG->Triangle_balance[Triangles[in_which_triangle[sub][i]].id]) {
-					// 删除临边
-					newG->support[Triangles[in_which_triangle[sub][i]].edge1]--;
-					newG->support[Triangles[in_which_triangle[sub][i]].edge2]--;
-					newG->support[Triangles[in_which_triangle[sub][i]].edge3]--;
-				}
-				else 
-					newG->unbalance_num--;
-				// 删除一条边后check 他的临边
-				if (!newG->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1]) {
-					if (newG->support[Triangles[in_which_triangle[sub][i]].edge1] < k - 2)
-					{
-						q.push(Triangles[in_which_triangle[sub][i]].edge1);
-						delCost_vertices.push_back(Triangles[in_which_triangle[sub][i]].edge1);
-						newG->is_delete_e[Triangles[in_which_triangle[sub][i]].edge1] = 1;
-						// newG->temp_delete_e[Triangles[in_which_triangle[sub][i]].edge1] = 1;
-						newG->size_of_truss--;
-					}
-				}
-				if (!newG->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2]) {
-					if (newG->support[Triangles[in_which_triangle[sub][i]].edge2] < k - 2)
-					{
-						q.push(Triangles[in_which_triangle[sub][i]].edge2);
-						delCost_vertices.push_back(Triangles[in_which_triangle[sub][i]].edge2);
-						newG->is_delete_e[Triangles[in_which_triangle[sub][i]].edge2] = 1;
-						// newG->temp_delete_e[Triangles[in_which_triangle[sub][i]].edge2] = 1;
-						newG->size_of_truss--;
-					}
-				}
-				if (!newG->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3]) {
-					if (newG->support[Triangles[in_which_triangle[sub][i]].edge3] < k - 2)
-					{
-						q.push(Triangles[in_which_triangle[sub][i]].edge3);
-						delCost_vertices.push_back(Triangles[in_which_triangle[sub][i]].edge3);
-						newG->is_delete_e[Triangles[in_which_triangle[sub][i]].edge3] = 1;
-						// newG->temp_delete_e[Triangles[in_which_triangle[sub][i]].edge3] = 1;
-						newG->size_of_truss--;
-					}
-				}
-				newG->Triangle_broken[Triangles[in_which_triangle[sub][i]].id] = true;
-			}
-		}
-	}
-	// cout<<"12\n";
-
-
-
-	if (newG->size_of_truss > 0 && if_query_inside(newG)) {
-		findLongestPath(newG);
-		if (newG->diameter == tep->diameter && delCost_vertices.size() == 1) {
-			delete(newG);
-			return true;
-		}
-	} 
-	delete(newG);
-
-	return false;
-}
-vector<int> quick_delete(Graph* tep, Triangle umb) {
-	vector<int> result;
-	if(quick_delete_helper(tep,umb.edge1)) result.push_back(umb.edge1);
-	if(quick_delete_helper(tep,umb.edge2)) result.push_back(umb.edge2);
-	if(quick_delete_helper(tep,umb.edge3)) result.push_back(umb.edge3);
-
-	return result;
-}
 bool removeNegativeTriangle(Graph* g) {
 	int curr_diameter = g->diameter;
 	if (curr_diameter < 1) return false;
